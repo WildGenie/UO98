@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <ParseFiles>true</ParseFiles>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="API">
+      <UniqueIdentifier>{61b1c1e4-df9e-4536-8445-1e596f2f10e4}</UniqueIdentifier>
+      <ParseFiles>true</ParseFiles>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Source Files\API Function Exports">
+      <UniqueIdentifier>{67ac47f4-c1d1-4e3a-b8da-c4ea8aeaadcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Event Exports">
+      <UniqueIdentifier>{04ee96b9-9059-4047-9a22-4e372af5780e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Patches">
+      <UniqueIdentifier>{c46fa2f2-25dc-48e1-8c77-cda6f0e0d5e5}</UniqueIdentifier>
+      <SourceControlFiles>False</SourceControlFiles>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files\Tests">
+      <UniqueIdentifier>{48c1cc97-7b2d-4ff5-9116-555c85ca076e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="API\classes.c">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="API\Location.c">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="API\Mobile.c">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="API\Player.c">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="API\Weapon.c">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="API\patcher.c">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="API\patches.c">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UODemoDLL.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\events.c">
+      <Filter>Source Files\Event Exports</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scommand.c">
+      <Filter>Source Files\Patches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jit.cpp">
+      <Filter>Source Files\Patches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CoreFunctions.c">
+      <Filter>Source Files\API Function Exports</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObjectProperties.c">
+      <Filter>Source Files\API Function Exports</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObjectScripts.c">
+      <Filter>Source Files\API Function Exports</Filter>
+    </ClCompile>
+    <ClCompile Include="src\World.c">
+      <Filter>Source Files\API Function Exports</Filter>
+    </ClCompile>
+    <ClCompile Include="src\logging.c">
+      <Filter>Source Files\Patches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\timer.c">
+      <Filter>Source Files\Patches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\packets.c">
+      <Filter>Source Files\Patches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PacketFunctions.c">
+      <Filter>Source Files\API Function Exports</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObjectVars.c">
+      <Filter>Source Files\API Function Exports</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tests.c">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tests_World.c">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lists.c">
+      <Filter>Source Files\API Function Exports</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tests_Lists.c">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="API\List.c">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tests_ObjectVars.c">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tests_ObjectScripts.c">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="API\classes.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="API\core.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="API\Location.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="API\Mobile.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="API\patcher.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="API\patches.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="API\Player.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="API\Weapon.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="API\TimeManager.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="API\List.h">
+      <Filter>API</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
