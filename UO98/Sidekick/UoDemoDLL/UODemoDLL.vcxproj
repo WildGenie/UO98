@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{ABB80754-CE39-4C4A-A0ED-F5F30AFC0370}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>UO98</RootNamespace>
+    <ProjectName>UODemoDLL</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>API;c:\borland\bcc55\INCLUDE</IncludePath>
+    <LibraryPath>c:\borland\bcc55\LIB</LibraryPath>
+    <SourcePath>API;$(SourcePath)</SourcePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;UO98_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>CompileAsC</CompileAs>
+      <CompileAsManaged>false</CompileAsManaged>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PreBuildEvent>
+      <Command>pause</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;UO98_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="API\classes.c" />
+    <ClCompile Include="API\List.c" />
+    <ClCompile Include="API\Location.c" />
+    <ClCompile Include="API\Mobile.c" />
+    <ClCompile Include="API\patcher.c" />
+    <ClCompile Include="API\patches.c" />
+    <ClCompile Include="API\Player.c" />
+    <ClCompile Include="API\Weapon.c" />
+    <ClCompile Include="src\Lists.c" />
+    <ClCompile Include="src\PacketFunctions.c" />
+    <ClCompile Include="src\ObjectProperties.c" />
+    <ClCompile Include="src\ObjectScripts.c" />
+    <ClCompile Include="src\ObjectVars.c" />
+    <ClCompile Include="src\events.c" />
+    <ClCompile Include="src\jit.cpp" />
+    <ClCompile Include="src\logging.c" />
+    <ClCompile Include="src\packets.c" />
+    <ClCompile Include="src\scommand.c" />
+    <ClCompile Include="src\CoreFunctions.c" />
+    <ClCompile Include="src\Tests.c" />
+    <ClCompile Include="src\Tests_Lists.c" />
+    <ClCompile Include="src\Tests_ObjectVars.c" />
+    <ClCompile Include="src\Tests_World.c" />
+    <ClCompile Include="src\Tests_ObjectScripts.c" />
+    <ClCompile Include="src\timer.c" />
+    <ClCompile Include="src\UODemoDLL.c" />
+    <ClCompile Include="src\World.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="API\classes.h" />
+    <ClInclude Include="API\core.h" />
+    <ClInclude Include="API\List.h" />
+    <ClInclude Include="API\Location.h" />
+    <ClInclude Include="API\Mobile.h" />
+    <ClInclude Include="API\patcher.h" />
+    <ClInclude Include="API\patches.h" />
+    <ClInclude Include="API\Player.h" />
+    <ClInclude Include="API\TimeManager.h" />
+    <ClInclude Include="API\Weapon.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
