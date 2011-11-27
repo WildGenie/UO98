@@ -39,7 +39,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)..\binaries\</OutDir>
+    <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -54,7 +54,7 @@
       <CompileAsManaged>true</CompileAsManaged>
       <UseFullPaths>true</UseFullPaths>
       <CompileAs>Default</CompileAs>
-      <AdditionalUsingDirectories>$(SolutionDir)..\binaries\</AdditionalUsingDirectories>
+      <AdditionalUsingDirectories>$(SolutionDir)..\Bin\</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

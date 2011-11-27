@@ -1,4 +1,4 @@
-CD Sidekick
+CD Dev
 call BUILDDLL.cmd
 if "%ERRORLEVEL%" EQU "0" GOTO ok
 cd ..
