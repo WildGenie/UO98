@@ -67,9 +67,9 @@ cd %SLNDIR%
 EXIT /B 1
 
 :lib
-move %PRJNAME%.dll %UODEMODIR%\binaries
-move %PRJNAME%.tds %UODEMODIR%\binaries
-cd %UODEMODIR%\binaries
+move %PRJNAME%.dll %UODEMODIR%\Bin
+move %PRJNAME%.tds %UODEMODIR%\Bin
+cd %UODEMODIR%\Bin
 implib -a %PRJNAME% %PRJNAME%.dll
 
 :ok
