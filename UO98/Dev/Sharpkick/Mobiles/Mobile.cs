@@ -54,7 +54,7 @@ namespace Sharpkick
         public static void TouchMobile(uint serial)
         {
             if (!AllMobiles.ContainsKey(serial))
-                new Mobile(serial); // contructor adds
+                new Mobile(serial); // constructor adds
             else
                 AllMobiles[serial].Touch();
         }

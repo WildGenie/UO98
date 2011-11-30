@@ -74,7 +74,7 @@ namespace Sharpkick.Network
         public bool VerifyGod { get { return Accounting.HasAccess(AccountNumber, AccessFlags.Editor); } }
 
         /// <summary>
-        /// Set the client version for this socket, this is persistant server data
+        /// Set the client version for this socket, this is persistent server data
         /// </summary>
         /// <param name="vStruct"></param>
         public void SetClientVersion(ClientVersionStruct vStruct)

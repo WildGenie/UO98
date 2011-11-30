@@ -17,7 +17,7 @@ namespace Sharpkick
         /// </summary>
         public static void OnPulse()
         {
-            if (!Main.Initialized) Main.Initialize();   // this will occur once, on the first pulse from the server.
+            if (!Main.Initialized) Main.Initialize();
             EventSink.InvokeOnPulse();
         }
 
@@ -28,23 +28,25 @@ namespace Sharpkick
         {
             EventSink.InvokeOnAfterSave();
         }
+
         /// <summary>
-        /// Called when the server recieves a valid packet, before it's processed.
+        /// Called when the server receives a valid packet, before it's processed.
         /// </summary>
         /// <param name="pSocket">The servers socket which received the packet.</param>
         /// <param name="PacketID">The packet ID (first byte of Data)</param>
         /// <param name="PacketSize">Size of the packet</param>
         /// <param name="IsPacketDynamicSized">True if this is a dynamic length packet</param>
-        unsafe public static void OnPacketRecieved(byte* pSocket, byte PacketID, uint PacketSize, bool IsPacketDynamicSized)
+        unsafe public static void OnPacketReceived(byte* pSocket, byte PacketID, uint PacketSize, bool IsPacketDynamicSized)
         {
             Console.WriteLine("Packet obj: ID:{0:X2} Size:{1} Dyn:{2}", PacketID, PacketSize, IsPacketDynamicSized);
+
             Network.ClientPacketSafe packet = Network.ClientPacket.Instantiate(pSocket, PacketID, PacketSize, IsPacketDynamicSized);
-            if (packet != null && !packet.OnRecieved())
+            if (packet != null && !packet.OnReceived())
                 packet.Remove();
         }
 
         /// <summary>
-        /// Called when the server recieves a packet that it cannot handle.
+        /// Called when the server receives a packet that it cannot handle.
         /// </summary>
         /// <param name="pSocket">The servers socket which received the packet.</param>
         unsafe public static void OnHandleOutsideRangePacket(byte* pSocket)
@@ -67,7 +69,7 @@ namespace Sharpkick
             
             PacketVersionEntry packetinfo = PacketVersions.GetPacketInfo(PacketID, version);
 
-            if (packetinfo == null)
+            if(packetinfo == null)
             {
                 ConsoleUtils.PushColor(ConsoleColor.Red);
                 Console.WriteLine("WARNING: Ignored Invalid Packet {0:X2}.", PacketID);
@@ -84,7 +86,7 @@ namespace Sharpkick
                 IsPacketDynamicSized = packetinfo.Dynamic;
 
                 Console.WriteLine("Handling Invalid Packet {0:X2} from client version {1}", PacketID, version);
-                OnPacketRecieved(pSocket, PacketID, PacketSize, IsPacketDynamicSized);
+                OnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized);
             }
         }
 

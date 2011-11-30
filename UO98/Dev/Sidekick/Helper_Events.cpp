@@ -12,9 +12,9 @@ extern "C"
 		OnAfterSave();
 	}
 
-  void _declspec(dllexport) APIENTRY Test_EventInvoke_OnPacketRecieved(unsigned char* pSocket, unsigned char PacketID, unsigned int PacketSize, int IsPacketDynamicSized)
+  void _declspec(dllexport) APIENTRY Test_EventInvoke_OnPacketReceived(unsigned char* pSocket, unsigned char PacketID, unsigned int PacketSize, int IsPacketDynamicSized)
 	{
-		OnPacketRecieved(pSocket, PacketID, PacketSize, IsPacketDynamicSized);
+		OnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized);
 	}
 
   void _declspec(dllexport) APIENTRY Test_EventInvoke_OnHandleOutsideRangePacketd(unsigned char* pSocket)

@@ -16,7 +16,7 @@ namespace Sharpkick.WorldBuilding
 
         static void EventSink_OnPulse()
         {
-            if (Server.TimeManager.PulseNum == 20)
+            if(Server.TimeManager.PulseNum == 20 && MyServerConfig.DecorationEnabled)
             {
                 Decoration.Decorate();
                 Teleporters.Generate();

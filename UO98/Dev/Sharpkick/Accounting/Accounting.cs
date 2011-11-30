@@ -245,7 +245,7 @@ namespace Sharpkick
     }
 
     /// <summary>
-    /// The users service. Responsible for account creation, validation, and persitance
+    /// The users service. Responsible for account creation, validation, and persistence
     /// </summary>
     static class Accounting
     {

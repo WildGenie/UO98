@@ -8,15 +8,6 @@ namespace Sharpkick.Global
 {
     class TileData
     {
-        public static void Configure()
-        {
-            //Console.WriteLine("Configuring TileData...");
-
-            //// Make Spell Scrolls Generic items
-            //for (ushort tileid = 7981; tileid <= 8050; tileid++)
-            //    MakeGeneric(tileid);
-        }
-
         public const int TileSize = 0x28;
         unsafe static private Tile* GLOBAL_TILEDATA { get { return *(Tile**)0x0064B364; } }
 
@@ -26,12 +17,6 @@ namespace Sharpkick.Global
         {
             return ((*(TileFlag*)(GLOBAL_TILEDATA + TileID)) & flag) == flag;
         }
-
-        private static void MakeGeneric(ushort TileID)
-        {
-            SetFlag(TileID, TileFlag.Generic);
-        }
-
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 1, Size = TileData.TileSize)]

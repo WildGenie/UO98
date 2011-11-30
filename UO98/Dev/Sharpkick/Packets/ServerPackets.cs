@@ -328,7 +328,7 @@ namespace Sharpkick.Network
             {   // end
                 i += WriteUShort(i, 0); // id
             }
-            WriteUShort(1, (ushort)i);  // blocklength
+            WriteUShort(1, (ushort)i);  // block length
         }
     }
 
@@ -362,7 +362,7 @@ namespace Sharpkick.Network
             {   // end
                 i += WriteUShort(i, 0); // id
             }
-            WriteUShort(1, (ushort)i);  // blocklength
+            WriteUShort(1, (ushort)i);  // block length
         }
     }
 
@@ -401,7 +401,7 @@ namespace Sharpkick.Network
             {   // end
                 i += WriteUShort(i, 0); // id
             }
-            WriteUShort(1, (ushort)i);  // blocklength
+            WriteUShort(1, (ushort)i);  // block length
         }
     }
 

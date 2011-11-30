@@ -22,10 +22,9 @@ namespace Sharpkick
             if(!Initialized)
             {
                 // Call all class configuration routines.
-                //WorldSave.Configure();
+                WorldSave.Configure();
                 Accounting.Configure();
                 PacketVersions.Configure();
-                Global.TileData.Configure();
 
                 Initialized=true;
 

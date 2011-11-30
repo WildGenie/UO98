@@ -76,7 +76,8 @@ BOOL APIENTRY DllMain( HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpRese
 			// redirect unbuffered STDOUT to the console
 			RedirectIOToConsole();
 
-			puts("Welcome to the UO98 Console!");
+			puts("Welcome to the UO:98 Console!");
+			puts(" http://joinuo.com | http://uo98.org");
 
 			Initialize();
 

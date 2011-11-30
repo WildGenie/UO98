@@ -21,10 +21,10 @@ void OnAfterSave()
 	Sharpkick::CoreEvents DotNetObject;
 	DotNetObject.OnAfterSave();
 }
-void OnPacketRecieved(unsigned char* pSocket, unsigned char PacketID, unsigned int PacketSize, int IsPacketDynamicSized)
+void OnPacketReceived(unsigned char* pSocket, unsigned char PacketID, unsigned int PacketSize, int IsPacketDynamicSized)
 {
 	Sharpkick::CoreEvents DotNetObject;
-	DotNetObject.OnPacketRecieved(pSocket, PacketID, PacketSize, IsPacketDynamicSized!=0);
+	DotNetObject.OnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized!=0);
 }
 void OnHandleOutsideRangePacket(unsigned char* pSocket)
 {
@@ -45,7 +45,7 @@ void InitializeEventHandlers(HMODULE dll_handle)
 {
 	InitializeEventHandler(dll_handle, "_setHandler_onpulse",							        &OnPulse);		
 	InitializeEventHandler(dll_handle, "_setHandler_onaftersave",					        &OnAfterSave);
-	InitializeEventHandler(dll_handle, "_setHandler_packets",							        &OnPacketRecieved);
+	InitializeEventHandler(dll_handle, "_setHandler_packets",							        &OnPacketReceived);
 	InitializeEventHandler(dll_handle, "_setHandler_onhandleoutsiderangepacket",  &OnHandleOutsideRangePacket);
 	InitializeEventHandler(dll_handle, "_setHandler_onpacketsending",					    &OnPacketSending);
 }

@@ -31,7 +31,7 @@ namespace Sharpkick.Network
         public byte Skill3      { get { return Packet[78]; } set { Packet[78]=value; } }
         public byte Skill3val   { get { return Packet[79]; } set { Packet[79]=value; } }
 
-        public override bool OnRecieved()
+        public override bool OnReceived()
         {
             if (ClientVersion >= Network.ClientVersion.v1_26_0)
                 Packet.Truncate(4); // remove the "BYTE[2] shirt color" and "BYTE[2] pants color" added in version 1.26.0
@@ -60,7 +60,7 @@ namespace Sharpkick.Network
         /// <param name="packet">The Packet from which to construct this safe wrapper</param>
         public Packet02_MoveRequest(ClientPacket packet) : base(packet) { }
 
-        public override bool OnRecieved()
+        public override bool OnReceived()
         {
             if (ClientVersion > Network.ClientVersion.v1_26_0)
                 Packet.Truncate(4); // remove the "BYTE[4] fastwalk prevention key" added in version 1.26.0
@@ -118,7 +118,7 @@ namespace Sharpkick.Network
         /// <param name="packet">The Packet from which to construct this safe wrapper</param>
         public Packet12_TextCommand(ClientPacket packet) : base(packet) { }
 
-        public override bool OnRecieved()
+        public override bool OnReceived()
         {
             switch (CommandType)
             {
@@ -133,7 +133,7 @@ namespace Sharpkick.Network
                     return false;
                 default:
                     ConsoleUtils.PushColor(ConsoleColor.Red);
-                    Console.Write("Recived 0x12 TextCommand type {0}: ", CommandType);
+                    Console.Write("Received 0x12 TextCommand type {0}: ", CommandType);
                     bool ok = Accounting.HasAccess(Packet.AccountNumber, AccessFlags.Editor);
                     Console.WriteLine(ok ? "OK." : "Access Denied.");
                     if (ok && CommandType == Type.GMCommand)
@@ -158,7 +158,7 @@ namespace Sharpkick.Network
         /// <param name="packet">The Packet from which to construct this safe wrapper</param>
         public Packet3A_SetSkillLock(ClientPacket packet) : base(packet) { }
 
-        public override bool OnRecieved()
+        public override bool OnReceived()
         {
             Packet.SendSystemMessage("Skill locks are not implemented.");
             return false;
@@ -170,7 +170,7 @@ namespace Sharpkick.Network
     {
         public Packet93_BookHeaderChange(ClientPacket packet) : base(packet) { }
 
-        public override bool OnRecieved()
+        public override bool OnReceived()
         {
             if (ClientVersion > Network.ClientVersion.v1_26_0) // remove one byte
             {
@@ -193,7 +193,7 @@ namespace Sharpkick.Network
         /// <param name="packet">The Packet from which to construct this safe wrapper</param>
         public PacketAD_UnicodeSpeech(ClientPacket packet) : base(packet) { }
 
-        public override bool OnRecieved()
+        public override bool OnReceived()
         { // Unfinished, for now UODemoDLL handles this
             //int i = 1;
             //int len = Packet.ReadUShort(i); i += 2;
@@ -250,7 +250,7 @@ namespace Sharpkick.Network
 
         public PacketB8_ProfileReq(ClientPacket packet) : base(packet) { }
 
-        public override bool OnRecieved()
+        public override bool OnReceived()
         {
             Print();
             Mobile subjectMobile=Mobile.Get(Serial);
@@ -295,9 +295,9 @@ namespace Sharpkick.Network
         string m_VersionString = null;
         public string VersionString { get { return m_VersionString ?? (m_VersionString = Packet.ReadAsciiStringNull(3)); } }
 
-        public override bool OnRecieved()
+        public override bool OnReceived()
         {
-            Console.WriteLine("Recieved ClientVersion: \"{0}\" {1}.{2}.{3}.{4}", VersionString, Version.Major, Version.Minor, Version.Build, Version.Revision);
+            Console.WriteLine("Received ClientVersion: \"{0}\" {1}.{2}.{3}.{4}", VersionString, Version.Major, Version.Minor, Version.Build, Version.Revision);
             Packet.SetClientVersion(Version.Version);
             if (Version >= Network.ClientVersion.v2_0_0)
             {
@@ -329,7 +329,7 @@ namespace Sharpkick.Network
     {
         public PacketA0_SelectServer(ClientPacket packet) : base(packet) { }
 
-        public override bool OnRecieved()
+        public override bool OnReceived()
         {
             // we should never see this packet, I think kick will send a D/C, not sure.
             Packet.SendPacketToSocket(new Packet26_KickPlayer_1_23_0(0x0000));
@@ -346,7 +346,7 @@ namespace Sharpkick.Network
     {
         public Packet91_PlayServer(ClientPacket packet) : base(packet) { }
 
-        public override bool OnRecieved()
+        public override bool OnReceived()
         {
             byte[] newData = new byte[62];
             newData[0] = 0x80;
@@ -354,7 +354,7 @@ namespace Sharpkick.Network
                 newData[i] = Packet[i+4];
             newData[61] = 0x5D;
             Packet.Replace(newData, 65);
-            return new Packet80_LoginRequest(Packet).OnRecieved();
+            return new Packet80_LoginRequest(Packet).OnReceived();
         }
     }
 
@@ -393,7 +393,7 @@ namespace Sharpkick.Network
         /// <summary>
         /// Fires event to process login, or if from Local client cleans up the account name and allow direct access to any account by number.
         /// </summary>
-        public override bool OnRecieved()
+        public override bool OnReceived()
         {
             if (IsLocal)
                 Console.Write("LOCAL ");
@@ -453,7 +453,7 @@ namespace Sharpkick.Network
         /// </summary>
         /// <param name="packet">The Packet from which to construct this safe wrapper</param>
         public InvalidPacket(ClientPacket packet) : base(packet) { }
-        public override bool OnRecieved()
+        public override bool OnReceived()
         {
             return false;  // Remove packet
         }
@@ -499,10 +499,10 @@ namespace Sharpkick.Network
         }
 
         /// <summary>
-        /// Packet's on recieved handler
+        /// Packet's on received handler
         /// </summary>
         /// <returns>A value of false is a request to Remove the packet from the buffer</returns>
-        public virtual bool OnRecieved()
+        public virtual bool OnReceived()
         {
             return true; // Default behavior, let packet through.
         }
@@ -512,7 +512,7 @@ namespace Sharpkick.Network
     }
 
     /// <summary>
-    /// An unsafe recieved Packet class allowing direct manipulation of the underlying packet. This should be wrapped by a SafePacket class
+    /// An unsafe received Packet class allowing direct manipulation of the underlying packet. This should be wrapped by a SafePacket class
     /// </summary>
     unsafe sealed class ClientPacket : UnsafePacket
     {
@@ -533,7 +533,7 @@ namespace Sharpkick.Network
         {
             ClientSocket socket = new ClientSocket(pSocket);
 
-            // Check for gode mode on each packet.
+            // Check for god mode on each packet.
             if (socket.Player != null && (socket.IsGod || socket.IsEditing) && !socket.VerifyGod)
             {
                 socket.IsGod = false;
@@ -559,7 +559,7 @@ namespace Sharpkick.Network
                 if (Network.GodPackets.IsRestrictedGodPacket(PacketID))
                 {
                     ConsoleUtils.PushColor(ConsoleColor.Red);
-                    Console.Write("Recived God Packet {0:X2}: ", PacketID);
+                    Console.Write("Received God Packet {0:X2}: ", PacketID);
                     try
                     {
                         if (!socket.IsGod)
@@ -577,7 +577,7 @@ namespace Sharpkick.Network
 
                 switch (PacketID)
                 {
-                    // Invalid Packets : These packets are unknown by the demo, therefor remove it from the buffer
+                    // Invalid Packets : These packets are unknown by the demo, therefore remove it from the buffer
                     case 0xB6: return new InvalidPacket(packet);
                     case 0xBB: return new PacketBB_UltimaMessenger(packet);
 
@@ -610,7 +610,7 @@ namespace Sharpkick.Network
             return null;    // Bad packet, length is too short.
         }
 
-        /// <summary>This is the servers socket which recieved this packet.</summary>
+        /// <summary>This is the servers socket which received this packet.</summary>
         private ClientSocket Socket { get; set; }
 
         public ClientVersionStruct ClientVersion { get { return Socket.Version; } }
