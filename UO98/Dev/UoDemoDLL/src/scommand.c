@@ -59,7 +59,7 @@ void __cdecl Command_MakeCounselor(PlayerObject *Player, unsigned int PlayerSeri
   }
   if(TargetSerial == 0)
   {
-    SendSystemMessage(Player, "Usage: coun me/<serial> [type]!");
+    SendSystemMessage(Player, "Usage: coun [me|<serial> [type]]!");
     return;
   }
 
@@ -103,7 +103,7 @@ void __cdecl Command_UnmakeCounselor(PlayerObject *Player, unsigned int PlayerSe
   }
   if(TargetSerial == 0)
   {
-    SendSystemMessage(Player, "Usage: ucoun me/<serial>!");
+    SendSystemMessage(Player, "Usage: ucoun [me|<serial>]!");
     return;
   }
 
@@ -137,7 +137,7 @@ void __cdecl Command_SaveWorld(PlayerObject *Player, unsigned int PlayerSerial, 
 void __cdecl Command_ShutdownServer(PlayerObject *Player, unsigned int PlayerSerial, const char *Command, int AlwaysMinus1)
 {
     // Time to go inside uodemo.exe and call the function that does the real magic
-	ShutdownServer();
+    ShutdownServer();
 }
 
 // This function is and must be declared naked!!!
