@@ -45,6 +45,7 @@ namespace Sharpkick.Administration
         {
             Server.setObjVar(TargetSerial, "transLoc", GetGMLocation());
 
+            // TODO: Fix/test commandTransfer (I think this should work now)
             Server.SendSystemMessage(GMSerial, "Transfer command not yet implemented. Trouble with setObjVar...");
 
             base.Execute();

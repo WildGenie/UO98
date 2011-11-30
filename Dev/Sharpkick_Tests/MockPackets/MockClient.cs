@@ -37,7 +37,7 @@ namespace Sharpkick_Tests
         public ClientPacketSafe ProcessOnly(BaseClientPacketMock expected)
         {
             ClientPacketSafe result = ClientPacket.Instantiate((byte*)Socket, Socket->Data[0], expected.Length, expected.Dynamic);
-            CoreEvents.OnPacketRecieved((byte*)Socket, expected.PacketID, expected.Length, expected.Dynamic);
+            CoreEvents.OnPacketReceived((byte*)Socket, expected.PacketID, expected.Length, expected.Dynamic);
             return result;
         }
 

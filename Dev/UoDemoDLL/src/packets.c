@@ -1,7 +1,7 @@
 // UO98: UoDemo Server
 // Author: Batlin
 // 03/07/2011
-// Patches packets for compatability with UO Client v. 1.25.35
+// Patches packets for compatibility with UO Client v. 1.25.35
 
 //-=-=-=-=-
 void Initialize_packets(void);
@@ -22,7 +22,7 @@ void HandleOutsideRangePacket(void *Socket)
 	if(packetDebugLevel>=Translation)
 		printf("PACKETS <- %08X: Removing packet 0xB6\n", SocketNumber);
 
-    // This packet is unknown by the demo, therefor remove it from the buffer
+    // This packet is unknown by the demo, therefore remove it from the buffer
     // And replace by 0xA4 (System Information), which is handled and ignored safely by the demo server
     RemovePacket(Data, 9, pTotalDataSize);
     PrependEmptyPacket(0xA4, Data, 149, pTotalDataSize);
@@ -32,7 +32,7 @@ void HandleOutsideRangePacket(void *Socket)
 }
 
 /*
-  WARNING! When this function exits you must make sure atleast one valid packet is inside the buffer!
+  WARNING! When this function exits you must make sure at least one valid packet is inside the buffer!
 */
 void * __cdecl PreviewPacket(void *Socket)
 {
@@ -138,7 +138,7 @@ void * __cdecl PreviewPacket(void *Socket)
 }
 
 /*
-  WARNING! When this function exits you must make sure atleast one valid packet is inside the buffer!
+  WARNING! When this function exits you must make sure at least one valid packet is inside the buffer!
 */
 void * __cdecl PreviewAllPackets(unsigned char *Socket)
 {
@@ -163,7 +163,7 @@ void * __cdecl PreviewAllPackets(unsigned char *Socket)
 		  FirstPacketID            = *Data;
 
 		  // A 4 byte packet is assumed to be a seed packet. If the size exceeds 4, we check for a 0x80 login packet, or a 0x91 play server packet.
-		  // The seed is is usally the IpAddress, although this cannot be relied upon.
+		  // The seed is is usually the IpAddress, although this cannot be relied upon.
 		  if((*pTotalDataSize==4) || (*pTotalDataSize > 5 && (*(Data+5)==0x80 || *(Data+5)==0x91)) )
 		  {
 			  RemoveFirstPacket(Socket,4);
@@ -172,7 +172,7 @@ void * __cdecl PreviewAllPackets(unsigned char *Socket)
 			  FirstPacketID            = *Data;
 			  FirstPacketIsWithinRange = FirstPacketID <= 0xB5;
 
-			  // If we recieved a seed, we will assume client version 1.26.4i until told different.
+			  // If we received a seed, we will assume client version 1.26.4i until told different.
 			  if(*(int*)(Socket + 0x1003C)==0) // if version is 0.0.0.0
 			  {
 				  *(Socket + 0x1003C + 0)=1;

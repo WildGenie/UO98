@@ -8,12 +8,12 @@ using namespace System::Runtime::CompilerServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly:AssemblyTitleAttribute("")];
-[assembly:AssemblyDescriptionAttribute("")];
+[assembly:AssemblyTitleAttribute("Sidekick")];
+[assembly:AssemblyDescriptionAttribute("An unmanaged to managed code bridge between UODemoDLL and Sharpkick")];
 [assembly:AssemblyConfigurationAttribute("")];
-[assembly:AssemblyCompanyAttribute("")];
+[assembly:AssemblyCompanyAttribute("JoinUO")];
 [assembly:AssemblyProductAttribute("")];
-[assembly:AssemblyCopyrightAttribute("")];
+[assembly:AssemblyCopyrightAttribute("Copyright © JoinUO 2011")];
 [assembly:AssemblyTrademarkAttribute("")];
 [assembly:AssemblyCultureAttribute("")];		
 

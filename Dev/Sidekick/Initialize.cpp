@@ -79,6 +79,7 @@ void EnterNormalRuntimeMode()
 {
 	InitializeEventHandlers(uodemodll_handle);
 	puts("Sidekick Initialized.");
+	puts("Please wait while the world loads...");
 }
 
 void InitializeUODemoDLL()

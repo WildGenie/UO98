@@ -62,7 +62,7 @@ namespace Sharpkick.Network
         /// </summary>
         /// <param name="id">Packet ID</param>
         /// <param name="version">Client Version</param>
-        /// <returns>A packet enry object, or null if the id is invalid for the given client version</returns>
+        /// <returns>A packet entry object, or null if the id is invalid for the given client version</returns>
         public static PacketVersionEntry GetPacketInfo(byte id, ClientVersion version)
         {
             if (m_PacketNfo.ContainsKey(id))

@@ -6,25 +6,17 @@ using System.Net;
 
 namespace Sharpkick
 {
-    /// <summary>
-    /// Delegate for EventSink.OnPulse event
-    /// </summary>
+    /// <summary>Delegate for EventSink.OnPulse event</summary>
     delegate void OnPulseEventHandler();
 
-    /// <summary>
-    /// Delegate for EventSink.OnLogin event
-    /// </summary>
+    /// <summary>Delegate for EventSink.OnLogin event</summary>
     /// <param name="e">Arguments to the event, requires Username And Password</param>
     delegate void OnLoginEventHandler(LoginEventArgs e);
 
-    /// <summary>
-    /// Delegate for EventSink.OnAfterSave event
-    /// </summary>
+    /// <summary>Delegate for EventSink.OnAfterSave event</summary>
     delegate void OnAfterSaveEventHandler();
 
-    /// <summary>
-    /// Handles server events
-    /// </summary>
+    /// <summary>Handles server events</summary>
     static class EventSink
     {
         /// <summary>Event fires when server pulse occurs, every 250ms.</summary>
@@ -32,7 +24,7 @@ namespace Sharpkick
         /// <summary>Invokes the OnPulse event.</summary>
         public static void InvokeOnPulse() { if (OnPulse != null) OnPulse(); }
 
-        /// <summary>Event fires when a login packet is recieved (0x80)</summary>
+        /// <summary>Event fires when a login packet is received (0x80)</summary>
         public static event OnLoginEventHandler OnLogin;
         /// <summary>Invoke the OnLogin event.</summary>
         /// <param name="e">Arguments to the event, requires Username And Password</param>
@@ -68,7 +60,7 @@ namespace Sharpkick
         public ALRReason RejectedReason { get; set; }
 
         /// <summary>
-        /// Event arguments for Login Packet (0x80) recieved event.
+        /// Event arguments for Login Packet (0x80) received event.
         /// </summary>
         /// <param name="username">The supplied username, not case sensitive (converted)</param>
         /// <param name="password">The supplied password, case sensitive</param>

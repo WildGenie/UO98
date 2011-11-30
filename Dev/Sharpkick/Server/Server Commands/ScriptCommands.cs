@@ -10,7 +10,7 @@ namespace Sharpkick
         /// </summary>
         /// <param name="serial">The serial of the object to add script to</param>
         /// <param name="scriptName">the name of the script without extension</param>
-        /// <param name="executeCreation">Should the oncreate method of the script be called?</param>
+        /// <param name="executeCreation">Should the creation method of the script be called?</param>
         /// <returns>Error message or null if successful</returns>
         unsafe public static string addScript(int serial, string scriptName, bool executeCreation = true)
         {

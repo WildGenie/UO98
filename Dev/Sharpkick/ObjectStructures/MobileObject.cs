@@ -10,7 +10,7 @@ namespace Sharpkick
         Frozen = 0x01,
         Female = 0x02,
         Poisoned = 0x04,        // Flying in post 7.x client
-        Invulnerable = 0x08,    // Yellow healthbar
+        Invulnerable = 0x08,    // Yellow health bar
         IgnoreMobiles = 0x10,
         Movable = 0x20,
         WarMode = 0x40,

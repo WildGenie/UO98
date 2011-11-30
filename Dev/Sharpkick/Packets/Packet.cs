@@ -46,7 +46,7 @@ namespace Sharpkick.Network
         /// <summary>
         /// Read a fixed length string from the packet buffer
         /// </summary>
-        /// <param name="start">Index in buffer to befin reading</param>
+        /// <param name="start">Index in buffer to begin reading</param>
         /// <param name="length">The length of the string</param>
         /// <returns>The string read</returns>
         public string ReadAsciiStringFixed(int start, int length)

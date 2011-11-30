@@ -9,7 +9,7 @@ void (*my_OnPulse)(void)= NULL;
 // OnAfterSave handler
 void (*my_OnAfterSave)(void)= NULL;
 
-// Recieved packet handler
+// Received packet handler
 void (*my_OnPacket)(void *Socket, unsigned char PacketID, unsigned int PacketSize,int IsPacketDynamicSized)= NULL;
 
 // Invalid packet handler

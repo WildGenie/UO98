@@ -33,7 +33,7 @@ namespace Sharpkick
                 [StructLayout(LayoutKind.Sequential, Pack = 1)]
                 struct SpawnerParameterObjectStructure
                 {
-                    public ulong MaxNormalMobiles;  // Pretty sure. This is the primary spawn limiter apparently. May exclude shopkeeps, definately excludes invulnerables.
+                    public ulong MaxNormalMobiles;  // Pretty sure. This is the primary spawn limiter apparently. May exclude shopkeeps, definitely excludes invulnerables.
                     ulong field_4;
                     ulong field_8;
                     ulong field_C;
