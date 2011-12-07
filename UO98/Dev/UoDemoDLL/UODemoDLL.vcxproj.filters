@@ -113,6 +113,9 @@
     <ClCompile Include="src\Tests_ObjectScripts.c">
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
+    <ClCompile Include="src\misc.c">
+      <Filter>Source Files\Patches</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="API\classes.h">

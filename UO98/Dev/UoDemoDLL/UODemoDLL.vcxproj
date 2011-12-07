@@ -91,6 +91,7 @@
     <ClCompile Include="API\patches.c" />
     <ClCompile Include="API\Player.c" />
     <ClCompile Include="API\Weapon.c" />
+    <ClCompile Include="src\misc.c" />
     <ClCompile Include="src\Lists.c" />
     <ClCompile Include="src\PacketFunctions.c" />
     <ClCompile Include="src\ObjectProperties.c" />
