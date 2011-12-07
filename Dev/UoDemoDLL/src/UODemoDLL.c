@@ -42,6 +42,7 @@
 #include "timer.c"		// TimeManager Functions. Generates OnPulse events for export
 #include "scommand.c"	// System commands
 #include "packets.c"	// Packet patches and handler
+#include "misc.c"	    // misc patches
 
 void Initialize_jit(void); // jit.cpp is compiled as a seperate assembly as it is C++
 
@@ -57,8 +58,9 @@ void _declspec(dllexport) Configure()
   Initialize_scommand();	// Patch Counselor Commands (scommand.c)
   Initialize_packets();	  // Patch packet handler (packets.c)
   Initialize_logging();	  // Logging to Console (logging.c)
-	Initialize_timer();		  // Patch pulse handler (timer.c)
-	Initialize_jit();
+  Initialize_timer();		  // Patch pulse handler (timer.c)
+  Initialize_jit();
+  Initialize_misc();
 
 	puts("UODemoDLL Initialized.");
 }
