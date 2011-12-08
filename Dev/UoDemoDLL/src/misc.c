@@ -3,30 +3,43 @@
 // 12/07/2011
 // Misc patches that don't fit into any other category.
 
+#include <time.h>
+
 //-=-=-=-=-
 void Initialize_misc(void);
 //-=-=-=-=-
 
+int GetTimeInSeconds()
+{
+    time_t ltime;
+    time(&ltime);
+    return ltime;
+}
+
 // This is a patch for the timing warning regarding DoTick duration. 
-// The function expects time in Seconds, but gets time in MS due to a porting bug. 
-// This changes the (incorrect) threshold from 10ms to 255 ms
-PATCHINFO PI_FixTimingErrors =
+// The function seems to expect time in Seconds, but gets time in MS due to a bug which is inconsistent with other uses of the function in the UODemo. 
+// These patches replace the existing call returning milliseconds to a call to a local function returning seconds.
+PATCHINFO PI_GetTime =
 {
- 0x004682DD,
- 8, {0x83, 0xF8, 0x0A, 0x76, 0x24, 0x68, 0x40, 0xB7}, // cmp     eax, 10 ...
- 8, {0x83, 0xF8, 0x7F, 0x76, 0x24, 0x68, 0x40, 0xB7}, // cmp     eax, 127 ...
+    0,
+    6, {0xFF, 0x15, 0x5C, 0x58, 0x9A, 0x00},  // call    ds:timeGetTime
+    6, {0xE8, 0x00, 0x00, 0x00, 0x00, 0x90},  // call    GetTimeInSeconds + nop
 };
 
-PATCHINFO PI_FixTimingMessage =
+void PatchTimeGetTimeAtAddress(unsigned int address)
 {
- 0x0061B75E,
- 12, {"10 seconds."},
- 12, {"127 ms....."},
-};
+    (&PI_GetTime)->ExpectedAddress=address;
+    SetRel32_AtPatch(&PI_GetTime,GetTimeInSeconds);
+    Patch(&PI_GetTime);
+}
 
+PatchAllTimeGetTime()
+{
+    PatchTimeGetTimeAtAddress(0x004682D1); // ServerWinMain                                    call    ds:timeGetTime
+    PatchTimeGetTimeAtAddress(0x004682BB); // ServerWinMain                                    call    ds:timeGetTime
+}
 
 void Initialize_misc()
 {
-	Patch(&PI_FixTimingErrors);
-	Patch(&PI_FixTimingMessage);
+    PatchAllTimeGetTime();
 }
