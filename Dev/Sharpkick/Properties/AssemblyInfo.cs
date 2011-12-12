@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JoinUO")]
 [assembly: AssemblyProduct("Sharpkick")]
-[assembly: AssemblyCopyright("Copyright © JoinUO 2011")]
+[assembly: AssemblyCopyright("Copyright © JoinUO 2011 Licensed under the Open Software License version 3.0")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

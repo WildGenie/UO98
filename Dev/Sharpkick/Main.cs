@@ -1,4 +1,17 @@
-﻿using System;
+﻿// UO:98 / Sidekick / Sharpkick : Protocol and Administration Extensions for Ultima Online(c) Demo.
+// Copyright (C) 2011  JoinUO | derrick@joinuo.com Licensed under the Open Software License version 3.0
+// This program is free software: you can redistribute it and/or modify it under the terms of OSL-3.0 
+// This license applies to all files in this project.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+//You should have received a copy of the The Open Software License 3.0
+//along with this program (COPYING.txt).  
+// If not, see <http://www.opensource.org/licenses/OSL-3.0>.
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
