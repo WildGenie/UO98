@@ -13,7 +13,7 @@ using namespace System::Runtime::CompilerServices;
 [assembly:AssemblyConfigurationAttribute("")];
 [assembly:AssemblyCompanyAttribute("JoinUO")];
 [assembly:AssemblyProductAttribute("")];
-[assembly:AssemblyCopyrightAttribute("Copyright © JoinUO 2011")];
+[assembly:AssemblyCopyrightAttribute("Copyright © JoinUO 2011 Licensed under the Open Software License version 3.0")];
 [assembly:AssemblyTrademarkAttribute("")];
 [assembly:AssemblyCultureAttribute("")];		
 
