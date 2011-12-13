@@ -551,7 +551,7 @@ namespace Sharpkick.Network
             if (IsPacketDynamicSized && (PacketSize == 0x8000 || PacketSize == 0))
                 PacketSize = ((uint)socket.Data[1] << 8) + socket.Data[2];
 
-            if (PacketSize >= (IsPacketDynamicSized ? 1 : 3))
+            if (PacketSize >= (IsPacketDynamicSized ? 3 : 1))
             {
                 // TODO: These objects should be pooled.
                 ClientPacket packet = new ClientPacket(socket, PacketID, PacketSize, IsPacketDynamicSized);
