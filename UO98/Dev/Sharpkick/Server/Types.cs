@@ -22,7 +22,7 @@ namespace Sharpkick
         BadComm = 0xFF
     }
 
-    struct Serial
+    public struct Serial
     {
         private uint _serial;
 
@@ -151,7 +151,7 @@ namespace Sharpkick
         Writeable=1
     }
 
-    struct LocationDelta
+    public struct LocationDelta
     {
         public short X;
         public short Y;
@@ -171,7 +171,7 @@ namespace Sharpkick
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    struct Location
+    public struct Location
     {
         public short X;
         public short Y;
@@ -231,5 +231,18 @@ namespace Sharpkick
         Editor=0x01,
         SaveWorld=0x02,
         Shutdown=0x04,
+    }
+
+    [StructLayout(LayoutKind.Explicit, Pack = 1, Size = 0x36)]
+    public unsafe struct HelpInfoArgs
+    {
+        [FieldOffset(0x00)] public byte mode;
+        [FieldOffset(0x01)] public int field_1;
+        [FieldOffset(0x05)] public Serial gm_serial;
+        [FieldOffset(0x09)] public Serial player_serial;
+        [FieldOffset(0x0D)] public Location location;
+        [FieldOffset(0x13)] public int account_number;
+        [FieldOffset(0x17)] public byte character_number;
+        [FieldOffset(0x18)] public fixed byte CharacterRealName[30];
     }
 }

@@ -36,6 +36,7 @@
 #include "PacketFunctions.c"
 #include "World.c"
 #include "Lists.c"
+#include "GameMaster.c"
 
 // Patches
 #include "logging.c"	// Console Logging of trace output
@@ -44,7 +45,7 @@
 #include "packets.c"	// Packet patches and handler
 #include "misc.c"	    // misc patches
 
-void Initialize_jit(void); // jit.cpp is compiled as a seperate assembly as it is C++
+void Initialize_jit(void); // jit.cpp is compiled as a separate assembly as it is C++
 
 // Unit Tests
 #include "Tests.c"

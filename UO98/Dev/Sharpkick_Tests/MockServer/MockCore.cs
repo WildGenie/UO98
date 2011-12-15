@@ -237,6 +237,11 @@ namespace Sharpkick_Tests
                 return null;
         }
 
+        public void SendInfoWindowOrDoPlayerShadow(HelpInfoArgs* InfoStruct)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         bool Exists(Serial serial)
@@ -300,8 +305,5 @@ namespace Sharpkick_Tests
 
             }
         }
-
-
-
     }
 }

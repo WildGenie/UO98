@@ -61,7 +61,6 @@ namespace Sharpkick
             public bool detachScript(int serial, byte* scriptName)
             { return UnsafeNativeMethods.detachScript(serial, scriptName); }
 
-
             private const int FUNC_ItemObject_GetWeight = 0x00489FAB;
             public int getWeight(int serial)
             {
@@ -73,7 +72,6 @@ namespace Sharpkick
             {
                 return getValueByFunctionFromObject(serial, FUNC_ItemObject_GetQuantity, "getQuantity");
             }
-
 
             private int getValueByFunctionFromObject(int serial, int function, string debugCallString)
             { return UnsafeNativeMethods.getValueByFunctionFromObject(serial, function, debugCallString); }
@@ -104,6 +102,9 @@ namespace Sharpkick
 
             public ItemObject* ConvertSerialToObject(int serial)
             { return UnsafeNativeMethods.ConvertSerialToObject(serial); }
+
+            public void SendInfoWindowOrDoPlayerShadow(HelpInfoArgs* InfoStruct)
+            { UnsafeNativeMethods.SendInfoWindowOrDoPlayerShadow(InfoStruct); }
 
             private class UnsafeNativeMethods
             {
@@ -184,6 +185,9 @@ namespace Sharpkick
 
                 [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
                 public static extern ItemObject* ConvertSerialToObject(int serial);
+
+                [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
+                public static extern void SendInfoWindowOrDoPlayerShadow(HelpInfoArgs* InfoStruct);
             }
         }
     }
