@@ -42,6 +42,8 @@ namespace Sharpkick
         void OpenBank(PlayerObject* Target, PlayerObject* ShowTo);
         ItemObject* ConvertSerialToObject(int serial);
 
+        void SendInfoWindowOrDoPlayerShadow(HelpInfoArgs* InfoStruct);
+
         ITimeManager TimeManager { get; }
         IServerConfiguration ServerConfiguration { get; }
         ISpawnLimits SpawnLimits { get; }

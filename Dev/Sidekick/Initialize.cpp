@@ -16,6 +16,7 @@
 #include "ItemObject.h"
 #include "ObjVars.h"
 #include "ObjectScripts.h"
+#include "GameMaster.h"
 
 #include "TestsMain.h"
 
@@ -96,12 +97,13 @@ void InitializeUODemoDLL()
 
 void InitializeAPICommands()
 {
-	InitPackets(uodemodll_handle);
-	InitCommands(uodemodll_handle);
-	InitWorld(uodemodll_handle);
-	InitItemObject(uodemodll_handle);
-	InitPlayer(uodemodll_handle);
+  InitPackets(uodemodll_handle);
+  InitCommands(uodemodll_handle);
+  InitWorld(uodemodll_handle);
+  InitItemObject(uodemodll_handle);
+  InitPlayer(uodemodll_handle);
   InitObjVars(uodemodll_handle);
   InitObjectScripts(uodemodll_handle);
+  InitGameMaster(uodemodll_handle);
 }
 

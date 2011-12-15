@@ -91,6 +91,7 @@ cd $(SolutionDir)</Command>
   <ItemGroup>
     <ClInclude Include="CommandExports.h" />
     <ClInclude Include="CoreEvents.h" />
+    <ClInclude Include="GameMaster.h" />
     <ClInclude Include="Interop.h" />
     <ClInclude Include="ItemObject.h" />
     <ClInclude Include="ObjectScripts.h" />
@@ -115,6 +116,7 @@ cd $(SolutionDir)</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="GameMaster.cpp" />
     <ClCompile Include="Initialize.cpp" />
     <ClCompile Include="Helper_Events.cpp" />
     <ClCompile Include="ItemObject.cpp" />

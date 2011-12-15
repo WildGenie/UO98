@@ -47,11 +47,14 @@
   <ItemGroup>
     <Compile Include="Accounting\Accounting.cs" />
     <Compile Include="Administration\GMCommands.cs" />
+    <Compile Include="Administration\HandledCommands.cs" />
+    <Compile Include="Administration\ScriptCommands.cs" />
     <Compile Include="Command Tests\Tests\ObjectPropertyTests.cs" />
     <Compile Include="Command Tests\Tests\ObjVarTests.cs" />
     <Compile Include="Command Tests\Tests\ScriptsTest.cs" />
     <Compile Include="Packets\PacketInterop\IPackets.cs" />
     <Compile Include="Packets\PacketInterop\LiveCorePackets.cs" />
+    <Compile Include="Server\Server Commands\GameMaster.cs" />
     <Compile Include="Server\Server Commands\ObjectPropertyCommands.cs" />
     <Compile Include="Server\Server Commands\ObjVarCommands.cs" />
     <Compile Include="Server\Server Commands\MobileCommands.cs" />
