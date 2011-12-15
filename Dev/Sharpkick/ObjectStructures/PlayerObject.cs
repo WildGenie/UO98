@@ -20,7 +20,7 @@ namespace Sharpkick
         unk00000800 = 0x00000800,
         IsGM = 0x00001000,
         unk00002000 = 0x00002000,     // something with login
-        unk00004000 = 0x00004000,     // something with counselor
+        unk00004000 = 0x00004000,     // something with counselor, Can't request help via 0x9b either...
         IsCounselor = 0x00008000,
         BankDefs = 0x00010000,
         IsGoldAccount = 0x00020000

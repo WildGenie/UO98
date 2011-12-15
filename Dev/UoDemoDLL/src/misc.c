@@ -7,6 +7,8 @@
 
 //-=-=-=-=-
 void Initialize_misc(void);
+void PatchAllTimeGetTime(void);
+void PatchTimeGetTimeAtAddress(unsigned int address);
 //-=-=-=-=-
 
 int GetTimeInSeconds()
@@ -26,20 +28,21 @@ PATCHINFO PI_GetTime =
     6, {0xE8, 0x00, 0x00, 0x00, 0x00, 0x90},  // call    GetTimeInSeconds + nop
 };
 
-void PatchTimeGetTimeAtAddress(unsigned int address)
+
+void Initialize_misc()
 {
-    (&PI_GetTime)->ExpectedAddress=address;
-    SetRel32_AtPatch(&PI_GetTime,GetTimeInSeconds);
-    Patch(&PI_GetTime);
+    PatchAllTimeGetTime();
 }
 
-PatchAllTimeGetTime()
+void PatchAllTimeGetTime()
 {
     PatchTimeGetTimeAtAddress(0x004682D1); // ServerWinMain                                    call    ds:timeGetTime
     PatchTimeGetTimeAtAddress(0x004682BB); // ServerWinMain                                    call    ds:timeGetTime
 }
 
-void Initialize_misc()
+void PatchTimeGetTimeAtAddress(unsigned int address)
 {
-    PatchAllTimeGetTime();
+    (&PI_GetTime)->ExpectedAddress=address;
+    SetRel32_AtPatch(&PI_GetTime,GetTimeInSeconds);
+    Patch(&PI_GetTime);
 }

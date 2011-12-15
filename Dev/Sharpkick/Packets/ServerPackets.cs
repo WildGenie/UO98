@@ -198,7 +198,7 @@ namespace Sharpkick.Network
                         if (acct.HasAccess(AccessFlags.Admin))
                         {
                             Server.MakeGameMaster(Socket.Player);
-                            PlayerObject.SetPlayerFlag(Socket.Player, PlayerFlag.IsEditing | PlayerFlag.IsGod);
+                            PlayerObject.SetPlayerFlag(Socket.Player, PlayerFlag.IsEditing); 
                             ConsoleUtils.PushColor(ConsoleColor.Red);
                             Console.WriteLine("GM Login.");
                             ConsoleUtils.PopColor();

@@ -17,7 +17,6 @@ namespace Sharpkick.Network
         {
             switch (id)
             {
-                case 0x04:  // God Mode Request
                 case 0x0A:  // Edit
                 case 0x0C:
                 case 0x0E:
