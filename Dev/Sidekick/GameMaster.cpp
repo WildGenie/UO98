@@ -14,7 +14,6 @@ extern "C"
 {
     void _declspec(dllexport) APIENTRY SendInfoWindowOrDoPlayerShadow(void* InfoStruct)
     {
-        return; // TODO: AccessViolationException....
 	    if(_SendInfoWindowOrDoPlayerShadow) _SendInfoWindowOrDoPlayerShadow(InfoStruct); 
     }
 }
