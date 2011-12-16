@@ -44,11 +44,8 @@ namespace Sharpkick.Administration
         public override void Execute()
         {
             Server.setObjVar(TargetSerial, "transLoc", GetGMLocation());
-
-            // TODO: Fix/test commandTransfer (I think this should work now)
-            Server.SendSystemMessage(GMSerial, "Transfer command not yet implemented. Trouble with setObjVar...");
-
             base.Execute();
+            Server.removeObjVar(TargetSerial, "transLoc");
         }
 
         public Location GetGMLocation()
@@ -138,14 +135,8 @@ namespace Sharpkick.Administration
 
         public override void Execute()
         {
-            if(ArgumentsAreValid(Arguments))
-            {
-                ReadParameters(Arguments);
-                if(!ParametersAreValid())
-                    ReportInvalidParameters();
-                else if(SerialIsValid())
-                    AttachScript(ActionScriptName);
-            }
+            if(SerialIsValid())
+                AttachScript(ActionScriptName);
         }
 
         protected virtual bool SerialIsValid()
@@ -161,6 +152,13 @@ namespace Sharpkick.Administration
         public SimpleScriptCommand(GMCommand.CommandParameters CommandParams)
             : base(CommandParams)
         {
+            if(ArgumentsAreValid(Arguments))
+            {
+                ReadParameters(Arguments);
+                if(!ParametersAreValid())
+                    ReportInvalidParameters();
+            }
+
         }
 
         protected virtual bool ArgumentsAreValid(string[] args)
