@@ -1,4 +1,10 @@
 
+bool __cdecl _declspec(dllexport) IsItem   (void* object) { return IsItemObject(object); } 
+bool __cdecl _declspec(dllexport) IsNPC    (void* object) { return IsAnyNPC(object); }
+bool __cdecl _declspec(dllexport) IsMobile (void* object) { return IsAnyMobile(object); }
+bool __cdecl _declspec(dllexport) IsPlayer (void* object) { return IsPlayerObject(object); }
+
+
 #define pCOMMAND_createGlobalObjectAt 0x0041DDE4
 int __cdecl (*COMMAND_createGlobalObjectAt)(int ItemID, LocationObject* Location) = pCOMMAND_createGlobalObjectAt;
 int __cdecl _declspec(dllexport) createGlobalObjectAt(int ItemID, LocationObject* Location)

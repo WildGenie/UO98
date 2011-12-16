@@ -37,8 +37,8 @@ namespace Sharpkick
         public uint Template { get { return MobileObject.ContainerObject.ItemObject.Template; } }
         public uint Serial { get { return MobileObject.ContainerObject.ItemObject.Serial; } }
 
-        #region PlayerFlags
         [FieldOffset(0x3A8)] private PlayerFlag m_PlayerFlags;
+        #region PlayerFlags
         public static PlayerFlag GetPlayerFlags(PlayerObject* player)
         {
             if(player==null) return 0;
@@ -65,5 +65,8 @@ namespace Sharpkick
             SetPlayerFlag(player, toClear, false);
         }
         #endregion
+
+        [FieldOffset(0x3FC)] public int AccountNumber;
+        [FieldOffset(0x400)] public uint CharacterNumber;
     }
 }

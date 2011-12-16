@@ -44,6 +44,11 @@ namespace Sharpkick
 
         void SendInfoWindowOrDoPlayerShadow(HelpInfoArgs* InfoStruct);
 
+        bool IsItem(void* @object);
+        bool IsNPC(void* @object);
+        bool IsMobile(void* @object);
+        bool IsPlayer(void* @object);
+
         ITimeManager TimeManager { get; }
         IServerConfiguration ServerConfiguration { get; }
         ISpawnLimits SpawnLimits { get; }

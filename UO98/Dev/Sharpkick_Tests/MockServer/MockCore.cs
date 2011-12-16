@@ -242,6 +242,26 @@ namespace Sharpkick_Tests
             throw new NotImplementedException();
         }
 
+        public bool IsItem(void* @object)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsNPC(void* @object)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsMobile(void* @object)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsPlayer(void* @object)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         bool Exists(Serial serial)

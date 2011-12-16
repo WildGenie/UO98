@@ -18,23 +18,30 @@ namespace Sharpkick.Administration
             }
             else
             {
-                HelpInfoArgs args = new HelpInfoArgs()
+                PlayerObject player;
+                if(Server.TryFindObject(serial, out player))
                 {
-                    mode=2,
-                    gm_serial = GMSerial,
-                    player_serial=serial,
-                    location=new Location(1,2,3),
-                    account_number = 42,
-                    character_number=3,
-                };
 
-                unsafe
-                {
-                    string name="hello there";
-                    fixed(char* chars = name)
-                        ASCIIEncoding.ASCII.GetBytes(chars, name.Length, args.CharacterRealName, name.Length);
+                    HelpInfoArgs args = new HelpInfoArgs()
+                    {
+                        mode = 2,
+                        gm_serial = GMSerial,
+                        player_serial = player.Serial,
+                        location = player.Location,
+                        account_number = player.AccountNumber,
+                        character_number = (byte)player.CharacterNumber,
+                    };
+
+                    unsafe
+                    {
+                        string name = player.MobileObject.RealName;
+                        fixed(char* chars = name)
+                            ASCIIEncoding.ASCII.GetBytes(chars, name.Length, args.CharacterRealName, name.Length);
+                    }
+                    Server.SendInfoWindowOrDoPlayerShadow(args);
                 }
-                Server.SendInfoWindowOrDoPlayerShadow(args);
+                else
+                    Server.SendSystemMessage(GMSerial, "That object is not a player.");
             }
         }
     }
