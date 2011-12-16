@@ -106,6 +106,18 @@ namespace Sharpkick
             public void SendInfoWindowOrDoPlayerShadow(HelpInfoArgs* InfoStruct)
             { UnsafeNativeMethods.SendInfoWindowOrDoPlayerShadow(InfoStruct); }
 
+            public bool IsItem(void* @object)
+            { return UnsafeNativeMethods.IsItem(@object); }
+
+            public bool IsNPC(void* @object)
+            { return UnsafeNativeMethods.IsNPC(@object); }
+
+            public bool IsMobile(void* @object)
+            { return UnsafeNativeMethods.IsMobile(@object); }
+
+            public bool IsPlayer(void* @object)
+            { return UnsafeNativeMethods.IsPlayer(@object); }
+
             private class UnsafeNativeMethods
             {
                 [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
@@ -188,6 +200,18 @@ namespace Sharpkick
 
                 [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
                 public static extern void SendInfoWindowOrDoPlayerShadow(HelpInfoArgs* InfoStruct);
+
+                [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
+                public static extern bool IsItem(void* @object);
+
+                [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
+                public static extern bool IsNPC(void* @object);
+
+                [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
+                public static extern bool IsMobile(void* @object);
+
+                [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
+                public static extern bool IsPlayer(void* @object);
             }
         }
     }

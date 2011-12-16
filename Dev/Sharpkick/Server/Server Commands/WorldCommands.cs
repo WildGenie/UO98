@@ -45,6 +45,21 @@ namespace Sharpkick
             }
         }
 
+        unsafe public static bool TryFindObject(int serial, out PlayerObject player)
+        {
+            PlayerObject* playerPtr = (PlayerObject*)Server.Core.ConvertSerialToObject(serial);
+            if(playerPtr == null || !Server.Core.IsPlayer(playerPtr))
+            {
+                player = new PlayerObject();
+                return false;
+            }
+            else
+            {
+                player = *playerPtr;
+                return true;
+            }
+        }
+
 
     }
 }
