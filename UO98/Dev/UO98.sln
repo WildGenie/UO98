@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		UO98.vsmdi = UO98.vsmdi
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UO98", "UO98\UO98.csproj", "{3E8639AC-42AF-4C3B-8F1F-D32CD6C184A9}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = UO98.vsmdi
@@ -93,6 +95,18 @@ Global
 		{29A40940-D0D9-40ED-9683-A7287BE66A1C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{29A40940-D0D9-40ED-9683-A7287BE66A1C}.Release|Win32.ActiveCfg = Release|Any CPU
 		{29A40940-D0D9-40ED-9683-A7287BE66A1C}.Release|x86.ActiveCfg = Release|Any CPU
+		{3E8639AC-42AF-4C3B-8F1F-D32CD6C184A9}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3E8639AC-42AF-4C3B-8F1F-D32CD6C184A9}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{3E8639AC-42AF-4C3B-8F1F-D32CD6C184A9}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{3E8639AC-42AF-4C3B-8F1F-D32CD6C184A9}.Debug|Win32.ActiveCfg = Debug|x86
+		{3E8639AC-42AF-4C3B-8F1F-D32CD6C184A9}.Debug|x86.ActiveCfg = Debug|x86
+		{3E8639AC-42AF-4C3B-8F1F-D32CD6C184A9}.Debug|x86.Build.0 = Debug|x86
+		{3E8639AC-42AF-4C3B-8F1F-D32CD6C184A9}.Release|Any CPU.ActiveCfg = Release|x86
+		{3E8639AC-42AF-4C3B-8F1F-D32CD6C184A9}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{3E8639AC-42AF-4C3B-8F1F-D32CD6C184A9}.Release|Mixed Platforms.Build.0 = Release|x86
+		{3E8639AC-42AF-4C3B-8F1F-D32CD6C184A9}.Release|Win32.ActiveCfg = Release|x86
+		{3E8639AC-42AF-4C3B-8F1F-D32CD6C184A9}.Release|x86.ActiveCfg = Release|x86
+		{3E8639AC-42AF-4C3B-8F1F-D32CD6C184A9}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
