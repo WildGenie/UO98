@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace UO98
 {
-    class ServerProcess
+    sealed class ServerProcess
     {
         readonly string BinDirectory = string.Empty;
         readonly string UODemoPlusFilename = "UODemo+.exe";
@@ -23,9 +23,10 @@ namespace UO98
             {"USEACCOUNTNAME","YES"},
             {"SAVEDYNAMIC0","NO"},
             {"UODEMODLL","Sidekick.dll"},
+            //{"NOCONSOLE","YES"},
         };
 
-        bool IsExiting { get; set; }
+        bool DoExit { get; set; }
 
         Process MyProcess;
 
@@ -35,26 +36,63 @@ namespace UO98
             EnvVars["UODEMODLL"] = Path.Combine(BinDirectory, EnvVars["UODEMODLL"]);
         }
 
+        public StreamReader StdOut
+        {
+            get
+            {
+                try
+                {
+                    return MyProcess == null ? null : MyProcess.StandardOutput;
+                }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
+            }
+        }
+
+        object lockStartStop = new object();
         public void Start()
         {
-            if(!IsRunning)
+            lock (lockStartStop)
             {
-                IsExiting = false;
-                Run();
+                if (Running) return;
+                Running = true;
+                DoExit = false;
+                MyProcess = CreateProcess();
+                MyProcess.Start();
             }
         }
 
         public void Stop()
         {
-            IsExiting = true;
-            if(MyProcess != null)
+            lock (lockStartStop)
             {
-                MyProcess.Kill();
+                DoExit = true;
+            
+                if (MyProcess != null && !MyProcess.HasExited)
+                {
+                    MyProcess.Kill();
+                    MyProcess.WaitForExit(1000);
+                    MyProcess = null;
+                }
+                Running = false;
             }
         }
 
-        bool IsRunning { get; set; }
-        bool ShouldRun { get { return MyProcess == null || !IsExiting || !IsRunning; } }
+        bool Running { get; set; }
+        public bool IsRunning
+        {
+            get
+            {
+                lock (lockStartStop)
+                {
+                    if (MyProcess == null || MyProcess.HasExited)
+                        Running = false;
+                    return Running;
+                }
+            }
+        }
 
         Process CreateProcess()
         {
@@ -67,21 +105,11 @@ namespace UO98
 
         void SetUpEnvironment(ProcessStartInfo pInfo)
         {
-            foreach(KeyValuePair<string, string> var in EnvVars)
+            foreach (KeyValuePair<string, string> var in EnvVars)
                 pInfo.EnvironmentVariables[var.Key] = var.Value;
+            pInfo.RedirectStandardInput = true;
+            pInfo.WorkingDirectory = BinDirectory;
         }
 
-        void Run()
-        {
-            while(ShouldRun)
-            {
-                MyProcess = CreateProcess();
-                MyProcess.Start();
-
-                while(IsRunning = !MyProcess.HasExited)
-                    Thread.Sleep(1000);
-            }
-            MyProcess = null;
-        }
     }
 }

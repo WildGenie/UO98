@@ -26,6 +26,8 @@ void RedirectIOToConsole()
 	FILE *fp;
 	// allocate a console for this app
 	AllocConsole();
+	SetConsoleTitle("UoDemo+ DLL by Batlin");
+
 	// set the screen buffer to be big enough to let us scroll text
 	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &coninfo);
 	coninfo.dwSize.Y = MAX_CONSOLE_LINES;
@@ -67,13 +69,7 @@ BOOL APIENTRY DllMain( HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpRese
 			// Tell Windows that we are not interested in thread events
 			DisableThreadLibraryCalls(hModule);
 
-			// Create a console which we can use for debug output
-			AllocConsole();
-			//hOutput = CreateFile("CONOUT$", GENERIC_WRITE, FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
-			//SetStdHandle(STD_OUTPUT_HANDLE, hOutput);
-			SetConsoleTitle("UoDemo+ DLL by Batlin");
-
-			// redirect unbuffered STDOUT to the console
+			// Create console to redirect unbuffered STDOUT
 			RedirectIOToConsole();
 
 			puts("Welcome to the UO:98 Console!");

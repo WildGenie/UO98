@@ -1,6 +1,6 @@
 ﻿namespace UO98
 {
-    partial class Service1
+    partial class UO98Service
     {
         /// <summary> 
         /// Required designer variable.
