@@ -51,6 +51,8 @@ namespace UO98
             }
         }
 
+        EventHandler ExitEventHandler = null;
+
         object lockStartStop = new object();
         public void Start()
         {
@@ -59,8 +61,33 @@ namespace UO98
                 if (Running) return;
                 Running = true;
                 DoExit = false;
+
+                if(MyProcess != null && ExitEventHandler != null)
+                    MyProcess.Exited -= ExitEventHandler;
+
                 MyProcess = CreateProcess();
+                lastExitCode = 0;
+                ExitEventHandler = new EventHandler(MyProcess_Exited);
+                MyProcess.Exited += ExitEventHandler;
                 MyProcess.Start();
+            }
+        }
+
+        public int lastExitCode { get; private set; }
+
+        public class OnExitedEventArgs : EventArgs { public int ExitCode { get; set; } }
+        public event EventHandler<OnExitedEventArgs> OnProcessExited;
+
+        void MyProcess_Exited(object sender, EventArgs e)
+        {
+            if(sender == MyProcess)
+            {
+                lastExitCode = MyProcess.ExitCode;
+                if(OnProcessExited!=null)
+                {
+                    OnExitedEventArgs args = new OnExitedEventArgs() { ExitCode = lastExitCode };
+                    OnProcessExited(this, args);
+                }
             }
         }
 
