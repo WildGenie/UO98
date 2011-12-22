@@ -19,7 +19,7 @@ namespace UO98
         {
             #region Service Control
 
-            if (args.Length == 1 && (Insensitive.Equals(args[0], "service")
+            if (args.Length == 1 && (Insensitive.Equals(args[0], "-service")
                 || Insensitive.Equals(args[0], "installservice")
                 || Insensitive.Equals(args[0], "uninstallservice")
                 || Insensitive.Equals(args[0], "restartservice")
@@ -29,7 +29,8 @@ namespace UO98
                 if (Insensitive.Equals(args[0], "-service"))
                 {
                     Directory.SetCurrentDirectory((new FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).DirectoryName));
-                    UO98Service.ServiceMain();
+                    UO98Service.Main();
+                    return;
                 }
                 else if (Insensitive.Equals(args[0], "restartservice"))
                 {
@@ -51,36 +52,66 @@ namespace UO98
                 {
                     UO98Service.UnInstall();
                 }
-                else
-                {
-                    Console.WriteLine("Usage: UO98 [installservice|uninstallservice|startservice|stopservice|restartservice]");
-                }
-
-                return;
             }
             #endregion
 
-            Run();
+            bool respawn=false;
+            if(args.Length >= 1)
+            {
+                if(args.Length == 1 && Insensitive.Equals(args[0], "respawn"))
+                    respawn = true;
+                else
+                {
+                    Console.WriteLine("Usage: UO98 [respawn|installservice|uninstallservice|startservice|stopservice|restartservice]");
+
+                    return;
+                }
+            }
+
+            Run(respawn);
         }
 
         internal static void Run()
         {
+            Run(false);
+        }
+
+        internal static void Run(bool respawn)
+        {
             SetConsoleCtrlHandler(ConsoleCtrlCheck, true);
 
-            process = new ServerProcess(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
-            while (!isclosing)
+            if(process == null)
             {
-                TextReader stdout;
-
-                process.Start();
-                while (process.IsRunning && !isclosing)
-                {
-                    if ((stdout = process.StdOut) != null)
-                        Console.Write(stdout.ReadToEnd());
-                    Thread.Sleep(250);
-                }
+                process = new ServerProcess(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
+                process.OnProcessExited += new EventHandler<ServerProcess.OnExitedEventArgs>(process_OnProcessExited);
             }
-            process.Stop();
+
+            try
+            {
+                do
+                {
+                    process.Start();
+                    while(process.IsRunning && !isclosing)
+                    {
+                        Thread.Sleep(250);
+                    }
+                } while(respawn && !isclosing);
+            }
+            finally
+            {
+                process.Stop();
+            }
+        }
+
+        public class OnEventLogMessageArgs : EventArgs { public string Message { get; set; } }
+        public static event EventHandler<OnEventLogMessageArgs> OnEventLogMessage;
+        public static event EventHandler<ServerProcess.OnExitedEventArgs> OnProcessExited;
+
+        static void process_OnProcessExited(object sender, ServerProcess.OnExitedEventArgs e)
+        {
+            string message = string.Format("Process exited with code {0}", e.ExitCode);
+            if(OnEventLogMessage != null) OnEventLogMessage(sender, new OnEventLogMessageArgs() { Message = message });
+            if(OnProcessExited != null) OnProcessExited(sender, e);
         }
 
         [DllImport("Kernel32")]

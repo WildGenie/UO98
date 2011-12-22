@@ -29,38 +29,53 @@ namespace UO98
             CanStop = true;
 
             this.EventLog.Source = UniqueServiceName;
+
+            Program.OnEventLogMessage += new EventHandler<Program.OnEventLogMessageArgs>(Program_OnLog);
+            Program.OnProcessExited += new EventHandler<ServerProcess.OnExitedEventArgs>(Program_OnProcessExited);
+        }
+
+        void Program_OnProcessExited(object sender, ServerProcess.OnExitedEventArgs e)
+        {
+            ExitCode = e.ExitCode;
+            Environment.Exit(ExitCode);
+        }
+
+        void Program_OnLog(object sender, Program.OnEventLogMessageArgs e)
+        {
+            EventLog.WriteEntry(e.Message);
+        }
+
+        public static void Main()
+        {
+            System.ServiceProcess.ServiceBase.Run(new UO98Service());
         }
 
         protected override void OnStart(string[] args)
         {
+            EventLog.WriteEntry("Starting...");
+
             IntPtr handle = this.ServiceHandle;
-            myServiceStatus.currentState = (int)State.SERVICE_START_PENDING;
-            SetServiceStatus(handle, myServiceStatus);
 
             if ((workerThread == null) ||
                 ((workerThread.ThreadState &
                 (System.Threading.ThreadState.Unstarted | System.Threading.ThreadState.Stopped)) != 0))
             {
-                workerThread = new Thread(new ThreadStart(Program.Run));
                 System.Diagnostics.Trace.WriteLine("Starting Service Worker Thread.");
+                workerThread = new Thread(new ThreadStart(Program.Run));
+                workerThread.IsBackground = true;
                 workerThread.Start();
             }
-            if (workerThread != null)
+            if(workerThread != null)
             {
-                EventLog.WriteEntry("OnStart - Worker thread state = " + workerThread.ThreadState.ToString());
+                EventLog.WriteEntry(string.Format("Started - Worker thread state = {0}\n Working directory: {1}", workerThread.ThreadState.ToString(), Directory.GetCurrentDirectory()));
             }
-
-            myServiceStatus.currentState = (int)State.SERVICE_RUNNING;
-            SetServiceStatus(handle, myServiceStatus);
-            EventLog.WriteEntry("Started Service. Working directory: " + Directory.GetCurrentDirectory());
-
+            else
+                Stop();
         }
 
         protected override void OnStop()
         {
-            this.RequestAdditionalTime(4000);
-
-            if ((workerThread != null) && (workerThread.IsAlive))
+            if((workerThread != null) && (workerThread.IsAlive))
             {
                 workerThread.Abort();
             }
@@ -68,15 +83,7 @@ namespace UO98
             {
                 EventLog.WriteEntry("OnStop - OnStop Worker thread state = " + workerThread.ThreadState.ToString());
             }
-            this.ExitCode = 0;
         }
-
-        public static void ServiceMain()
-        {
-            System.ServiceProcess.ServiceBase.Run(new UO98Service());
-        }
-
-        private static ManualResetEvent pause = new ManualResetEvent(false);
 
         private static ServiceController GetServiceController()
         {
@@ -167,14 +174,10 @@ namespace UO98
             }
         }
 
-        [DllImport("ADVAPI32.DLL", EntryPoint = "SetServiceStatus")]
-        public static extern bool SetServiceStatus(IntPtr hServiceStatus, SERVICE_STATUS lpServiceStatus);
-        private SERVICE_STATUS myServiceStatus;
-
         public static bool Install()
         {
             CustomServiceInstaller si = new CustomServiceInstaller();
-            if (si.InstallService(Assembly.GetExecutingAssembly().Location + " -service", UO98Service.UniqueServiceName, "RunUO 2.0 Service"))
+            if (si.InstallService(Assembly.GetExecutingAssembly().Location + " -service", UO98Service.UniqueServiceName, "UO:98 Ultima Online Server"))
             {
                 Console.WriteLine("The {0} service has been installed.", UO98Service.UniqueServiceName);
                 return true;
