@@ -68,6 +68,8 @@ namespace UO98
                 }
             }
 
+            SetConsoleCtrlHandler(ConsoleCtrlCheck, true);
+
             Run(respawn);
         }
 
@@ -76,9 +78,12 @@ namespace UO98
             Run(false);
         }
 
+        private static MultiTextWriter m_MultiConOut=null;
+
         internal static void Run(bool respawn)
         {
-            SetConsoleCtrlHandler(ConsoleCtrlCheck, true);
+            if(m_MultiConOut == null)
+                Console.SetOut(m_MultiConOut = new MultiTextWriter(Console.Out, new Log(GetLogNameAndBackupExisting("..\\Logs","Console.log"))));
 
             if(process == null)
             {
@@ -143,6 +148,40 @@ namespace UO98
             }
             return true;
         }
+
+        public static string GetLogNameAndBackupExisting(string LogPath, string LogFilename)
+        {
+            if(!Directory.Exists(LogPath))
+                Directory.CreateDirectory(LogPath);
+
+            string file = Path.Combine(LogPath, LogFilename);
+
+            if(File.Exists(file))
+            {
+                FileInfo fi = new FileInfo(file);
+                DateTime logdate = fi.CreationTime;
+                string DateCode = MakeDateCode(DateTime.Now);
+                string ext = Path.GetExtension(file);
+                int i = 0;
+                string newfile;
+                while(File.Exists(newfile = string.Format("{0}{1}{2}{3}", file.Substring(0, file.LastIndexOf(ext)), DateCode, i == 0 ? "" : string.Format("({0})", i.ToString("D2")), ext)))
+                    i++;
+
+                File.Move(file, newfile);
+            }
+
+            return (file);
+        }
+
+        public static string MakeDateCode(DateTime datetime)
+        {
+            return datetime.ToString("yyyyMMdd");
+        }
+        public static string MakeDateTimeCode(DateTime datetime)
+        {
+            return datetime.ToString("yyyyMMddHHmmss");
+        }
+
     }
 
 }
