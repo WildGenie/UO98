@@ -23,7 +23,7 @@ namespace UO98
             {"USEACCOUNTNAME","YES"},
             {"SAVEDYNAMIC0","NO"},
             {"UODEMODLL","Sidekick.dll"},
-            //{"NOCONSOLE","YES"},
+            {"NOCONSOLE","YES"},
         };
 
         bool DoExit { get; set; }
@@ -69,8 +69,15 @@ namespace UO98
                 lastExitCode = 0;
                 ExitEventHandler = new EventHandler(MyProcess_Exited);
                 MyProcess.Exited += ExitEventHandler;
+                MyProcess.OutputDataReceived += new DataReceivedEventHandler(OutputDataReceived);
                 MyProcess.Start();
+                MyProcess.BeginOutputReadLine();
             }
+        }
+
+        void OutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            Console.WriteLine(e.Data);
         }
 
         public int lastExitCode { get; private set; }
@@ -99,6 +106,8 @@ namespace UO98
             
                 if (MyProcess != null && !MyProcess.HasExited)
                 {
+                    MyProcess.OutputDataReceived -= OutputDataReceived;
+
                     MyProcess.Kill();
                     MyProcess.WaitForExit(1000);
                     MyProcess = null;
@@ -126,16 +135,20 @@ namespace UO98
             var p = new Process();
             SetUpEnvironment(p.StartInfo);
             p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.WorkingDirectory = BinDirectory;
             p.StartInfo.FileName = Path.Combine(BinDirectory, UODemoPlusFilename);
             return p;
         }
 
         void SetUpEnvironment(ProcessStartInfo pInfo)
         {
-            foreach (KeyValuePair<string, string> var in EnvVars)
+            Console.WriteLine("options:");
+            foreach(KeyValuePair<string, string> var in EnvVars)
+            {
+                Console.WriteLine("\t{0}={1}", var.Key, var.Value);
                 pInfo.EnvironmentVariables[var.Key] = var.Value;
-            pInfo.RedirectStandardInput = true;
-            pInfo.WorkingDirectory = BinDirectory;
+            }
         }
 
     }
