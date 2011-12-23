@@ -59,6 +59,14 @@ void RedirectIOToConsole()
 	ios::sync_with_stdio();
 }
 
+bool GetEnvToggle(const char* key)
+{
+    char * pValue;
+    pValue = getenv(key);
+
+    return pValue!=NULL && *pValue!=0  && (_stricmp(pValue,"YES")==0 || _stricmp(pValue,"TRUE")==0);
+}
+
 BOOL APIENTRY DllMain( HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
 {
 	switch (ul_reason_for_call)
@@ -70,7 +78,7 @@ BOOL APIENTRY DllMain( HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpRese
 			DisableThreadLibraryCalls(hModule);
 
 			// Create console to redirect unbuffered STDOUT
-			RedirectIOToConsole();
+			if (!GetEnvToggle("NOCONSOLE")) RedirectIOToConsole();
 
 			puts("Welcome to the UO:98 Console!");
 			puts(" http://joinuo.com | http://uo98.org");
