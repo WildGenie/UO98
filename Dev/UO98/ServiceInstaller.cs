@@ -11,6 +11,7 @@ namespace UO98
         {
             const int SC_MANAGER_CREATE_SERVICE = 0x0002;
             const int SERVICE_WIN32_OWN_PROCESS = 0x00000010;
+            const int SERVICE_INTERACTIVE_PROCESS = 0x00000100;
             const int SERVICE_DEMAND_START = 0x00000003;
             const int SERVICE_ERROR_NORMAL = 0x00000001;
             const int STANDARD_RIGHTS_REQUIRED = 0xF0000;
@@ -56,7 +57,7 @@ namespace UO98
             [DllImport("kernel32.dll")]
             public static extern int GetLastError();
 
-            public bool InstallService(string svcPath, string svcName, string svcDispName)
+            public bool InstallService(string svcPath, string svcName, string svcDispName, bool allowInteract)
             {
                 try
                 {
@@ -66,17 +67,13 @@ namespace UO98
                         Console.WriteLine("{0} is being installed as a Manual Start Type and will not be started by the installer.", svcName);
                         Console.WriteLine("To modify this, use the Services applet in the Control Panel.");
                         Console.WriteLine("To start stop or restart the service, you can run the .exe with args -start -stop or -restart.");
-                        IntPtr sv_handle = CreateService(sc_handle, svcName, svcDispName, SERVICE_ALL_ACCESS, SERVICE_WIN32_OWN_PROCESS, m_StartMode, SERVICE_ERROR_NORMAL, svcPath, null, 0, null, null, null);
+                        IntPtr sv_handle = CreateService(sc_handle, svcName, svcDispName, SERVICE_ALL_ACCESS, (allowInteract ? SERVICE_INTERACTIVE_PROCESS :  0) | SERVICE_WIN32_OWN_PROCESS, m_StartMode, SERVICE_ERROR_NORMAL, svcPath, null, 0, null, null, null);
+                        CloseServiceHandle(sc_handle);
+
                         if (sv_handle.ToInt32() == 0)
-                        {
-                            CloseServiceHandle(sc_handle);
                             return false;
-                        }
                         else
-                        {
-                            CloseServiceHandle(sc_handle);
                             return true;
-                        }
                     }
                     else
                     {

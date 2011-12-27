@@ -177,7 +177,7 @@ namespace UO98
         public static bool Install()
         {
             CustomServiceInstaller si = new CustomServiceInstaller();
-            if (si.InstallService(Assembly.GetExecutingAssembly().Location + " -service", UO98Service.UniqueServiceName, "UO:98 Ultima Online Server"))
+            if (si.InstallService(Assembly.GetExecutingAssembly().Location + " -service", UO98Service.UniqueServiceName, "UO:98 Ultima Online Server", true))
             {
                 Console.WriteLine("The {0} service has been installed.", UO98Service.UniqueServiceName);
                 return true;

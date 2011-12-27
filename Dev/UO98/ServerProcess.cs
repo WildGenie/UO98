@@ -133,11 +133,12 @@ namespace UO98
         Process CreateProcess()
         {
             var p = new Process();
-            SetUpEnvironment(p.StartInfo);
+            p.StartInfo.FileName = Path.Combine(BinDirectory, UODemoPlusFilename);
+            Console.Write("Initializing runtime environment for {0} with ", UODemoPlusFilename);
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardOutput = true;
             p.StartInfo.WorkingDirectory = BinDirectory;
-            p.StartInfo.FileName = Path.Combine(BinDirectory, UODemoPlusFilename);
+            SetUpEnvironment(p.StartInfo);
             return p;
         }
 
