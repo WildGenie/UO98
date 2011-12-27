@@ -13,7 +13,16 @@ namespace UO98
     {
         private static bool isclosing = false;
 
+        const string ScriptCompilerFileName="uosl.exe";
+        const string ScriptCompilerArguments=@"-outspec Enhanced -outdir ..\rundir\scripts.uosl -overwrite ..\rundir\scripts.uosl\*.uosl";
+
         static ServerProcess process;
+
+        private static string _workingdir = null;
+        public static string WorkingDirectory
+        {
+            get { return _workingdir ?? (_workingdir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)); }
+        }
 
         static void Main(string[] args)
         {
@@ -85,9 +94,11 @@ namespace UO98
             if(m_MultiConOut == null)
                 Console.SetOut(m_MultiConOut = new MultiTextWriter(Console.Out, new Log(GetLogNameAndBackupExisting("..\\Logs","Console.log"))));
 
+            CompileScripts();
+
             if(process == null)
             {
-                process = new ServerProcess(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location));
+                process = new ServerProcess(WorkingDirectory);
                 process.OnProcessExited += new EventHandler<ServerProcess.OnExitedEventArgs>(process_OnProcessExited);
             }
 
@@ -106,6 +117,22 @@ namespace UO98
             {
                 process.Stop();
             }
+        }
+
+        static void CompileScripts()
+        {
+            RunSimpleProcess(ScriptCompilerFileName, ScriptCompilerArguments);
+        }
+
+        static void RunSimpleProcess(string exeName, string arguments = null)
+        {
+            System.Diagnostics.Process compileProcess=new System.Diagnostics.Process();
+            compileProcess.StartInfo.UseShellExecute = true;
+            compileProcess.StartInfo.FileName = exeName;
+            compileProcess.StartInfo.Arguments = arguments;
+            compileProcess.StartInfo.WorkingDirectory = WorkingDirectory;
+            compileProcess.Start();
+            compileProcess.WaitForExit();
         }
 
         public class OnEventLogMessageArgs : EventArgs { public string Message { get; set; } }
