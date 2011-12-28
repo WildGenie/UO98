@@ -12,6 +12,8 @@
 
 bool PrintConstantConversions = false;
 
+bool DebugOutput=false;
+
 /*********************************************/
 /*                                           */
 /* FUNCTIONS RELATED WITH THE UODEMO SCRIPTS */
@@ -273,7 +275,7 @@ char *GetRawScriptToken(char *Walker, char *Target, bool ObfuscateTarget)
       *(unsigned int   *)(Target + 2) = constant;
     }
     else
-      sprintf(Target, "%u", constant);
+      if(DebugOutput) sprintf(Target, "%u", constant);
     return Walker;
   }
   else if(cWalker == '"')
@@ -402,7 +404,7 @@ char *GetRawScriptToken(char *Walker, char *Target, bool ObfuscateTarget)
             *End = ' ';
           End ++;
         }
-        printf("TRIGGER BEFORE: $35%.*s\n", End - Walker, Walker);
+        if(DebugOutput) printf("TRIGGER BEFORE: $35%.*s\n", End - Walker, Walker);
         while(Current < End)
         {
           if(ClearMode)
@@ -441,7 +443,7 @@ char *GetRawScriptToken(char *Walker, char *Target, bool ObfuscateTarget)
           }
           Current ++;
         }
-        printf("TRIGGER AFTER:  $35%.*s\n", End - Walker, Walker);
+        if(DebugOutput) printf("TRIGGER AFTER:  $35%.*s\n", End - Walker, Walker);
       }
 
       char NextToken[384];
@@ -631,7 +633,7 @@ unsigned int __cdecl MyLoadScript(const unsigned int DirectoryCode, char *Script
   RetCode = LoadFileByCode(DirectoryCode, ScriptNameWithM, OpenMode);
   if(RetCode)
   {
-    printf("%s -> M-file\n", ScriptNameWithM);
+    if(DebugOutput) printf("%s -> M-file\n", ScriptNameWithM);
     return RetCode;
   }
 
@@ -643,12 +645,12 @@ unsigned int __cdecl MyLoadScript(const unsigned int DirectoryCode, char *Script
   RetCode = LoadFileByCode(DirectoryCode, NewFileName, OpenMode);
   if(RetCode)
   {
-    printf("%s -> UOC-file\n", NewFileName);
+    if(DebugOutput) printf("%s -> UOC-file\n", NewFileName);
     return RetCode;
   }
   
   //
-  printf("%s > Failure!\n", NewFileName);
+  if(DebugOutput) printf("%s > Failure!\n", NewFileName);
   return NULL; 
 }
 

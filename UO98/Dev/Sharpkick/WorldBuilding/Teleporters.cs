@@ -109,7 +109,7 @@ namespace Sharpkick.WorldBuilding
             ShameTeleporter7.CreateAt(new Location(5700, 21, 15));
 
             // Wind
-            Location windEntranceLocation = new Location(1361, 884, 0);
+            Location windEntranceLocation = new Location(1361, 883, 0);
             Location windEntranceDestination = new Location(5166, 245, 15);
             TeleporterGeneric windEntrance = new TeleporterGeneric(windEntranceLocation, "windentr", windEntranceDestination, TeleporterGraphic.PentagramCenter);
             windEntrance.Create();
