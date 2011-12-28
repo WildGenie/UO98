@@ -200,6 +200,29 @@ namespace Sharpkick.WorldBuilding
             TeleporterGeneric TeleFromBucs = new TeleporterGeneric(fromBuscDen, "teleporter", toBucsDen);
             TeleToBucs.Create();
             TeleFromBucs.Create();
+
+            // Skara Ferry
+            Location Boat1 = new Location(709, 2238, -2);
+            Location Boat2 = new Location(683, 2242, -2);
+            Location Boat3 = new Location(683, 2234, -2);
+
+            TeleporterGeneric teleBoat1 = new TeleporterGeneric(Boat1, "skaraferry", Boat2, TeleporterGraphic.NoDraw);
+            TeleporterGeneric teleBoat2 = new TeleporterGeneric(Boat2, "skaraferry", Boat1, TeleporterGraphic.NoDraw);
+            TeleporterGeneric teleBoat3 = new TeleporterGeneric(Boat3, "skaraferry", Boat1, TeleporterGraphic.NoDraw);
+            
+            teleBoat1.Create();
+            teleBoat2.Create();
+            teleBoat3.Create();
+
+            // Wind Park
+            Location toWindParkEnter = new Location(5200, 71, 17);
+            Location toWindParkExit = new Location(5211, 22, 15);
+            Location fromWindParkEnter = new Location(5217, 18, 15);
+            Location fromWindParkExit = new Location(5204, 74, 17);
+            TeleporterGeneric TeleToWindPark = new TeleporterGeneric(toWindParkEnter, "teleporter", toWindParkExit, TeleporterGraphic.PentagramCenter);
+            TeleporterGeneric TeleFromWindPark = new TeleporterGeneric(fromWindParkEnter, "teleporter", fromWindParkExit, TeleporterGraphic.PentagramCenter);
+            TeleToWindPark.Create();
+            TeleFromWindPark.Create();
         }
 
         protected static void CreateTeleporterItem(ref ItemAndLocation ItemAndLocation)
