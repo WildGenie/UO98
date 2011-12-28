@@ -38,7 +38,7 @@ namespace Sharpkick
         /// <param name="IsPacketDynamicSized">True if this is a dynamic length packet</param>
         unsafe public static void OnPacketReceived(byte* pSocket, byte PacketID, uint PacketSize, bool IsPacketDynamicSized)
         {
-            Console.WriteLine("Packet obj: ID:{0:X2} Size:{1} Dyn:{2}", PacketID, PacketSize, IsPacketDynamicSized);
+            if(MyServerConfig.PacketDebug) Console.WriteLine("Packet obj: ID:{0:X2} Size:{1} Dyn:{2}", PacketID, PacketSize, IsPacketDynamicSized);
 
             Network.ClientPacketSafe packet = Network.ClientPacket.Instantiate(pSocket, PacketID, PacketSize, IsPacketDynamicSized);
             if (packet != null && !packet.OnReceived())
@@ -85,7 +85,7 @@ namespace Sharpkick
                 PacketSize = packetinfo.Length;
                 IsPacketDynamicSized = packetinfo.Dynamic;
 
-                Console.WriteLine("Handling Invalid Packet {0:X2} from client version {1}", PacketID, version);
+                if(MyServerConfig.PacketDebug) Console.WriteLine("Handling Invalid Packet {0:X2} from client version {1}", PacketID, version);
                 OnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized);
             }
         }

@@ -544,7 +544,7 @@ namespace Sharpkick.Network
             }
 
             ConsoleUtils.PushColor(ConsoleColor.Yellow);
-            Console.WriteLine("Player Flags: {0}", socket.PlayerFlags);
+            if(MyServerConfig.PacketDebug) Console.WriteLine("Player Flags: {0}", socket.PlayerFlags);
             ConsoleUtils.PopColor();
 
 
