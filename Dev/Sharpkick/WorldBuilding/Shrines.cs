@@ -19,7 +19,7 @@ namespace Sharpkick.WorldBuilding
 
             ShrineInfo compassionShrine = new ShrineInfo()
             {
-                LeftStartPoint = new Location(1187, 877, -1),
+                LeftStartPoint = new Location(1857, 877, -1),
                 Type = AnkhType.NorthSouth,
                 Chaos = false,
             };

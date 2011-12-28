@@ -11,7 +11,7 @@ namespace Sharpkick
 
         public const ushort MaxNonNormalMobilesSpawned=15000;
 
-        public static bool ResourceDebug { get { return true; } }
+        public static bool ResourceDebug { get { return false; } }
         public static bool ResourceGrowthFastMode { get { return false; } }
 
         #endregion

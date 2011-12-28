@@ -53,8 +53,8 @@ void Initialize_jit(void); // jit.cpp is compiled as a separate assembly as it i
 // Server Configuration
 void _declspec(dllexport) Configure()
 {
-	packetDebugLevel=All;		// Level of packet diagnostic information written to console. Values: None, Error, Warning, Translation, All
-	TraceOutput=true;			  // true to hook "debug" trace output to console.
+  packetDebugLevel=Warning;	  // Level of packet diagnostic information written to console. Values: None, Error, Warning, Translation, All
+  TraceOutput=true;			  // true to hook "debug" trace output to console.
 
   Initialize_scommand();	// Patch Counselor Commands (scommand.c)
   Initialize_packets();	  // Patch packet handler (packets.c)
