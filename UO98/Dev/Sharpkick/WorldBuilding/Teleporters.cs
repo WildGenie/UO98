@@ -26,9 +26,28 @@ namespace Sharpkick.WorldBuilding
             jhelomReturn = 6153,
         }
 
-        public static void Generate()
+        public static void GenerateBaseTeleporters()
         {
-            // Despise
+            DungeonDespise();
+            DungeonWrong();
+            DungeonDestard();
+            DungeonDeceit();
+            DungeonShame();
+
+            Wind();
+            SpiritualityShrine();
+            Moonglow();
+            Jhelom();
+            BucsDen();
+        }
+
+        public static void GenerateSkaraFerryTeleporters()
+        {
+            SkaraFerry();
+        }
+
+        private static void DungeonDespise()
+        {
             TeleporterWithFixedDest DespiseTeleporters = new TeleporterWithFixedDest("despise_stairs");
             DespiseTeleporters.CreateAt(new Location(5572, 629, 45));
             DespiseTeleporters.CreateAt(new Location(5571, 632, 10));
@@ -36,8 +55,10 @@ namespace Sharpkick.WorldBuilding
             DespiseTeleporters.CreateAt(new Location(5523, 673, 35));
             DespiseTeleporters.CreateAt(new Location(5385, 756, -13));
             DespiseTeleporters.CreateAt(new Location(5411, 859, 62));
+        }
 
-            // Wrong
+        private static void DungeonWrong()
+        {
             TeleporterWithFixedDest WrongTele1 = new TeleporterWithFixedDest("despise_teleporter_one");
             WrongTele1.CreateAt(new Location(5792, 525, 10));   // despise_teleporter_one -> wrong 3 center 5703, 639, 0
 
@@ -52,7 +73,10 @@ namespace Sharpkick.WorldBuilding
 
             TeleporterWithFixedDest WrongTele5 = new TeleporterWithFixedDest("despise_teleporter_four");
             WrongTele5.CreateAt(new Location(5690, 569, 25));  // despise_teleporter_four -> wrong 1 south 5827, 593, 0
+        }
 
+        private static void DungeonDestard()
+        {
             // Destard: see also dest_tele_one
             TeleporterWithFixedDest DestardTeleporters = new TeleporterWithFixedDest("des_stairs");
             DestardTeleporters.CreateAt(new Location(5130, 908, -22));
@@ -60,7 +84,10 @@ namespace Sharpkick.WorldBuilding
             DestardTeleporters.CreateAt(new Location(5152, 810, -19));
             DestardTeleporters.CreateAt(new Location(5133, 985, 22));
             // Unknown: dest_tele_one
-
+        }
+        
+        private static void DungeonDeceit()
+        {
             // Deceit: there are two similar scripts for Deceit teleporters, dec_stairs and dec_teleport.
             TeleporterWithFixedDest DeceitTeleporters = new TeleporterWithFixedDest("dec_stairs");
             DeceitTeleporters.CreateAt(new Location(5217, 587, -20));
@@ -69,7 +96,10 @@ namespace Sharpkick.WorldBuilding
             DeceitTeleporters.CreateAt(new Location(5137, 650, 15));
             DeceitTeleporters.CreateAt(new Location(5218, 762, -35));
             DeceitTeleporters.CreateAt(new Location(5306, 649, 0));
+        }
 
+        private static void DungeonShame()
+        {            
             // Shame: see also sha_tele_new. I think the below is the original configuration.
             //  These are all designed to be on pedestals (5 Z above floor)
             TeleporterWithFixedDest ShameTeleporters = new TeleporterWithFixedDest("sha_stairs");
@@ -107,19 +137,10 @@ namespace Sharpkick.WorldBuilding
             TeleporterWithFixedDest ShameTeleporter7 = new TeleporterWithFixedDest("sha_teleporter7", TeleporterGraphic.Sparkles);
             ShameTeleporter7.CreateAt(new Location(5802, 17, 5));
             ShameTeleporter7.CreateAt(new Location(5700, 21, 15));
+        }
 
-            // Wind
-            Location windEntranceLocation = new Location(1361, 883, 0);
-            Location windEntranceDestination = new Location(5166, 245, 15);
-            TeleporterGeneric windEntrance = new TeleporterGeneric(windEntranceLocation, "windentr", windEntranceDestination, TeleporterGraphic.PentagramCenter);
-            windEntrance.Create();
-            
-            Location windExitLocation = new Location(5191, 152, 0);
-            Location windExitDestination = new Location(1367, 891, 0);
-            TeleporterGeneric windExit = new TeleporterGeneric(windExitLocation, "teleporter", windExitDestination, TeleporterGraphic.PentagramCenter);
-            windExit.Create();
-
-            // Spirituality Shrine
+        private static void SpiritualityShrine()
+        {
             Location SpiritualityEntranceLoc1 = new Location(1600, 2489, 12);
             Location SpiritualityEntranceLoc2 = new Location(1600, 2490, 12);
             Location SpiritualityEntranceDest = new Location(1595, 2490, 20);
@@ -138,8 +159,10 @@ namespace Sharpkick.WorldBuilding
             SpiritualityExit1.Create();
             SpiritualityExit2.Create();
             SpiritualityExit3.Create();
+        }
 
-            // Moonglow
+        private static void Moonglow()
+        {
             Location mgReturnExit = new Location(4442, 1122, 5);
 
             Location LocMGLycaeumEntrance = new Location(4436, 1107, 5);
@@ -173,8 +196,10 @@ namespace Sharpkick.WorldBuilding
             TeleporterGeneric TeleMGSouthReturn = new TeleporterGeneric(LocMGSouthReturnEntrance, "teleporter", mgReturnExit, TeleporterGraphic.MGreturn);
             TeleMGSouthEntrance.Create();
             TeleMGSouthReturn.Create();
+        }
 
-            // Jhelom
+        private static void Jhelom()
+        {
             Location jhelomReturnExit = new Location(1414, 3828, 5);
 
             Location jhelomNorthEntrance = new Location(1409, 3824, 5);
@@ -192,16 +217,20 @@ namespace Sharpkick.WorldBuilding
             TeleporterGeneric TeleJhelomSouthReturn = new TeleporterGeneric(jhelomSouthReturnEntrance, "teleporter", jhelomReturnExit, TeleporterGraphic.jhelomReturn);
             TeleJhelomSouthEntrance.Create();
             TeleJhelomSouthReturn.Create();
+        }
 
-            // BucsDen
+        private static void BucsDen()
+        {
             Location toBucsDen = new Location(2618, 977, 5);
             Location fromBuscDen = new Location(2727, 2133, 5);
             TeleporterGeneric TeleToBucs = new TeleporterGeneric(toBucsDen, "teleporter", fromBuscDen);
             TeleporterGeneric TeleFromBucs = new TeleporterGeneric(fromBuscDen, "teleporter", toBucsDen);
             TeleToBucs.Create();
             TeleFromBucs.Create();
+        }
 
-            // Skara Ferry
+        private static void SkaraFerry()
+        {
             Location Boat1 = new Location(709, 2238, -2);
             Location Boat2 = new Location(683, 2242, -2);
             Location Boat3 = new Location(683, 2234, -2);
@@ -209,12 +238,24 @@ namespace Sharpkick.WorldBuilding
             TeleporterGeneric teleBoat1 = new TeleporterGeneric(Boat1, "skaraferry", Boat2, TeleporterGraphic.NoDraw);
             TeleporterGeneric teleBoat2 = new TeleporterGeneric(Boat2, "skaraferry", Boat1, TeleporterGraphic.NoDraw);
             TeleporterGeneric teleBoat3 = new TeleporterGeneric(Boat3, "skaraferry", Boat1, TeleporterGraphic.NoDraw);
-            
+
             teleBoat1.Create();
             teleBoat2.Create();
             teleBoat3.Create();
+        }
 
-            // Wind Park
+        private static void Wind()
+        {
+            Location windEntranceLocation = new Location(1361, 883, 0);
+            Location windEntranceDestination = new Location(5166, 245, 15);
+            TeleporterGeneric windEntrance = new TeleporterGeneric(windEntranceLocation, "windentr", windEntranceDestination, TeleporterGraphic.PentagramCenter);
+            windEntrance.Create();
+
+            Location windExitLocation = new Location(5191, 152, 0);
+            Location windExitDestination = new Location(1367, 891, 0);
+            TeleporterGeneric windExit = new TeleporterGeneric(windExitLocation, "teleporter", windExitDestination, TeleporterGraphic.PentagramCenter);
+            windExit.Create();
+            
             Location toWindParkEnter = new Location(5200, 71, 17);
             Location toWindParkExit = new Location(5211, 22, 15);
             Location fromWindParkEnter = new Location(5217, 18, 15);

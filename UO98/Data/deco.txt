@@ -4221,7 +4221,6 @@
 # Skara Brae
  4084   575  2120     4     0  ; Static
  2604   573  2112     0     0  ; Drawer
-16085   681  2242    -5     0  ; Static
  2718   544  2213     0     0  ; EmptyBookcase
  2553   648  2155     4     0  ; Spoon
  2842   595  2205     6     0  ; CandleLarge
@@ -4235,7 +4234,6 @@
  2715   564  2136     0     0  ; FullBookcase
  2905   562  2204     0     0  ; WoodenChair
  4553   552  2200     0     0  ; PottedTree1
-16064   683  2236    -5     0  ; Static
  2639   642  2176     0     0  ; Armoire
  2553   600  2186     4     0  ; Spoon
  4032   559  2202     4     0  ; Static
@@ -4256,7 +4254,6 @@
  2716   560  2218     0     0  ; FullBookcase
  2842   620  2219     6     0  ; CandleLarge
  4081   576  2120     4     0  ; Static
-16060   683  2237    -5     0  ; Static
  4082   565  2208     4     0  ; Static
  2842   589  2148     6     0  ; CandleLarge
  2717   565  2216     0     0  ; EmptyBookcase
@@ -4269,7 +4266,6 @@
  3022   593  2216     0     0 Bloody Bowman ; LocalizedSign
  2715   619  2215     0     0  ; FullBookcase
  2842   645  2176     4     0  ; CandleLarge
-16060   683  2245    -5     0  ; Static
  2842   572  2123     6     0  ; CandleLarge
  2986   582  2192     0     0 Bountiful Meats ; LocalizedSign
  2639   596  2272     0     0  ; Armoire
@@ -4282,7 +4278,6 @@
  4079   564  2208     4     0  ; Static
  2604   597  2272     0     0  ; Drawer
  2639   653  2152     0     0  ; Armoire
- 2592   678  2238    -3     0  ; Static
  2842   616  2197     4     0  ; CandleLarge
  2711   597  2144     0     0  ; FullBookcase
  2842   564  2220     4     0  ; CandleLarge
@@ -4293,7 +4288,6 @@
  4031   628  2193     6     0  ; Static
  2715   574  2120     0     0  ; FullBookcase
  2639   621  2192     0     0  ; Armoire
-16085   681  2234    -5     0  ; Static
  2643   576  2237     0     0  ; Armoire
  2711   578  2120     0     0  ; FullBookcase
  2712   581  2120     0     0  ; FullBookcase
@@ -4332,7 +4326,6 @@
  2718   544  2209     0     0  ; EmptyBookcase
  4032   650  2163     6     0  ; Static
  4032   627  2161     6     0  ; Static
-16064   683  2244    -5     0  ; Static
  1701   580  2127     0     0  ; DarkWoodDoor
  5630   625  2126     6     0  ; Static
  2604   649  2152     0     0  ; Drawer
@@ -4371,12 +4364,7 @@
  2713   616  2114     0     0  ; FullBookcase
  2713   616  2113     0     0  ; FullBookcase
  3646   635  2162     7     0  ; MediumCrate
-16038   684  2234    -5     0  ; Static
-16032   684  2241    -5     0  ; Static
-16032   684  2233    -5     0  ; Static
  4555   576  2188     8     0  ; PottedPlant1
-16039   682  2243    -5     0  ; Static
-16033   682  2234    -5     0  ; Static
  4031   581  2228     6     0  ; Static
  4555   630  2162     9     0  ; PottedPlant1
  4555   652  2162     9     0  ; PottedPlant1
@@ -4384,17 +4372,13 @@
  4031   554  2142     4     0  ; Static
  4555   600  2282     9     0  ; PottedPlant1
  4556   581  2186     8     0  ; PottedPlant2
-16038   684  2242    -5     0  ; Static
-16039   682  2235    -5     0  ; Static
  4555   595  2206     9     0  ; PottedPlant1
-16033   682  2242    -5     0  ; Static
  4556   611  2157     8     0  ; PottedPlant2
  4031   603  2274     6     0  ; Static
  4031   665  2138     6     0  ; Static
  4556   624  2161     9     0  ; PottedPlant2
  4556   628  2191    10     0  ; PottedPlant2
  4031   620  2217     6     0  ; Static
-16031   682  2233    -5     0  ; Static
  3645   584  2224     0     0  ; LargeCrate
  4556   603  2276     9     0  ; PottedPlant2
  4555   600  2279     9     0  ; PottedPlant1
@@ -4754,7 +4738,6 @@
  4553   640  2176     0     0  ; PottedTree1
  4553   584  2136     0     0  ; PottedTree1
  4553   568  2112     0     0  ; PottedTree1
-16054   682  2236    -5     0  ; Static
  2769   614  2127     0     0  ; Static
  3710   635  2163     6     0  ; SmallCrate
  4553   592  2272     0     0  ; PottedTree1
@@ -4986,7 +4969,6 @@
  4170   653  2178     0     0  ; Static
  4193   652  2177     0     0  ; AddonComponent
  4152   632  2154     0     0  ; Static
- 2994   679  2240     7     0 Skara Brae Ferry :    Step onto the boat and say "I would like to cross ; Static
  2904   556  2146     0     0  ; WoodenChair
  2904   593  2165     0     0  ; WoodenChair
  4648   563  2152     8     0  ; Static
@@ -4995,7 +4977,6 @@
  2713   560  2221     0     0  ; FullBookcase
  2904   601  2186     0     0  ; WoodenChair
  2904   605  2180     0     0  ; WoodenChair
- 2968   678  2239    -3     0  ; Static
  2904   556  2138     0     0  ; WoodenChair
  2904   588  2202     0     0  ; WoodenChair
  4774   604  2181     6     0  ; Static
@@ -5146,38 +5127,23 @@
  2774   609  2124     0     0  ; Static
  2776   629  2129     0     0  ; Static
  2772   616  2142     0     0  ; Static
-16045   683  2240    -5     0  ; Static
-16048   683  2233    -5     0  ; Static
-16045   683  2232    -5     0  ; Static
-16054   682  2244    -5     0  ; Static
  2552   603  2200     4     0  ; Spoon
-16046   683  2239    -5     0  ; Static
  2551   600  2186     4     0  ; Knife
  2551   584  2139     4     0  ; Knife
  2552   612  2216     4     0  ; Spoon
-16048   683  2241    -5     0  ; Static
  2551   648  2155     4     0  ; Knife
  2552   644  2176     4     0  ; Spoon
-16046   683  2231    -5     0  ; Static
  2769   612  2130     0     0  ; Static
  2551   592  2275     4     0  ; Knife
-16044   683  2242    -5     0  ; Static
  2551   568  2115     4     0  ; Knife
  2608   605  2184     0     0  ; Static
-16044   683  2235    -5     0  ; Static
  2776   629  2123     0     0  ; Static
  2612   640  2178     0     0  ; FancyDrawer
  2430   618  2128     6     0  ; Static
  2551   592  2165     4     0  ; Knife
-16043   684  2244    -5     0  ; Static
-16040   684  2243    -5     0  ; Static
-16043   684  2236    -5     0  ; Static
  2769   616  2125     0     0  ; Static
-16044   683  2243    -5     0  ; Static
  2608   610  2216     0     0  ; Static
-16044   683  2234    -5     0  ; Static
  2769   620  2131     0     0  ; Static
-16040   684  2235    -5     0  ; Static
  2769   626  2125     0     0  ; Static
  2769   620  2140     0     0  ; Static
  2769   610  2128     0     0  ; Static
@@ -5298,25 +5264,14 @@
  2769   621  2124     0     0  ; Static
  2931   614  2127     0     0  ; Static
  2775   611  2122     0     0  ; Static
-16029   682  2240    -5     0  ; Static
-16026   683  2230    -5     0  ; Static
  2516   619  2129     6     0  ; Static
-16027   682  2239    -5     0  ; Static
-16030   684  2232    -5     0  ; Static
  2604   617  2192     0     0  ; Drawer
-16029   682  2232    -5     0  ; Static
  7131   615  2278     0     0  ; Static
  2769   615  2129     0     0  ; Static
-16027   682  2231    -5     0  ; Static
  3644   635  2160     7     0  ; LargeCrate
-16028   684  2231    -5     0  ; Static
-16031   682  2241    -5     0  ; Static
-16028   684  2239    -5     0  ; Static
  2776   629  2131     0     0  ; Static
     7   622  2119     0     0  ; Static
  2604   593  2160     0     0  ; Drawer
-16026   683  2238    -5     0  ; Static
-16030   684  2240    -5     0  ; Static
  2769   628  2129     0     0  ; Static
  2769   621  2125     0     0  ; Static
  2459   584  2138     4     0  ; BeverageBottle
@@ -16382,42 +16337,18 @@
  5453   728  2233    -2     0  ; Static
  4171  1064  2202    19     0  ; Static
  4167  1068  2199    16     0  ; Static
-16040   710  2239    -5     0  ; Static
  5627   805  2268     6     0  ; Static
-16045   709  2236    -5     0  ; Static
-16048   709  2237    -5     0  ; Static
  3650  1067  2268     5     0  ; WoodenChest
  6950   804  2303     0  2416  ; Static
  2904  1065  2207     5     0  ; WoodenChair
  1460  1070  2197    47     0  ; Static
-16044   709  2239    -5     0  ; Static
-16030   710  2236    -5     0  ; Static
-16031   708  2237    -5     0  ; Static
-16064   709  2240    -5     0  ; Static
-16029   708  2236    -5     0  ; Static
  3650   744  2269     0     0  ; WoodenChest
-16027   708  2235    -5     0  ; Static
  6950   829  2269     0  2416  ; Static
-16084   711  2238    -5     0  ; Static
-16043   710  2240    -5     0  ; Static
-16046   709  2235    -5     0  ; Static
  6950   803  2189     0  2416  ; Static
  3650   864  2313     0     0  ; WoodenChest
-16026   709  2234    -5     0  ; Static
  6950   877  2395     0  2416  ; Static
-16032   710  2237    -5     0  ; Static
-16054   708  2240    -5     0  ; Static
-16044   709  2238    -5     0  ; Static
-16028   710  2235    -5     0  ; Static
-16049   707  2238    -5     0  ; Static
-10000   710  2236    -3     0  ; Static
  3651   785  2216    10     0  ; WoodenChest
-16044   710  2238    -5     0  ; Static
-16039   708  2239    -5     0  ; Static
-16033   708  2238    -5     0  ; Static
  3056   745  2160     0     0 Rangers' Guild ; LocalizedSign
-10000   711  2236    -3     0  ; Static
-16060   709  2241    -5     0  ; Static
  3650   736  2346     0     0  ; WoodenChest
  3703   744  2264     5     0  ; Barrel
  3672   756  2201     0     0  ; Static
@@ -16457,7 +16388,6 @@
  2612   800  2273     0     0  ; Drawer
  2713   736  2137     0     0  ; FullBookcase
  2711   893  2384     0     0  ; FullBookcase
- 2592   712  2234    -3     0  ; Static
  2594   793  2272    12     0  ; Lantern
  2552   814  2196     4     0  ; Spoon
  2594   816  2320    12     0  ; Lantern
@@ -16509,11 +16439,9 @@
  3545   724  2238    -3     0  ; Static
  3544   715  2234    -3     0  ; Static
  2909   785  2219    10     0  ; BambooChair
- 2994   713  2236     7     0 Skara Brae Ferry :    Step onto the boat and say "I would like to cross ; Static
  3555   755  2203     0     0  ; Static
  3544   724  2239    -1     0  ; Static
  2909   892  2386     0     0  ; BambooChair
- 2968   712  2235    -3     0  ; Static
  3542   716  2236    -2     0  ; Static
  3545   713  2238    -1     0  ; Static
  2267   888  2395     0     0  ; Static
@@ -25147,21 +25075,16 @@
  2717  1614  1587   -20     0  ; EmptyBookcase
  1773  1623  1586   -20     0  ; StrongWoodDoor
  5453  1617  1578   -20     0  ; Static
- 6954  1871  1041     0  2110  ; Static
  3741  1447  1666   -10     0  ; Static
  3740  1445  1666   -10     0  ; Static
  3740  1452  1663   -10     0  ; Static
  3740  1452  1664   -10     0  ; Static
  6916  1266  1222     0     0  ; Static
  3741  1450  1661   -10     0  ; Static
- 1250  1925  1041     0     0  ; Static
- 1250  1865  1047     0     0  ; Static
  3650  1608  1589   -20     0  ; WoodenChest
  3650  1608  1587   -20     0  ; WoodenChest
  3650  1608  1588   -20     0  ; WoodenChest
- 1250  1862  1044     0     0  ; Static
  2883  1314  1972     0     0  ; Static
- 6021  1907  1199     0     0  ; Static
  3773  1451  1660   -10     0  ; Static
  3766  1452  1660   -10     0  ; Static
  3765  1447  1664   -10     0  ; Static
@@ -25177,11 +25100,9 @@
  3766  1445  1665   -10     0  ; Static
  4554  1442  1660   -10     0  ; PottedPlant
  4554  1448  1660   -10     0  ; PottedPlant
- 6019  1902  1198     0     0  ; Static
  2854  1630  1583   -20     0  ; CandelabraStand
  3773  1452  1660   -10     0  ; Static
  2854  1441  1668   -10     0  ; CandelabraStand
- 2860  1872  1014     0     0  ; WoodenBench
  3762  1451  1667   -10     0  ; Static
  2643  1624  1589   -20     0  ; Armoire
  3763  1445  1663   -10     0  ; Static
@@ -25195,105 +25116,22 @@
  3765  1445  1664   -10     0  ; Static
  3763  1452  1662   -10     0  ; Static
  4017  1267  1254     0     0  ; Forge
- 1250  1859  1047     0     0  ; Static
  2861  1305  1972     0     0  ; WoodenBench
- 6013  2058  1191     0     0  ; Static
- 2860  1867  1014     0     0  ; WoodenBench
- 1327  1923  1040     0     0  ; Static
- 3645  2103  2004     0     0  ; LargeCrate
- 4012  2104  2013     0     0  ; Static
- 6013  2059  1191     0     0  ; Static
- 1250  1857  1043     0     0  ; Static
- 1328  1858  1048     0     0  ; Static
- 6013  2058  1192     0     0  ; Static
- 6013  2058  1190     0     0  ; Static
- 1250  1924  1041     0     0  ; Static
-12794  1874  1043     0     0  ; Static
- 1327  1864  1045     0     0  ; Static
- 3645  2106  2004     0     0  ; LargeCrate
- 3645  2103  2006     0     0  ; LargeCrate
- 3645  2103  2004     3     0  ; LargeCrate
- 1328  1860  1043     0     0  ; Static
- 1328  1859  1043     0     0  ; Static
- 1327  1859  1049     0     0  ; Static
- 3265  1860  1047     0     0  ; Static
- 1328  1861  1043     0     0  ; Static
- 3265  1862  1047     0     0  ; Static
- 1250  1857  1050     0     0  ; Static
- 6951  1871  1044     0  2110  ; Static
- 1250  1861  1048     0     0  ; Static
- 1250  1865  1042     0     0  ; Static
- 1250  1865  1050     0     0  ; Static
- 1250  1863  1047     0     0  ; Static
- 1250  1930  1041     0     0  ; Static
- 1250  1860  1050     0     0  ; Static
- 6952  1876  1041     0  2110  ; Static
- 1250  1865  1049     0     0  ; Static
- 1250  1857  1046     0     0  ; Static
- 1250  1858  1050     0     0  ; Static
- 1327  1862  1049     0     0  ; Static
- 1250  1862  1050     0     0  ; Static
- 1327  1864  1044     0     0  ; Static
- 1250  1857  1049     0     0  ; Static
- 1327  1863  1049     0     0  ; Static
- 1250  1863  1045     0     0  ; Static
- 1328  1869  1017     0     0  ; DarkSandstoneFloorN
- 1250  1857  1044     0     0  ; Static
- 1327  1922  1040     0     0  ; Static
- 6953  1873  1040     0  2110  ; Static
- 1250  1865  1050     0     0  ; Static
- 1250  1863  1050     0     0  ; Static
- 2852  1861  1040     0     0  ; LampPost3
- 1328  1864  1043     0     0  ; Static
- 6021  1907  1197     0     0  ; Static
  3533  1481  1869     0     0  ; Static
- 3265  1860  1046     0     0  ; Static
  6916  1274  1220     0     0  ; Static
  1205  1610  1591   -20     0  ; Static
  1207  1619  1590   -20     0  ; Static
- 3476  1860  1054     0     0  ; FruitTree
- 1327  1924  1040     0     0  ; Static
  1205  1611  1591   -20     0  ; Static
- 1327  1860  1049     0     0  ; Static
- 3254  2049  1188     0     0  ; Static
  1064  2066  1948     0     0  ; Static
  6919  1274  1212     0     0  ; Static
- 2473  2106  2004     3     0  ; FillableSmallCrate
- 1250  1858  1042     0     0  ; Static
-12794  1872  1042     0     0  ; Static
- 6952  1876  1043     0  2110  ; Static
- 3645  2103  2004     6     0  ; FillableLargeCrate
- 6951  1872  1044     0  2110  ; Static
-12794  1873  1043     0     0  ; Static
- 1327  1925  1040     0     0  ; Static
- 6952  1856  1054     0  2110  ; Static
- 1250  1929  1041     0     0  ; Static
- 1250  1861  1050     0     0  ; Static
- 1327  1864  1049     0     0  ; Static
- 1328  1858  1045     0     0  ; Static
- 1250  1923  1041     0     0  ; Static
- 1327  1864  1047     0     0  ; Static
- 1302  1864  1047     0     0  ; Static
- 1250  1859  1045     0     0  ; Static
- 2860  1872  1015     0     0  ; WoodenBench
- 6020  1856  1040     0     0  ; Static
- 1250  1857  1042     0     0  ; Static
- 1327  1870  1012     0     0  ; DarkSandstoneFloorN
- 1328  1858  1049     0     0  ; Static
- 1250  1921  1041     0     0  ; Static
- 3265  1861  1045     0     0  ; Static
- 6956  1873  1041     0  2110  ; Static
- 1250  1857  1047     0     0  ; Static
  2861  1307  1972     0     0  ; WoodenBench
  2884  1315  1972     0     0  ; Static
  2854  1616  1581   -20     0  ; CandelabraStand
- 1327  1870  1014     0     0  ; DarkSandstoneFloorN
  3703  1616  1578   -20     0  ; Barrel
  3703  1617  1579   -20     0  ; Barrel
  3703  1616  1579   -15     0  ; Barrel
  3703  1616  1578   -15     0  ; Barrel
  3703  1616  1580   -20     0  ; Barrel
- 1327  1869  1012     0     0  ; DarkSandstoneFloorN
  3703  1616  1579   -20     0  ; Barrel
  2717  1613  1587   -20     0  ; EmptyBookcase
  2717  1615  1584   -20     0  ; EmptyBookcase
@@ -25311,56 +25149,10 @@
  6919  1261  1219     0     0  ; Static
  6919  1270  1216     0     0  ; Static
  6916  1268  1223     0     0  ; Static
- 1327  1928  1040     0     0  ; Static
- 6959  1856  1056     0  2110  ; Static
- 6953  1870  1043     0  2110  ; Static
- 6013  2059  1190     0     0  ; Static
- 1250  1861  1042     0     0  ; Static
- 2988  2104  2011     4     0  ; Sign
- 1250  1930  1040     0     0  ; Static
- 1328  1858  1044     0     0  ; Static
- 1250  1865  1044     0     0  ; Static
- 1250  1922  1041     0     0  ; Static
- 1327  1927  1040     0     0  ; Static
- 3703  2104  2004     0     0  ; FillableBarrel
- 2852  1931  1040     0     0  ; Static
- 3265  1861  1047     0     0  ; Static
-12794  1871  1043     0     0  ; Static
- 2852  1866  1040     0     0  ; LampPost3
- 1328  1858  1047     0     0  ; Static
-12794  1873  1042     0     0  ; Static
- 1302  1865  1040    -1     0  ; Static
- 2861  1870  1017     0     0  ; WoodenBench
- 1327  1871  1015     0     0  ; DarkSandstoneFloorN
- 1328  1858  1043     0     0  ; Static
- 1250  1860  1042     0     0  ; Static
- 1328  1863  1043     0     0  ; Static
- 6021  1907  1198     0     0  ; Static
- 1329  1870  1017     0     0  ; DarkSandstoneFloorN
- 1328  1862  1043     0     0  ; Static
-12794  1875  1040     0     0  ; Static
-12794  1871  1042     0     0  ; Static
-12794  1874  1041     0     0  ; Static
- 6952  1876  1040     0  2110  ; Static
  2861  1306  1972     0     0  ; WoodenBench
- 1250  1927  1041     0     0  ; Static
- 1250  1921  1040     0     0  ; Static
- 6951  1874  1044     0  2110  ; Static
- 1250  1859  1050     0     0  ; Static
  1205  1630  1590   -20     0  ; Static
- 1250  1863  1042     0     0  ; Static
- 1327  1871  1014     0     0  ; DarkSandstoneFloorN
- 1330  1871  1013     0     0  ; DarkSandstoneFloorN
- 1250  1859  1048     0     0  ; Static
- 6959  1876  1044     0  2110  ; Static
- 1327  1872  1014     0     0  ; DarkSandstoneFloorN
- 1250  1865  1045     0     0  ; Static
- 1327  1870  1013     0     0  ; DarkSandstoneFloorN
- 1250  1862  1048     0     0  ; Static
- 6019  1902  1200     0     0  ; Static
  2718  1619  1583   -20     0  ; EmptyBookcase
  6919  1265  1216     0     0  ; Static
-12794  1875  1043     0     0  ; Static
  2718  1616  1583   -20     0  ; EmptyBookcase
  2718  1616  1582   -20     0  ; EmptyBookcase
  2718  1619  1582   -20     0  ; EmptyBookcase
@@ -25368,97 +25160,21 @@
  3892  1562  1550   -15     0  ; Static
  2718  1619  1581   -20     0  ; EmptyBookcase
  2903  1443  1660   -10     0  ; WoodenChair
- 1250  1926  1041     0     0  ; Static
- 1250  1859  1042     0     0  ; Static
  8700  1269  1219    18     0  ; AddonComponent
- 1327  1861  1049     0     0  ; Static
- 2968  2104  2011     4     0  ; Sign
- 6025  2061  1178     0     0  ; Static
- 1250  1862  1042     0     0  ; Static
- 1250  1865  1046     0     0  ; Static
- 1250  1860  1048     0     0  ; Static
- 1250  1857  1048     0     0  ; Static
- 6951  1875  1044     0  2110  ; Static
-12794  1875  1042     0     0  ; Static
- 1250  1860  1044     0     0  ; Static
- 1250  1859  1046     0     0  ; Static
- 6952  1856  1053     0  2110  ; Static
- 1328  1858  1046     0     0  ; Static
- 1327  1926  1040     0     0  ; Static
- 1327  1868  1013     0     0  ; DarkSandstoneFloorN
- 1250  1858  1050     0     0  ; Static
- 3254  2063  1178     0     0  ; Static
- 6952  1856  1055     0  2110  ; Static
  6919  1261  1220     0     0  ; Static
- 5022  1861  1046     0     0  ; Static
- 6953  1870  1042     0  2110  ; Static
- 6951  1873  1044     0  2110  ; Static
- 1330  1869  1016     0     0  ; DarkSandstoneFloorN
- 2209  1616  1760  -121     0  ; Static
- 6021  1907  1200     0     0  ; Static
- 3478  1860  1054     0     0  ; AddonComponent
- 6013  2057  1192     0     0  ; Static
- 3265  1862  1046     0     0  ; Static
  1205  1629  1587   -20     0  ; Static
  1205  1630  1587   -20     0  ; Static
  6019  1902  1199     0     0  ; Static
- 1330  1868  1015     0     0  ; DarkSandstoneFloorN
   938  1495  1863     0     0  ; Static
- 6962  1856  1052     0  2110  ; Static
- 1327  1864  1048     0     0  ; Static
- 1250  1863  1044     0     0  ; Static
- 5023  1861  1047    10     0  ; Item
- 2594  2109  2011    26     0  ; Lantern
- 3265  1862  1045     0     0  ; Static
- 1330  1869  1014     0     0  ; DarkSandstoneFloorN
- 1250  1865  1043     0     0  ; Static
- 1327  1871  1016     0     0  ; DarkSandstoneFloorN
- 2861  1869  1017     0     0  ; WoodenBench
- 1327  1929  1040     0     0  ; Static
- 1330  1867  1014     0     0  ; DarkSandstoneFloorN
- 1250  1930  1041     0     0  ; Static
- 1327  1869  1015     0     0  ; DarkSandstoneFloorN
- 2860  1867  1015     0     0  ; WoodenBench
- 1250  1863  1046     0     0  ; Static
-12794  1874  1042     0     0  ; Static
- 1327  1864  1046     0     0  ; Static
  3645  1608  1585   -20     0  ; LargeCrate
  3645  1608  1584   -20     0  ; LargeCrate
  3645  1610  1584   -20     0  ; LargeCrate
  6916  1272  1215     0     0  ; Static
  3645  1610  1584   -17     0  ; LargeCrate
- 1250  1865  1048     0     0  ; Static
- 1250  1863  1048     0     0  ; Static
-12794  1872  1043     0     0  ; Static
- 1330  1867  1015     0     0  ; DarkSandstoneFloorN
- 1250  1864  1042     0     0  ; Static
- 1327  1870  1016     0     0  ; DarkSandstoneFloorN
- 1250  1928  1041     0     0  ; Static
- 3254  2060  1181     0     0  ; Static
  2848  1304  1974     0     0  ; LampPost1
- 1330  1872  1015     0     0  ; DarkSandstoneFloorN
- 1328  1868  1016     0     0  ; DarkSandstoneFloorN
-12794  1874  1040     0     0  ; Static
- 1250  1857  1045     0     0  ; Static
- 1328  1868  1014     0     0  ; DarkSandstoneFloorN
  2904  1448  1663   -10     0  ; WoodenChair
  1205  1631  1590   -20     0  ; Static
- 6954  1872  1041     0  2110  ; Static
- 1250  1861  1044     0     0  ; Static
- 5024  1862  1046    11     0  ; Item
-12794  1875  1041     0     0  ; Static
- 1250  1864  1050     0     0  ; Static
- 2852  1920  1040     0     0  ; Static
  1205  1629  1590   -20     0  ; Static
- 1327  1869  1013     0     0  ; DarkSandstoneFloorN
- 1327  1870  1015     0     0  ; DarkSandstoneFloorN
- 6952  1876  1042     0  2110  ; Static
- 1065  2075  1948     0     0  ; Static
- 4012  2070  1959     0     0  ; Static
- 3555  2070  1959     0     0  ; Static
- 2420  2070  1959     0     0  ; Static
- 1055  2075  1957     0     0  ; Static
- 3647  2068  1954     0     0  ; MediumCrate
 
 # South Trisic Stable
  2162  2018  2808     0     0  ; DarkWoodGate
@@ -29892,7 +29608,3 @@
 # Minoc Mine
  4015  2560   501     0     0  ; AnvilComponent
  4017  2561   501     0     0  ; ForgeComponent
-
-# 
- 1056  2066  1957     0     0  ; Static
-

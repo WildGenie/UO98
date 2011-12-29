@@ -9,6 +9,8 @@ namespace Sharpkick.WorldBuilding
     {
         const sbyte zRangeForItemLocationEqualityInCore = 8;
 
+        static bool AddSkaraFerry = MyServerConfig.DecorationAddSkaraFerry;
+
         public static void Configure()
         {
             EventSink.OnPulse += new OnPulseEventHandler(EventSink_OnPulse);
@@ -18,10 +20,16 @@ namespace Sharpkick.WorldBuilding
         {
             if(Server.TimeManager.PulseNum == 20 && MyServerConfig.DecorationEnabled)
             {
-                Decoration.Decorate();
-                Teleporters.Generate();
+                Decoration.DecorateBase();
+                Teleporters.GenerateBaseTeleporters();
                 DungeonEntranceTeleporters.Generate();
                 Shrines.Generate();
+
+                if (AddSkaraFerry)
+                {
+                    Decoration.DecorateSkaraFerry();
+                    Teleporters.GenerateSkaraFerryTeleporters();
+                }
 
                 EventSink.OnPulse -= EventSink_OnPulse;
             }
