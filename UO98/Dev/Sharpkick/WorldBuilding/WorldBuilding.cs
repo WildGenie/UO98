@@ -197,10 +197,14 @@ namespace Sharpkick.WorldBuilding
             return Location.Zero;
         }
 
-        public static void setHome(int serial)
+        public static void setHomeAndHeavy(int serial)
         {
             if (serial > 0)
+            {
                 Server.setObjVar(serial, "home", Server.getLocation(serial));
+                if (!isHeavy(serial))
+                    MakeHeavy(serial);
+            }
         }
 
         public static bool isAtCreationLocation(int serial)
@@ -217,15 +221,15 @@ namespace Sharpkick.WorldBuilding
             return Server.getWeight(serial) >= 100;
         }
 
-        public static void MakeHeavy(int serial, ItemAndLocation itemAndLocation)
+        public static void MakeHeavy(int serial)
         {
             int newweight;
 
             string result = Server.addScript(serial, "heavy");
             if (!string.IsNullOrEmpty(result))
-                Console.WriteLine("Decorate Error: Failed to set heavy on {0} Message: {1}", itemAndLocation, result);
+                Console.WriteLine("Decorate Error: Failed to set heavy on {0} Message: {1}", serial, result);
             else if ((newweight = Server.getWeight(serial)) != 255)
-                Console.WriteLine("Decorate Error: Item not heavy: {0}. Weight: {1} serial: {2}", itemAndLocation, newweight, serial);
+                Console.WriteLine("Decorate Error: Item not heavy: {0}. Weight: {1}", serial, newweight);
         }
 
     }

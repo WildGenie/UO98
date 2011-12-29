@@ -78,7 +78,7 @@ namespace Sharpkick.WorldBuilding
                 existed++;
 
             if (serial != 0 && Builder.isAtCreationLocation(serial))
-                Builder.setHome(serial);
+                Builder.setHomeAndHeavy(serial);
 
         }
 
