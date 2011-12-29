@@ -12,16 +12,28 @@ namespace Sharpkick.WorldBuilding
         static int existed = 0;
         static int failed = 0;
 
-        static string path = Persistance.GetDataPathname("deco.txt");
+        static string BaseDecoFilePath = Persistance.GetDataPathname("deco.txt");
 
-        public static void Decorate()
+        static string SkaraFerryDecoFilePath = Persistance.GetDataPathname("decoSkaraFerry.txt");
+
+        public static void DecorateBase()
+        {
+            Decorate(Decoration.BaseDecoFilePath);
+        }
+
+        public static void DecorateSkaraFerry()
+        {
+            Decorate(Decoration.SkaraFerryDecoFilePath);
+        }
+
+        public static void Decorate(string decoFilePath)
         {
             created = existed = failed = 0;
 
-            if (!File.Exists(path))
-                Console.WriteLine("Decorate: File not found: {0}", path);
+            if (!File.Exists(decoFilePath))
+                Console.WriteLine("Decorate: File not found: {0}", decoFilePath);
             else
-                using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                using (FileStream fs = new FileStream(decoFilePath, FileMode.Open, FileAccess.Read))
                 using (StreamReader reader = new StreamReader(fs))
                     ProcessDecorationFile(reader);
         }

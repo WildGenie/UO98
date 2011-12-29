@@ -28,6 +28,7 @@ namespace Sharpkick
         #region Decoration
 
         public static bool DecorationEnabled { get { return true; } }
+        public static bool DecorationAddSkaraFerry { get { return false; } }
 
         #endregion
 
