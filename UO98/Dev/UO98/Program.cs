@@ -89,10 +89,15 @@ namespace UO98
 
         private static MultiTextWriter m_MultiConOut=null;
 
+        internal static UnhandledExceptionEventHandler UnhandledExceptionHandler = null;
+
         internal static void Run(bool respawn)
         {
             if(m_MultiConOut == null)
                 Console.SetOut(m_MultiConOut = new MultiTextWriter(Console.Out, new Log(GetLogNameAndBackupExisting("..\\Logs","Console.log"))));
+
+            if(UnhandledExceptionHandler == null)
+                AppDomain.CurrentDomain.UnhandledException += (UnhandledExceptionHandler = new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException));
 
             CompileScripts();
 
@@ -117,6 +122,12 @@ namespace UO98
             {
                 process.Stop();
             }
+        }
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Exception ex = (Exception)e.ExceptionObject;
+            Console.WriteLine("Unhandled Exception:\n{0}",ex.ToString());
         }
 
         static void CompileScripts()
