@@ -89,6 +89,15 @@ namespace Sharpkick.WorldBuilding
             };
             valorShrine.Create();
 
+            ShrineInfo destardShrine = new ShrineInfo()
+            {
+                LeftStartPoint = new Location(5204, 774, 0),
+                Type = AnkhType.NorthSouth,
+                Chaos = false,
+            };
+            destardShrine.Create();
+
+
         }
 
         enum AnkhType
