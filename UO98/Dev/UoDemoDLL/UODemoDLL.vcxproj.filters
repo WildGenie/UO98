@@ -116,9 +116,6 @@
     <ClCompile Include="src\misc.c">
       <Filter>Source Files\Patches</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameMaster.c">
-      <Filter>Source Files\API Function Exports</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="API\classes.h">

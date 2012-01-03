@@ -89,9 +89,7 @@ cd $(SolutionDir)</Command>
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CommandExports.h" />
     <ClInclude Include="CoreEvents.h" />
-    <ClInclude Include="GameMaster.h" />
     <ClInclude Include="Interop.h" />
     <ClInclude Include="ItemObject.h" />
     <ClInclude Include="ObjectScripts.h" />

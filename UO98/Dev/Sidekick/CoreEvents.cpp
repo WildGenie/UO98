@@ -44,7 +44,6 @@ void InitializeEventHandler(HMODULE dll_handle, char* FunctionName, void* invoke
 void InitializeEventHandlers(HMODULE dll_handle)
 {
 	InitializeEventHandler(dll_handle, "_setHandler_onpulse",							        &OnPulse);		
-	InitializeEventHandler(dll_handle, "_setHandler_onaftersave",					        &OnAfterSave);
 	InitializeEventHandler(dll_handle, "_setHandler_packets",							        &OnPacketReceived);
 	InitializeEventHandler(dll_handle, "_setHandler_onhandleoutsiderangepacket",  &OnHandleOutsideRangePacket);
 	InitializeEventHandler(dll_handle, "_setHandler_onpacketsending",					    &OnPacketSending);

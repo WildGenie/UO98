@@ -36,7 +36,6 @@
 #include "PacketFunctions.c"
 #include "World.c"
 #include "Lists.c"
-#include "GameMaster.c"
 
 // Patches
 #include "logging.c"	// Console Logging of trace output
