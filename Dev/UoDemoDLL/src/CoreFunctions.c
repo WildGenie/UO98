@@ -7,7 +7,7 @@ void __cdecl UnmakeCounselor(PlayerObject *Target);
 
 //-=-=-=-=-
 
-void __cdecl _declspec(dllexport) SaveWorld()
+void __cdecl SaveWorld()
 {
   puts("Saving world...");
   __asm
@@ -18,11 +18,11 @@ void __cdecl _declspec(dllexport) SaveWorld()
   puts("World saved!");
   
   if(my_OnAfterSave)	// invoke OnAfterSave event if set
-	  my_OnAfterSave();
+      my_OnAfterSave();
 }
 
 #define GLOBAL_TerminateServerFlag 0x6999E0
-void __cdecl _declspec(dllexport) ShutdownServer()
+void __cdecl ShutdownServer()
 {
   __asm
   {
@@ -32,7 +32,7 @@ void __cdecl _declspec(dllexport) ShutdownServer()
 }
 
 #define GLOBAL_HelpEngineObject 0x6982D8
-void __cdecl _declspec(dllexport) MakeCounselor(PlayerObject *Target, int Type)
+void __cdecl MakeCounselor(PlayerObject *Target, int Type)
 {
   __asm
   {
@@ -44,7 +44,7 @@ void __cdecl _declspec(dllexport) MakeCounselor(PlayerObject *Target, int Type)
   }
 }
 
-void __cdecl _declspec(dllexport) UnmakeCounselor(PlayerObject *Target)
+void __cdecl UnmakeCounselor(PlayerObject *Target)
 {
   __asm
   {

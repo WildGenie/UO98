@@ -1,19 +1,18 @@
+#include "stdafx.h"
+
 #pragma unmanaged
 
-typedef void (_cdecl *FUNCPTR_SendInfoWindowOrDoPlayerShadow)(void* InfoStruct);
+#define pFUNC_SendInfoWindowOrDoPlayerShadow 0x0045EE75
 
-FUNCPTR_SendInfoWindowOrDoPlayerShadow	_SendInfoWindowOrDoPlayerShadow;
-
-#include "RegisterImportTemplate.h"
-void InitGameMaster(HMODULE dll_handle)
-{
-	RegisterImport(dll_handle,"_SendInfoWindowOrDoPlayerShadow",_SendInfoWindowOrDoPlayerShadow);
-}
+typedef void (_cdecl *FUNCPTR_SendInfoWindowOrDoPlayerShadow)(void* InfoStruct, int unused);
+FUNCPTR_SendInfoWindowOrDoPlayerShadow	_SendInfoWindowOrDoPlayerShadow = (FUNCPTR_SendInfoWindowOrDoPlayerShadow)pFUNC_SendInfoWindowOrDoPlayerShadow;
 
 extern "C"
 {
     void _declspec(dllexport) APIENTRY SendInfoWindowOrDoPlayerShadow(void* InfoStruct)
     {
-	    if(_SendInfoWindowOrDoPlayerShadow) _SendInfoWindowOrDoPlayerShadow(InfoStruct); 
+        int unused=0;
+        _SendInfoWindowOrDoPlayerShadow(InfoStruct, unused);
+
     }
 }

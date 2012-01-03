@@ -1,28 +1,32 @@
 #include <stdio.h>
-#include "Interop.h"
+#include "CoreEvents.h"
 
 #pragma unmanaged
 
-FUNCPTR_Void	_SaveWorld;
-FUNCPTR_Void	_ShutdownServer;
-
-#include "RegisterImportTemplate.h"
-void InitCommands(HMODULE dll_handle)
-{
-	RegisterImport(dll_handle,"_SaveWorld",_SaveWorld);
-	RegisterImport(dll_handle,"_ShutdownServer",_ShutdownServer);
-}
-
 extern "C"
 {
-	void _declspec(dllexport) APIENTRY SaveWorld()
-	{
-		if(_SaveWorld) _SaveWorld();
-	}
+    #define FUNC_WriteDynamic0 0x4C8A5C
+    void _declspec(dllexport) APIENTRY SaveWorld()
+    {
+        puts("Saving world...");
+        __asm
+        {
+            mov eax, FUNC_WriteDynamic0
+            call eax
+        }
+        puts("World saved!");
+  
+        OnAfterSave();
+    }
 
-	void _declspec(dllexport) APIENTRY ShutdownServer()
-	{
-		if(_ShutdownServer) _ShutdownServer();
-	}
+    #define GLOBAL_TerminateServerFlag 0x6999E0
+    void _declspec(dllexport) APIENTRY ShutdownServer()
+    {
+      __asm
+      {
+        mov edx, GLOBAL_TerminateServerFlag
+        mov dword ptr [edx], 1
+      }
+    }
 }
 
