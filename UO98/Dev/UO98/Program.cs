@@ -9,7 +9,7 @@ using System.ServiceProcess;
 
 namespace UO98
 {
-    class Program
+    class Program : IDisposable
     {
         private static bool isclosing = false;
 
@@ -220,6 +220,16 @@ namespace UO98
             return datetime.ToString("yyyyMMddHHmmss");
         }
 
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            if (process != null)
+                process.Stop();
+        }
+
+        #endregion
     }
 
 }
