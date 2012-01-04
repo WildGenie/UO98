@@ -39,8 +39,6 @@
 
 // Patches
 #include "logging.c"	// Console Logging of trace output
-#include "timer.c"		// TimeManager Functions. Generates OnPulse events for export
-#include "scommand.c"	// System commands
 #include "packets.c"	// Packet patches and handler
 #include "misc.c"	    // misc patches
 
@@ -55,10 +53,8 @@ void _declspec(dllexport) Configure()
   packetDebugLevel=Warning;	  // Level of packet diagnostic information written to console. Values: None, Error, Warning, Translation, All
   TraceOutput=true;			  // true to hook "debug" trace output to console.
 
-  Initialize_scommand();	// Patch Counselor Commands (scommand.c)
   Initialize_packets();	  // Patch packet handler (packets.c)
   Initialize_logging();	  // Logging to Console (logging.c)
-  Initialize_timer();		  // Patch pulse handler (timer.c)
   Initialize_jit();
   Initialize_misc();
 

@@ -1,53 +1,71 @@
-#include "Player.h"
-
 #pragma unmanaged
 
-typedef void (_cdecl *FUNCPTR_SendSystemMessage)(void* , const char*);
-
-FUNCPTR_SendSystemMessage	_SendSystemMessage;
-FUNCPTR						_MakeGameMaster;
-FUNCPTR						_UnmakeGameMaster;
-FUNCPTR						_IsGameMaster;
-FUNCPTR						_OpenBank;
-
-#include "RegisterImportTemplate.h"
-void InitPlayer(HMODULE dll_handle)
-{
-	RegisterImport(dll_handle,"_SendSystemMessage",_SendSystemMessage);
-	RegisterImport(dll_handle,"_MakeGameMaster",_MakeGameMaster);
-	RegisterImport(dll_handle,"_UnmakeGameMaster",_UnmakeGameMaster);
-	RegisterImport(dll_handle,"_IsGameMaster",_IsGameMaster);
-	RegisterImport(dll_handle,"_OpenBank",_OpenBank);
-}
+#include "Classes.h"
+#include "stdafx.h"
 
 extern "C"
 {
-	void _declspec(dllexport) APIENTRY SendSystemMessage(void *player, const char *message)
-	{
-		if(_SendSystemMessage) _SendSystemMessage(player, message); 
-	}
+  void _declspec(dllexport) APIENTRY SendSystemMessage(void *player, const char *message)  
+  {
+    if((player != NULL) && IsPlayerObject(player))
+      __asm
+      {
+        push message
+        mov ecx, player
+        mov eax, 0x04516BF
+        call eax
+      } 
+  }
 
+  #define pFUNC_PlayerObject_MakeGameMaster 0x00454D7D
 	int _declspec(dllexport) APIENTRY MakeGameMaster(void* player)
-	{
-		if(_MakeGameMaster) return _MakeGameMaster(player); 
-		return 0;
-	}
+  {
+	  __asm
+	  {
+		  mov ecx, player
+		  mov eax, pFUNC_PlayerObject_MakeGameMaster
+		  call eax
+	  }
+  }
 
+  #define pFUNC_PlayerObject_UnmakeGameMaster 0x00454DC0
 	int _declspec(dllexport) APIENTRY UnmakeGameMaster(void* player)
-	{
-		if(_UnmakeGameMaster) return _UnmakeGameMaster(player); 
-		return 0;
-	}
+  {
+	  __asm
+	  {
+		  mov ecx, player
+		  mov eax, pFUNC_PlayerObject_UnmakeGameMaster
+		  call eax
+	  }
+  }
 
+  #define pFUNC_PlayerObject_IsGameMaster_A 0x00454E03
 	int _declspec(dllexport) APIENTRY IsGameMaster(void* player)
-	{
-		if(_IsGameMaster) return _IsGameMaster(player); 
-		return 0;
-	}
+  {
+    int _EAX;
+	  __asm
+	  {
+		  mov ecx, player
+		  mov eax, pFUNC_PlayerObject_IsGameMaster_A
+		  call eax
+      mov _EAX, eax
+	  }
+	  return _EAX;
+  }
 
-	int _declspec(dllexport) APIENTRY OpenBank(void* mobile, void* ShowTo)
-	{
-		if(_OpenBank) return _OpenBank(mobile, ShowTo); 
-		return 0;
-	}
+  #define pFUNC_MobileObject_OpenBank 0x0047212F
+  int _declspec(dllexport) OpenBank(PlayerObject *PlayerObjectWhoseBankToOpen, PlayerObject *MobileObjectWhereBankWillBeShown)
+  {
+    int _EAX;
+	  __asm
+	  {
+	    push MobileObjectWhereBankWillBeShown
+	    mov  ecx, PlayerObjectWhoseBankToOpen
+	    mov  eax, 0x47212F
+	    call eax
+      mov _EAX, eax
+	  }
+	  return _EAX;
+  }
+
 }

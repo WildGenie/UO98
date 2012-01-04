@@ -1,13 +1,13 @@
-#include "World.h"
-
 #pragma unmanaged
+
+#include "Classes.h"
+#include "World.h"
 
 typedef void (_cdecl *FUNCPTR_createGlobalObjectAt)(int, void*);
 typedef int  (_cdecl *FUNCPTR_getFirstObjectOfType)(void*, int);
 typedef int  (_cdecl *FUNCPTR_getNextObjectOfType)(void*, int, int);
 typedef bool (_cdecl *FUNCPTR_isType)(void*);
 
-FUNCPTR									_ConvertSerialToObject;
 FUNCPTR_createGlobalObjectAt			_createGlobalObjectAt;
 FUNCPTR_getFirstObjectOfType			_getFirstObjectOfType;
 FUNCPTR_getNextObjectOfType				_getNextObjectOfType;
@@ -20,7 +20,6 @@ FUNCPTR_isType _IsPlayer;
 #include "RegisterImportTemplate.h"
 void InitWorld(HMODULE dll_handle)
 {
-    RegisterImport(dll_handle,"_ConvertSerialToObject",_ConvertSerialToObject);
     RegisterImport(dll_handle,"_createGlobalObjectAt",_createGlobalObjectAt);
     RegisterImport(dll_handle,"_getFirstObjectOfType",_getFirstObjectOfType);
     RegisterImport(dll_handle,"_getNextObjectOfType",_getNextObjectOfType);
@@ -33,14 +32,6 @@ void InitWorld(HMODULE dll_handle)
 
 extern "C"
 {
-    int _declspec(dllexport) APIENTRY ConvertSerialToObject(int serial)
-    {
-        if(_ConvertSerialToObject) 
-            return _ConvertSerialToObject(serial); 
-        else
-            return 0;
-    }
-
     void _declspec(dllexport) APIENTRY createGlobalObjectAt(int ItemID, void* Location)
     {
         if(_createGlobalObjectAt) _createGlobalObjectAt(ItemID, Location); 

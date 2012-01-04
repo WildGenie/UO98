@@ -21,6 +21,12 @@
     <Filter Include="Source Files\Tests">
       <UniqueIdentifier>{1b9c4a05-45ca-435d-8e3f-465439546e49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Patching">
+      <UniqueIdentifier>{478dc003-3411-4d53-b150-2083f728b8fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Patches">
+      <UniqueIdentifier>{1061fb81-4367-4319-ade1-7bfb27165a2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -62,6 +68,24 @@
     <ClInclude Include="TestsMain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="patcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="patches.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -85,9 +109,6 @@
     <ClCompile Include="World.cpp">
       <Filter>Source Files\API Commands</Filter>
     </ClCompile>
-    <ClCompile Include="CommandExports.cpp">
-      <Filter>Source Files\API Commands</Filter>
-    </ClCompile>
     <ClCompile Include="CoreEvents.cpp">
       <Filter>Source Files\API Events</Filter>
     </ClCompile>
@@ -108,6 +129,21 @@
     </ClCompile>
     <ClCompile Include="GameMaster.cpp">
       <Filter>Source Files\API Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Source Files\Patches</Filter>
+    </ClCompile>
+    <ClCompile Include="Patcher.cpp">
+      <Filter>Source Files\Patching</Filter>
+    </ClCompile>
+    <ClCompile Include="SCommand.cpp">
+      <Filter>Source Files\Patches</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands.cpp">
+      <Filter>Source Files\API Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
