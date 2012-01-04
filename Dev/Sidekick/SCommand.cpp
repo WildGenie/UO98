@@ -7,7 +7,7 @@
 #pragma unmanaged
 
 #include "Player.h"
-#include "patches.h"
+#include "patcher.h"
 #include "stdafx.h"
 #include <stdlib.h>
 #include "Commands.h"
@@ -56,7 +56,7 @@ void __cdecl Command_MakeCounselor(PlayerObject *Player, unsigned int PlayerSeri
   int Type;
 
   Command = ExtractString_HandleQuotes(Command, buffer);
-  if(strcmpi(buffer, "me") == 0)
+  if(_strcmpi(buffer, "me") == 0)
   {
     TargetSerial = PlayerSerial;
   }
@@ -100,7 +100,7 @@ void __cdecl Command_UnmakeCounselor(PlayerObject *Player, unsigned int PlayerSe
   unsigned int TargetSerial;
 
   /*Command =*/ ExtractString_HandleQuotes(Command, buffer);
-  if(strcmpi(buffer, "me") == 0)
+  if(_strcmpi(buffer, "me") == 0)
   {
     TargetSerial = PlayerSerial;
   }
