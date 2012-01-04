@@ -97,7 +97,6 @@
     <ClCompile Include="src\ObjectScripts.c" />
     <ClCompile Include="src\ObjectVars.c" />
     <ClCompile Include="src\events.c" />
-    <ClCompile Include="src\jit.cpp" />
     <ClCompile Include="src\packets.c" />
     <ClCompile Include="src\Tests.c" />
     <ClCompile Include="src\Tests_Lists.c" />

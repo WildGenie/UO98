@@ -77,7 +77,8 @@ void RunTests()
  void Initialize_scommand(void);
  void Initialize_timer();
  void Initialize_logging(void);
- void Initialize_misc();
+ void Initialize_misc(void);
+ void Initialize_jit(void);
 //-=-=-=-=
 
 void EnterNormalRuntimeMode()
@@ -93,6 +94,7 @@ void InitializeUODemoDLL()
   Initialize_scommand();
   Initialize_logging();
   Initialize_misc();
+  Initialize_jit();
 
   FUNCPTR_Void _Configure=NULL;
 
