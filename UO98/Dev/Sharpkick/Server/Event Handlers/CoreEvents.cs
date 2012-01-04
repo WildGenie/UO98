@@ -49,7 +49,7 @@ namespace Sharpkick
         /// Called when the server receives a packet that it cannot handle.
         /// </summary>
         /// <param name="pSocket">The servers socket which received the packet.</param>
-        unsafe public static void OnHandleOutsideRangePacket(byte* pSocket)
+        unsafe public static bool OnHandleOutsideRangePacket(byte* pSocket)
         {
             //ClientSocket sock = new ClientSocket(pSocket);
             byte PacketID = *(pSocket + 0x28);
@@ -74,6 +74,7 @@ namespace Sharpkick
                 ConsoleUtils.PushColor(ConsoleColor.Red);
                 Console.WriteLine("WARNING: Ignored Invalid Packet {0:X2}.", PacketID);
                 ConsoleUtils.PopColor();
+                return false;
             }
             else
             {
@@ -87,6 +88,8 @@ namespace Sharpkick
 
                 if(MyServerConfig.PacketDebug) Console.WriteLine("Handling Invalid Packet {0:X2} from client version {1}", PacketID, version);
                 OnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized);
+
+                return true;
             }
         }
 
