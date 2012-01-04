@@ -125,6 +125,7 @@ cd $(SolutionDir)</Command>
     <ClCompile Include="Initialize.cpp" />
     <ClCompile Include="Helper_Events.cpp" />
     <ClCompile Include="ItemObject.cpp" />
+    <ClCompile Include="Jit.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="Misc.cpp" />
     <ClCompile Include="ObjectScripts.cpp" />

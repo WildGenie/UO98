@@ -59,9 +59,6 @@
     <ClCompile Include="src\events.c">
       <Filter>Source Files\Event Exports</Filter>
     </ClCompile>
-    <ClCompile Include="src\jit.cpp">
-      <Filter>Source Files\Patches</Filter>
-    </ClCompile>
     <ClCompile Include="src\ObjectProperties.c">
       <Filter>Source Files\API Function Exports</Filter>
     </ClCompile>

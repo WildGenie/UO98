@@ -1,18 +1,19 @@
-#include <windows.h>
+#pragma unmanaged
+
+#include "stdafx.h"
 
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "patches.h"
-#include "patcher.c"
+#include "patcher.h"
 
 #pragma warn -8002 // Restarting compile using assembly
 
 bool PrintConstantConversions = false;
 
-bool DebugOutput=false;
+bool DebugOutput=true;
 
 /*********************************************/
 /*                                           */
@@ -64,20 +65,22 @@ unsigned short ObfuscateScriptByte(unsigned char ScriptByte)
 
 unsigned char GetCurrentScriptType()
 {
+  unsigned char _AL;
   __asm
   {
     mov edx, 0x63E128    // Points to the current script being compiled (Being-CompiledObject class)
     mov ecx, [edx]
     mov al, [ecx + 0x54] // See MyCompiledObjectConstructor...
+    mov _AL, al
   }
   return _AL; // 0 = Unknown, 1 = M, 2 = UOC
 }
 
-void SetCurrentScriptType(unsigned char Type)
+void SetCurrentScriptType(unsigned char sType)
 {
   __asm
   {
-    mov al, Type
+    mov al, sType
     mov edx, 0x63E128    // Points to the current script being compiled (Being-CompiledObject class)
     mov ecx, [edx]
     mov [ecx + 0x54], al // See MyCompiledObjectConstructor...
@@ -86,11 +89,14 @@ void SetCurrentScriptType(unsigned char Type)
 
 unsigned char GetCurrentScriptExtraByte()
 {
+  unsigned char _AL;
+ 
   __asm
   {
     mov edx, 0x63E128    // Points to the current script being compiled (Being-CompiledObject class)
     mov ecx, [edx]
     mov al, [ecx + 0x55] // See MyCompiledObjectConstructor...
+    mov _AL, al
   }
   return _AL;
 }
@@ -605,13 +611,12 @@ int __declspec(naked) MyCompiledObjectConstructor()
   __asm
   {
      // WARNING! This also relies on the PI_Compiler_CompiledObjectSize patch!!!
-     //          Failure to apply that patch will cause unusual behaviour
+     //          Failure to apply that patch will cause unusual behavior
      mov byte ptr [ecx + 0x54], 0 // Is UOC (2) or M (1) or Unknown (0) file ?
      mov byte ptr [ecx + 0x55], 0 // A free to use extra byte, currently unused
      mov eax, 0x426E20
      jmp eax
   }
-  return _EAX; // ignored but satisfies a buggy compiler
 }
 
 char * __stdcall MyGetRawScriptToken(char *Walker, char *Target)
@@ -658,6 +663,7 @@ int __cdecl MyBackwardsScanForSM_LPAREN(char *Walker, int)
 {
   if((GetCurrentScriptType() == 0) || (GetCurrentScriptType() == 1))
   {
+    int _EAX;
     // Use the demo's code to handle the M files
     __asm
     {
@@ -666,6 +672,7 @@ int __cdecl MyBackwardsScanForSM_LPAREN(char *Walker, int)
       mov  eax, 0x42B1B0
       call eax
       add  esp, 8
+      mov _EAX, eax
     }
     return _EAX;
   }
@@ -673,22 +680,43 @@ int __cdecl MyBackwardsScanForSM_LPAREN(char *Walker, int)
   return BackwardsScanForSM_LPAREN(Walker);
 }
 
-// ****************************************
-// ****************************************
-// DllEntryPoint -> EDIT WITH CARE!!!
-//
-// This is the code called when uodemo+.exe
-// executes LoadLibrary to load this DLL.
-//
-// The patches will be set-up and applied
-//
-// Do not edit the SetRel32_XXX calls!
-// Feel free to fool around with the rest
-// but at your own risk.
-// ****************************************
-// ****************************************
+PATCHINFO PI_Compiler_CompiledObjectSize =
+{
+  0x426EF4,
+ 2, {0x6A, 0x54},
+ 2, {0x6A, 0x56},
+};
 
-extern "C" _declspec(dllexport) void Initialize_jit()
+PATCHINFO PI_Compiler_CompiledObjectConstructor =
+{
+  0x426F1A,
+ 5, {0xE8, 0x01, 0xFF, 0xFF, 0xFF},
+ 5, {0xE8, 0x00, 0x00, 0x00, 0x00},
+};
+
+PATCHINFO PI_Intercept_LoadScript =
+{
+  0x426217,
+ 5, {0xE8, 0x5B, 0xA6, 0x05, 0x00},
+ 5, {0XE8, 0x00, 0x00, 0x00, 0x00},
+};
+
+PATCHINFO PI_Intercept_GetRawScriptToken =
+{
+  0x428407,
+ 19, {0x66, 0xB9, 0x00, 0x00, 0x66, 0x39, 0x08, 0x75, 0x05, 0xE8, 0xEB, 0xF5, 0x0B, 0x00, 0xE8, 0xC6, 0x87, 0x19, 0x00},
+ 19, {0xFF, 0x75, 0x0C, 0xFF, 0x75, 0x08, 0xE8, 0x00, 0x00, 0x00, 0x00, 0x09, 0xC0, 0x0f, 0x85, 0xBF, 0x01, 0x00, 0x00},
+};
+
+PATCHINFO PI_Intercept_HandleBackwardsScanForSM_LPAREN =
+{
+  0x42A2F9,
+ 11, {0x6A, 0x02, 0x8B, 0x55, 0x0C, 0x52, 0xE8, 0xAC, 0x0E, 0x00, 0x00},
+ 11, {0x6A, 0x02, 0x8B, 0x55, 0x0C, 0x52, 0xE8, 0x00, 0x00, 0x00, 0x00},
+};
+
+
+void Initialize_jit()
 {
     // Prepare the patches
     SetRel32_AtPatch(&PI_Compiler_CompiledObjectConstructor, MyCompiledObjectConstructor);

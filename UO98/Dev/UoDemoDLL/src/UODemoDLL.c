@@ -39,8 +39,6 @@
 // Patches
 #include "packets.c"	// Packet patches and handler
 
-void Initialize_jit(void); // jit.cpp is compiled as a separate assembly as it is C++
-
 // Unit Tests
 #include "Tests.c"
 
@@ -50,7 +48,6 @@ void _declspec(dllexport) Configure()
   packetDebugLevel=Warning;	  // Level of packet diagnostic information written to console. Values: None, Error, Warning, Translation, All
 
   Initialize_packets();	  // Patch packet handler (packets.c)
-  Initialize_jit();
 
 	puts("UODemoDLL Initialized.");
 }
