@@ -11,7 +11,6 @@
 
 #include "Packets.h"
 #include "World.h"
-#include "Player.h"
 #include "ItemObject.h"
 #include "ObjVars.h"
 #include "ObjectScripts.h"
@@ -74,23 +73,31 @@ void RunTests()
     InitializeTests(uodemodll_handle);
 }
 
+//-=-=-=-=
+ void Initialize_scommand(void);
+ void Initialize_timer();
+//-=-=-=-=
+
 void EnterNormalRuntimeMode()
 {
-	InitializeEventHandlers(uodemodll_handle);
-	puts("Sidekick Initialized.");
-	puts("Please wait while the world loads...");
+  Initialize_timer();
+  InitializeEventHandlers(uodemodll_handle);
+  puts("Sidekick Initialized.");
+  puts("Please wait while the world loads...");
 }
 
 void InitializeUODemoDLL()
 {
-	FUNCPTR_Void _Configure=NULL;
+  Initialize_scommand();
 
-	if (RegisterImport(uodemodll_handle,"_Configure",_Configure))
-	{
-		_Configure();
-	}
-	else
-		throw; // exit, couldn't configure UODemoDLL.
+  FUNCPTR_Void _Configure=NULL;
+
+  if (RegisterImport(uodemodll_handle,"_Configure",_Configure))
+  {
+    _Configure();
+  }
+  else
+    throw; // exit, couldn't configure UODemoDLL.
 }
 
 void InitializeAPICommands()
@@ -98,7 +105,6 @@ void InitializeAPICommands()
   InitPackets(uodemodll_handle);
   InitWorld(uodemodll_handle);
   InitItemObject(uodemodll_handle);
-  InitPlayer(uodemodll_handle);
   InitObjVars(uodemodll_handle);
   InitObjectScripts(uodemodll_handle);
 }

@@ -101,14 +101,12 @@
     <ClCompile Include="src\jit.cpp" />
     <ClCompile Include="src\logging.c" />
     <ClCompile Include="src\packets.c" />
-    <ClCompile Include="src\scommand.c" />
     <ClCompile Include="src\CoreFunctions.c" />
     <ClCompile Include="src\Tests.c" />
     <ClCompile Include="src\Tests_Lists.c" />
     <ClCompile Include="src\Tests_ObjectVars.c" />
     <ClCompile Include="src\Tests_World.c" />
     <ClCompile Include="src\Tests_ObjectScripts.c" />
-    <ClCompile Include="src\timer.c" />
     <ClCompile Include="src\UODemoDLL.c" />
     <ClCompile Include="src\World.c" />
   </ItemGroup>

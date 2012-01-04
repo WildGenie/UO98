@@ -58,6 +58,8 @@ void DoShutdownServer()
 
 #pragma unmanaged
 
+#include "Timer.h"
+
 void OnTestResult(bool passed, char* message, ...)
 {
   va_list fmtargs;
@@ -94,6 +96,6 @@ void InitializeTests(HMODULE dll_handle)
 
   putsColored("Entering test mode after server load...", FOREGROUND_INTENSITY | FOREGROUND_BLUE | FOREGROUND_GREEN);
 
-  InitializeEventHandler(dll_handle, "_setHandler_onpulse", &Tests_OnPulse);		
+  Initialize_timer(Tests_OnPulse);
   InitializeEventHandler(dll_handle, "_setHandler_OnTestResult", &OnTestResult);		
 }

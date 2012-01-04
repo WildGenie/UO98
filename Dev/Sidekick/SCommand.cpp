@@ -4,9 +4,13 @@
 // Provides in game commands via DoSCommand
 // Requires GMCheat script
 
-//-=-=-=-=-
-void Initialize_scommand(void);
-//-=-=-=-=-
+#pragma unmanaged
+
+#include "Player.h"
+#include "patches.h"
+#include "stdafx.h"
+#include <stdlib.h>
+#include "Commands.h"
 
 typedef void (__cdecl *SCOMMAND_FUNC)(PlayerObject *Player, unsigned int PlayerSerial, const char *Command, int AlwaysMinus1);
 
@@ -19,18 +23,21 @@ typedef struct SCOMMAND_DEF
 
 // NOTE: it's your responsibility to avoid buffer-overruns in TargetBuffer!
 //       the demo is old-school and doesn't handle those well :)
+#define pFUNC_ExtractStringHandleQuotes 0x4475AB
 const char *ExtractString_HandleQuotes(const char *Command, char *TargetBuffer)
 {
+  int _EAX;
   __asm
   {
     // Time to go inside uodemo.exe and call the function that does the real magic
-    // (this is easier than reimplementing our own ExtractString function)
+    // (this is easier than re-implementing our own ExtractString function)
     // (but then again, by implementing our own we could get rid of the buffer-overrun problem)
     push TargetBuffer
     push Command
-    mov eax, 0x4475AB
+    mov eax, pFUNC_ExtractStringHandleQuotes
     call eax
     add esp, 8
+    mov _EAX, eax
   }
   return (const char*) _EAX;
 }
@@ -66,7 +73,7 @@ void __cdecl Command_MakeCounselor(PlayerObject *Player, unsigned int PlayerSeri
   /*Command =*/ ExtractString_HandleQuotes(Command, buffer);
   Type = atoi(buffer);
 
-  Target = ConvertSerialToObject(TargetSerial);
+  Target = (PlayerObject*)ConvertSerialToObject(TargetSerial);
   if((Target == NULL) || !IsPlayerObject(Target))
   {
     SendSystemMessage(Player, "coun: You must target a player!");
@@ -107,7 +114,7 @@ void __cdecl Command_UnmakeCounselor(PlayerObject *Player, unsigned int PlayerSe
     return;
   }
 
-  Target = ConvertSerialToObject(TargetSerial);
+  Target = (PlayerObject*)ConvertSerialToObject(TargetSerial);
   if((Target == NULL) || !IsPlayerObject(Target))
   {
     SendSystemMessage(Player, "ucoun: You must target a player!");
@@ -150,7 +157,6 @@ int __declspec(naked) PreventSpeechBroadcast()
     xor eax, eax
     ret
   }
-  return _EAX; // Gets ignored but satifies the compiler
 }
 
 SCOMMAND_DEF MySCommandTable[] = 
@@ -161,6 +167,34 @@ SCOMMAND_DEF MySCommandTable[] =
   {"save", Command_SaveWorld},
   {"shutdown", Command_ShutdownServer},
 };
+
+PATCHINFO PI_SCommandTable_C1 =
+{
+  0x4478CE,
+ 8, {0x83, 0x3C, 0xC5, 0x68, 0xF9, 0x63, 0x00, 0x00},
+ 8, {0x83, 0x3C, 0xC5, 0x68, 0xF9, 0x63, 0x00, 0x00},
+};
+
+PATCHINFO PI_SCommandTable_F1 =
+{
+  0x4478DB,
+ 8, {0x83, 0x3C, 0xCD, 0x6C, 0xF9, 0x63, 0x00, 0x00},
+ 8, {0x83, 0x3C, 0xCD, 0x6C, 0xF9, 0x63, 0x00, 0x00},
+};
+
+PATCHINFO PI_SCommandTable_C2 =
+{
+  0x4478EC,
+ 7, {0x8B, 0x0C, 0xC5, 0x68, 0xF9, 0x63, 0x00},
+ 7, {0x8B, 0x0C, 0xC5, 0x68, 0xF9, 0x63, 0x00},
+};
+
+PATCHINFO PI_SCommandTable_F2 =
+{
+  0x447903,
+ 7, {0x8B, 0x04, 0xD5, 0x6C, 0xF9, 0x63, 0x00},
+ 7, {0x8B, 0x04, 0xD5, 0x6C, 0xF9, 0x63, 0x00},
+}; 
 
 PATCHINFO PI_PreventSpeechBroadcast =
 {

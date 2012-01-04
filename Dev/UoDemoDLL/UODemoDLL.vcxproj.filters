@@ -59,9 +59,6 @@
     <ClCompile Include="src\events.c">
       <Filter>Source Files\Event Exports</Filter>
     </ClCompile>
-    <ClCompile Include="src\scommand.c">
-      <Filter>Source Files\Patches</Filter>
-    </ClCompile>
     <ClCompile Include="src\jit.cpp">
       <Filter>Source Files\Patches</Filter>
     </ClCompile>
@@ -78,9 +75,6 @@
       <Filter>Source Files\API Function Exports</Filter>
     </ClCompile>
     <ClCompile Include="src\logging.c">
-      <Filter>Source Files\Patches</Filter>
-    </ClCompile>
-    <ClCompile Include="src\timer.c">
       <Filter>Source Files\Patches</Filter>
     </ClCompile>
     <ClCompile Include="src\packets.c">
