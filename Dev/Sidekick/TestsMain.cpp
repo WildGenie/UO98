@@ -97,5 +97,4 @@ void InitializeTests(HMODULE dll_handle)
   putsColored("Entering test mode after server load...", FOREGROUND_INTENSITY | FOREGROUND_BLUE | FOREGROUND_GREEN);
 
   Initialize_timer(Tests_OnPulse);
-  InitializeEventHandler(dll_handle, "_setHandler_OnTestResult", &OnTestResult);		
 }

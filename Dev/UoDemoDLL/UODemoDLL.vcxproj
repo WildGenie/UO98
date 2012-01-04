@@ -92,12 +92,9 @@
     <ClCompile Include="API\Player.c" />
     <ClCompile Include="API\Weapon.c" />
     <ClCompile Include="src\Lists.c" />
-    <ClCompile Include="src\PacketFunctions.c" />
     <ClCompile Include="src\ObjectProperties.c" />
     <ClCompile Include="src\ObjectScripts.c" />
     <ClCompile Include="src\ObjectVars.c" />
-    <ClCompile Include="src\events.c" />
-    <ClCompile Include="src\packets.c" />
     <ClCompile Include="src\Tests.c" />
     <ClCompile Include="src\Tests_Lists.c" />
     <ClCompile Include="src\Tests_ObjectVars.c" />

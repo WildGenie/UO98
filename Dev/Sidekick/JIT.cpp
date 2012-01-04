@@ -13,7 +13,7 @@
 
 bool PrintConstantConversions = false;
 
-bool DebugOutput=true;
+bool DebugOutput = false;
 
 /*********************************************/
 /*                                           */

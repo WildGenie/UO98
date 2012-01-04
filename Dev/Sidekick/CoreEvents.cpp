@@ -12,46 +12,26 @@ using namespace System::Runtime::InteropServices;
 
 void InvokeOnPulse()
 {
-	Sharpkick::CoreEvents DotNetObject;
-	DotNetObject.OnPulse();
+    Sharpkick::CoreEvents DotNetObject;
+    DotNetObject.OnPulse();
 }
 void InvokeOnAfterSave()
 {
-	Sharpkick::CoreEvents DotNetObject;
-	DotNetObject.OnAfterSave();
+    Sharpkick::CoreEvents DotNetObject;
+    DotNetObject.OnAfterSave();
 }
 void InvokeOnPacketReceived(unsigned char* pSocket, unsigned char PacketID, unsigned int PacketSize, int IsPacketDynamicSized)
 {
-	Sharpkick::CoreEvents DotNetObject;
-	DotNetObject.OnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized!=0);
+    Sharpkick::CoreEvents DotNetObject;
+    DotNetObject.OnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized!=0);
 }
-void InvokeOnHandleOutsideRangePacket(unsigned char* pSocket)
+bool InvokeOnHandleOutsideRangePacket(unsigned char* pSocket)
 {
-	Sharpkick::CoreEvents DotNetObject;
-	DotNetObject.OnHandleOutsideRangePacket(pSocket);
+    Sharpkick::CoreEvents DotNetObject;
+    return DotNetObject.OnHandleOutsideRangePacket(pSocket);
 }
 void InvokeOnPacketSending(unsigned char *pSocket, unsigned char **ppData, unsigned int *pDataLen)
 {
-	Sharpkick::CoreEvents DotNetObject;
-	DotNetObject.OnPacketSending(pSocket, ppData, pDataLen);
-}
-
-#pragma unmanaged
-
-void InitializeEventHandler(HMODULE dll_handle, char* FunctionName, void* invoke);
-
-void InitializeEventHandlers(HMODULE dll_handle)
-{
-	InitializeEventHandler(dll_handle, "_setHandler_packets",							        &InvokeOnPacketReceived);
-	InitializeEventHandler(dll_handle, "_setHandler_onhandleoutsiderangepacket",  &InvokeOnHandleOutsideRangePacket);
-	InitializeEventHandler(dll_handle, "_setHandler_onpacketsending",					    &InvokeOnPacketSending);
-}
-
-void InitializeEventHandler(HMODULE dll_handle, char* FunctionName, void* invoke)
-{
-	FUNCPTR_SetHandler _setHandler = (FUNCPTR_SetHandler) GetProcAddress(dll_handle, FunctionName);
-	if (!_setHandler)
-		printf("Error: could not find address of function %s\n", FunctionName);
-	else
-		_setHandler(invoke);
+    Sharpkick::CoreEvents DotNetObject;
+    DotNetObject.OnPacketSending(pSocket, ppData, pDataLen);
 }

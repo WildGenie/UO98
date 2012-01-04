@@ -15,8 +15,6 @@
 #pragma warn -8069  // Non portable pointer conversions
 
 // Internal API Files
-#include "patcher.c"
-#include "patches.c"
 #include "classes.c"
 #include "Location.c"
 #include "List.c"
@@ -25,19 +23,12 @@
 #include "Player.c"
 #include "Weapon.c"
 
-// Exported Events
-#include "events.c"
-
 // Exported API Functions
 #include "ObjectProperties.c"
 #include "ObjectScripts.c"
 #include "ObjectVars.c"
-#include "PacketFunctions.c"
 #include "World.c"
 #include "Lists.c"
-
-// Patches
-#include "packets.c"	// Packet patches and handler
 
 // Unit Tests
 #include "Tests.c"
@@ -45,11 +36,7 @@
 // Server Configuration
 void _declspec(dllexport) Configure()
 {
-  packetDebugLevel=Warning;	  // Level of packet diagnostic information written to console. Values: None, Error, Warning, Translation, All
-
-  Initialize_packets();	  // Patch packet handler (packets.c)
-
-	puts("UODemoDLL Initialized.");
+	puts("UODemoDLL Initialized (nothing to do anymore).");
 }
 
 BOOL WINAPI DllEntryPoint(HINSTANCE hInstance, ULONG ulReason, LPVOID pv)

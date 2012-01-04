@@ -20,7 +20,6 @@
 void LoadUODemoDLL();
 void InitializeInterop();
 void InitializeUODemoDLL();
-void InitializeEventHandlers();
 
 bool isRunUODemoDLLTestMode();
 void RunTests();
@@ -74,6 +73,7 @@ void RunTests()
 }
 
 //-=-=-=-=
+ void Initialize_packets(void);
  void Initialize_scommand(void);
  void Initialize_timer();
  void Initialize_logging(void);
@@ -84,7 +84,7 @@ void RunTests()
 void EnterNormalRuntimeMode()
 {
   Initialize_timer();
-  InitializeEventHandlers(uodemodll_handle);
+  Initialize_packets();
   puts("Sidekick Initialized.");
   puts("Please wait while the world loads...");
 }
@@ -108,7 +108,6 @@ void InitializeUODemoDLL()
 
 void InitializeAPICommands()
 {
-  InitPackets(uodemodll_handle);
   InitWorld(uodemodll_handle);
   InitItemObject(uodemodll_handle);
   InitObjVars(uodemodll_handle);

@@ -56,9 +56,6 @@
     <ClCompile Include="src\UODemoDLL.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\events.c">
-      <Filter>Source Files\Event Exports</Filter>
-    </ClCompile>
     <ClCompile Include="src\ObjectProperties.c">
       <Filter>Source Files\API Function Exports</Filter>
     </ClCompile>
@@ -66,12 +63,6 @@
       <Filter>Source Files\API Function Exports</Filter>
     </ClCompile>
     <ClCompile Include="src\World.c">
-      <Filter>Source Files\API Function Exports</Filter>
-    </ClCompile>
-    <ClCompile Include="src\packets.c">
-      <Filter>Source Files\Patches</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PacketFunctions.c">
       <Filter>Source Files\API Function Exports</Filter>
     </ClCompile>
     <ClCompile Include="src\ObjectVars.c">
