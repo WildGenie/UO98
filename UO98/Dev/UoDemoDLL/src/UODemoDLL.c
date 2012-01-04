@@ -29,7 +29,6 @@
 #include "events.c"
 
 // Exported API Functions
-#include "CoreFunctions.c"
 #include "ObjectProperties.c"
 #include "ObjectScripts.c"
 #include "ObjectVars.c"
@@ -38,9 +37,7 @@
 #include "Lists.c"
 
 // Patches
-#include "logging.c"	// Console Logging of trace output
 #include "packets.c"	// Packet patches and handler
-#include "misc.c"	    // misc patches
 
 void Initialize_jit(void); // jit.cpp is compiled as a separate assembly as it is C++
 
@@ -51,12 +48,9 @@ void Initialize_jit(void); // jit.cpp is compiled as a separate assembly as it i
 void _declspec(dllexport) Configure()
 {
   packetDebugLevel=Warning;	  // Level of packet diagnostic information written to console. Values: None, Error, Warning, Translation, All
-  TraceOutput=true;			  // true to hook "debug" trace output to console.
 
   Initialize_packets();	  // Patch packet handler (packets.c)
-  Initialize_logging();	  // Logging to Console (logging.c)
   Initialize_jit();
-  Initialize_misc();
 
 	puts("UODemoDLL Initialized.");
 }

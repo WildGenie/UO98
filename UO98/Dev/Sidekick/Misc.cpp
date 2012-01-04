@@ -3,7 +3,10 @@
 // 12/07/2011
 // Misc patches that don't fit into any other category.
 
+#pragma unmanaged
+
 #include <time.h>
+#include "patcher.h"
 
 //-=-=-=-=-
 void Initialize_misc(void);
@@ -15,7 +18,7 @@ int GetTimeInSeconds()
 {
     time_t ltime;
     time(&ltime);
-    return ltime;
+    return (int)ltime;
 }
 
 // This is a patch for the timing warning regarding DoTick duration. 

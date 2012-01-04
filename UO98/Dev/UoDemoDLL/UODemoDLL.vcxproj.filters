@@ -62,9 +62,6 @@
     <ClCompile Include="src\jit.cpp">
       <Filter>Source Files\Patches</Filter>
     </ClCompile>
-    <ClCompile Include="src\CoreFunctions.c">
-      <Filter>Source Files\API Function Exports</Filter>
-    </ClCompile>
     <ClCompile Include="src\ObjectProperties.c">
       <Filter>Source Files\API Function Exports</Filter>
     </ClCompile>
@@ -73,9 +70,6 @@
     </ClCompile>
     <ClCompile Include="src\World.c">
       <Filter>Source Files\API Function Exports</Filter>
-    </ClCompile>
-    <ClCompile Include="src\logging.c">
-      <Filter>Source Files\Patches</Filter>
     </ClCompile>
     <ClCompile Include="src\packets.c">
       <Filter>Source Files\Patches</Filter>
@@ -106,9 +100,6 @@
     </ClCompile>
     <ClCompile Include="src\Tests_ObjectScripts.c">
       <Filter>Source Files\Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="src\misc.c">
-      <Filter>Source Files\Patches</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

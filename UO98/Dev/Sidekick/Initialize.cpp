@@ -32,29 +32,29 @@ HMODULE uodemodll_handle;
 
 void Initialize()
 {
-	LoadUODemoDLL();
-	if (uodemodll_handle)
-		InitializeInterop();
-	else
-		printf("Error (%d): could not load UODemoDLL.DLL\n",GetLastError());
+    LoadUODemoDLL();
+    if (uodemodll_handle)
+        InitializeInterop();
+    else
+        printf("Error (%d): could not load UODemoDLL.DLL\n",GetLastError());
 }
 
 void Uninitialize()
 {
-	if(uodemodll_handle)
-		FreeLibrary(uodemodll_handle);
+    if(uodemodll_handle)
+        FreeLibrary(uodemodll_handle);
 }
 
 void LoadUODemoDLL()
 {
-	uodemodll_handle = LoadLibrary("UODemoDLL.dll");
+    uodemodll_handle = LoadLibrary("UODemoDLL.dll");
 }
 
 void InitializeInterop()
 {
-	InitializeUODemoDLL();
+    InitializeUODemoDLL();
 
-	InitializeAPICommands();
+    InitializeAPICommands();
 
   if(isRunUODemoDLLTestMode())
     RunTests();
@@ -76,6 +76,8 @@ void RunTests()
 //-=-=-=-=
  void Initialize_scommand(void);
  void Initialize_timer();
+ void Initialize_logging(void);
+ void Initialize_misc();
 //-=-=-=-=
 
 void EnterNormalRuntimeMode()
@@ -89,6 +91,8 @@ void EnterNormalRuntimeMode()
 void InitializeUODemoDLL()
 {
   Initialize_scommand();
+  Initialize_logging();
+  Initialize_misc();
 
   FUNCPTR_Void _Configure=NULL;
 

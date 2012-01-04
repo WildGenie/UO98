@@ -3,12 +3,6 @@
 // Event Invokers
 // -=-=-=-=-=-=-=-=-=-=
 
-// Pulse handler
-void (*my_OnPulse)(void)= NULL;		
-
-// OnAfterSave handler
-void (*my_OnAfterSave)(void)= NULL;
-
 // Received packet handler
 void (*my_OnPacket)(void *Socket, unsigned char PacketID, unsigned int PacketSize,int IsPacketDynamicSized)= NULL;
 
@@ -21,18 +15,6 @@ void (*my_OnPacketSending)(void *Socket, unsigned char **Data, unsigned int *Dat
 // -=-=-=-=-=-=-=-=-=-=
 // Event Initialization
 // -=-=-=-=-=-=-=-=-=-=
-
-// Export for initialization of external OnPulse handler
-void _declspec(dllexport) setHandler_onpulse(void* pulseFunc)
-{
-	my_OnPulse=pulseFunc;
-}
-
-// Export for initialization of external OnAfterSave handler
-void _declspec(dllexport) setHandler_onaftersave(void* onaftersaveFunc)
-{
-	my_OnAfterSave=onaftersaveFunc;
-}
 
 // Export for initialization of external packet handler
 void _declspec(dllexport) setHandler_packets(void* onpacketFunc)
