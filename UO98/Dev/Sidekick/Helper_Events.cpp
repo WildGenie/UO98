@@ -1,3 +1,5 @@
+#pragma unmanaged
+
 #include "CoreEvents.h"
 
 extern "C"

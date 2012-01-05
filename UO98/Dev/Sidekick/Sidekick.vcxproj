@@ -95,6 +95,8 @@ cd $(SolutionDir)</Command>
     <ClInclude Include="CoreEvents.h" />
     <ClInclude Include="Interop.h" />
     <ClInclude Include="ItemObject.h" />
+    <ClInclude Include="Lists.h" />
+    <ClInclude Include="Location.h" />
     <ClInclude Include="ObjectScripts.h" />
     <ClInclude Include="ObjVars.h" />
     <ClInclude Include="Packets.h" />
@@ -126,6 +128,8 @@ cd $(SolutionDir)</Command>
     <ClCompile Include="Helper_Events.cpp" />
     <ClCompile Include="ItemObject.cpp" />
     <ClCompile Include="Jit.cpp" />
+    <ClCompile Include="Lists.cpp" />
+    <ClCompile Include="Location.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="Misc.cpp" />
     <ClCompile Include="ObjectScripts.cpp" />
@@ -138,7 +142,12 @@ cd $(SolutionDir)</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Tests.cpp" />
     <ClCompile Include="TestsMain.cpp" />
+    <ClCompile Include="Tests_Lists.cpp" />
+    <ClCompile Include="Tests_ObjectScripts.cpp" />
+    <ClCompile Include="Tests_ObjectVars.cpp" />
+    <ClCompile Include="Tests_World.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>

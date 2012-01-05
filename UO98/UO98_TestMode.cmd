@@ -1,2 +1,2 @@
 SET UODemoDLLTest=TRUE
-call UO98.cmd
+call StartUO98.cmd

@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
-
-#include "Interop.h"
-#include "RegisterImportTemplate.h"
+#include "Commands.h"
+#include "TestsMain.h"
 
 void DoShutdownServer();
 
@@ -16,28 +15,15 @@ using namespace System::Runtime::InteropServices;
 
 void InitiateSharpkickOnlineTests()
 {
-	Sharpkick::Tests::OnlineTests DotNetObject;
-	DotNetObject.BeginOnlineTesting();
-}
-
-
-HMODULE test_dll_handle;
-
-void InitiateUODemoDLLTests()
-{
-  FUNCPTR_Void	_DoTests;
-  RegisterImport(test_dll_handle,"_DoTests",_DoTests);
-	if(_DoTests) 
-    _DoTests();
-  else
-    OnTestResult(false, "Tests failed. Could not execute UODemoDLL Test method.");
+    Sharpkick::Tests::OnlineTests DotNetObject;
+    DotNetObject.BeginOnlineTesting();
 }
 
 void Tests_OnPulse()
 {
   putsColored("Beginning UODemoDLL Tests...", FOREGROUND_INTENSITY | FOREGROUND_BLUE | FOREGROUND_GREEN);
 
-  InitiateUODemoDLLTests();
+  DoTests();
 
   putsColored("Beginning Sharpkick Tests...", FOREGROUND_INTENSITY | FOREGROUND_BLUE | FOREGROUND_GREEN);
   InitiateSharpkickOnlineTests();
@@ -51,9 +37,7 @@ void Tests_OnPulse()
 
 void DoShutdownServer()
 {
-  FUNCPTR_Void	_ShutdownServer;
-  RegisterImport(test_dll_handle,"_ShutdownServer",_ShutdownServer);
-	if(_ShutdownServer) _ShutdownServer();
+    ShutdownServer();
 }
 
 #pragma unmanaged
@@ -88,13 +72,8 @@ void putsColored(char* text, WORD color)
   SetConsoleTextAttribute(std_handle, saveColor);
 }
 
-void InitializeEventHandler(HMODULE dll_handle, char* FunctionName, void* invoke);
-
-void InitializeTests(HMODULE dll_handle)
+void InitializeTests()
 {
-  test_dll_handle=dll_handle;
-
   putsColored("Entering test mode after server load...", FOREGROUND_INTENSITY | FOREGROUND_BLUE | FOREGROUND_GREEN);
-
   Initialize_timer(Tests_OnPulse);
 }

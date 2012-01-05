@@ -1,6 +1,13 @@
-#include "classes.h"
+#pragma unmanaged
 
-const ITEMID_cotton=3567;
+#include "TestsMain.h"
+#include "Commands.h"
+#include "ObjVars.h"
+#include "Location.h"
+#include "ItemObject.h"
+#include "World.h"
+
+const int ITEMID_cotton=3567;
 
 bool Tests_ObjectVars_Int(void);
 bool Tests_ObjectVars_String(void);

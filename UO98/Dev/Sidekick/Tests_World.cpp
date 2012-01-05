@@ -1,11 +1,17 @@
-#include "classes.h"
+#pragma unmanaged
 
-const ITEMID_door_closed=1655;
-const ITEMID_door_open=1656;
-const ITEMID_wall_1=589;
-const ITEMID_metalchest=2475;
-const ITEMID_smallcrate=2473;
-const ITEMID_pouch=2480;
+#include "TestsMain.h"
+#include "ItemObject.h"
+#include "Commands.h"
+#include "World.h"
+#include "Lists.h"
+
+const int ITEMID_door_closed=1655;
+const int ITEMID_door_open=1656;
+const int ITEMID_wall_1=589;
+const int ITEMID_metalchest=2475;
+const int ITEMID_smallcrate=2473;
+const int ITEMID_pouch=2480;
 
 const unsigned int TileFlag_Background  = 0x1;
 const unsigned int TileFlag_Weapon      = 0x2;
