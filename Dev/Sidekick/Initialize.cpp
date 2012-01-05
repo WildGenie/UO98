@@ -10,107 +10,61 @@
 #include "RegisterImportTemplate.h"
 
 #include "Packets.h"
-#include "World.h"
-#include "ItemObject.h"
 #include "ObjVars.h"
 #include "ObjectScripts.h"
 
 #include "TestsMain.h"
 
-void LoadUODemoDLL();
+//-=-=-=-=
+void Initialize_packets(void);
+void Initialize_scommand(void);
+void Initialize_timer();
+void Initialize_logging(void);
+void Initialize_misc(void);
+void Initialize_jit(void);
+//-=-=-=-=
+
+
 void InitializeInterop();
-void InitializeUODemoDLL();
 
 bool isRunUODemoDLLTestMode();
 void RunTests();
 void EnterNormalRuntimeMode();
 
-void InitializeAPICommands();
-
-HMODULE uodemodll_handle;
+bool isRunTestMode()
+{
+    char* envTest=getenv("UODemoDLLTest");
+    return envTest!=NULL;
+}
 
 void Initialize()
 {
-    LoadUODemoDLL();
-    if (uodemodll_handle)
-        InitializeInterop();
+    Initialize_scommand();
+    Initialize_logging();
+    Initialize_misc();
+    Initialize_jit();
+
+    if(isRunTestMode())
+        RunTests();
     else
-        printf("Error (%d): could not load UODemoDLL.DLL\n",GetLastError());
+        EnterNormalRuntimeMode();
 }
 
 void Uninitialize()
 {
-    if(uodemodll_handle)
-        FreeLibrary(uodemodll_handle);
-}
-
-void LoadUODemoDLL()
-{
-    uodemodll_handle = LoadLibrary("UODemoDLL.dll");
-}
-
-void InitializeInterop()
-{
-    InitializeUODemoDLL();
-
-    InitializeAPICommands();
-
-  if(isRunUODemoDLLTestMode())
-    RunTests();
-  else
-    EnterNormalRuntimeMode();
-}
-
-bool isRunUODemoDLLTestMode()
-{
-  char* envTest=getenv("UODemoDLLTest");
-  return envTest!=NULL;
 }
 
 void RunTests()
 {
-    InitializeTests(uodemodll_handle);
+    InitializeTests();
 }
-
-//-=-=-=-=
- void Initialize_packets(void);
- void Initialize_scommand(void);
- void Initialize_timer();
- void Initialize_logging(void);
- void Initialize_misc(void);
- void Initialize_jit(void);
-//-=-=-=-=
 
 void EnterNormalRuntimeMode()
 {
-  Initialize_timer();
-  Initialize_packets();
-  puts("Sidekick Initialized.");
-  puts("Please wait while the world loads...");
+    Initialize_timer();
+    Initialize_packets();
+    puts("Sidekick Initialized.");
+    puts("Please wait while the world loads...");
 }
 
-void InitializeUODemoDLL()
-{
-  Initialize_scommand();
-  Initialize_logging();
-  Initialize_misc();
-  Initialize_jit();
-
-  FUNCPTR_Void _Configure=NULL;
-
-  if (RegisterImport(uodemodll_handle,"_Configure",_Configure))
-  {
-    _Configure();
-  }
-  else
-    throw; // exit, couldn't configure UODemoDLL.
-}
-
-void InitializeAPICommands()
-{
-  InitWorld(uodemodll_handle);
-  InitItemObject(uodemodll_handle);
-  InitObjVars(uodemodll_handle);
-  InitObjectScripts(uodemodll_handle);
-}
 

@@ -1,6 +1,10 @@
-#include "classes.h"
+#pragma unmanaged
 
-const ITEMID_sackofflour=4153;
+#include "TestsMain.h"
+#include "ObjectScripts.h"
+#include "World.h"
+
+const int ITEMID_sackofflour=4153;
 
 bool Tests_ObjectScripts_Item(void);
 
@@ -41,7 +45,7 @@ bool Tests_ObjectScripts_Item()
   if(!passed_has2)
     OnTestResult(false, "ObjectVars: Tests_ObjectScripts_Item found script \"test\" before attach.");
 
-  addResult = addScript(item_serial, "test");
+  addResult = addScript(item_serial, "test", true);
   passed_attach = addResult==NULL;
   if(!passed_attach)
     OnTestResult(false, "ObjectVars: Tests_ObjectScripts_Item attachScript returned: %s.", addResult);

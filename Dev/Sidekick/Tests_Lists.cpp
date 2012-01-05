@@ -1,4 +1,8 @@
-#include "classes.h"
+#pragma unmanaged
+
+#include "TestsMain.h"
+#include "Lists.h"
+#include "Location.h"
 
 bool Tests_Lists_SimpleAppend(void);
 bool Tests_Lists_Contains(void);

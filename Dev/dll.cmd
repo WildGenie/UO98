@@ -1,1 +1,0 @@
-@bcc32 -I%inc% -I%apidir% -L%lib% -WD %1 %2 %3

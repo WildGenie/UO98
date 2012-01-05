@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Classes.h"
+
 extern "C"
 {
   void _declspec(dllexport) APIENTRY SaveWorld(void);
