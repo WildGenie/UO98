@@ -33,10 +33,6 @@ bool Tests_Lists_SimpleAppend()
   int append_expected;
   bool append_passed;
 
-  _VARTYPE elementtype_expected;
-  _VARTYPE elementtype_actual;
-  bool elementtype_passed;
-
   LocationObject testLoc;
 
   ListObject list;
@@ -430,7 +426,7 @@ bool Tests_Lists_RemoveSpecificItem()
 
 bool Tests_Lists_ClearList()
 {
-  bool passed;
+  bool passed=0;
 
   int count_before_expected, count_before_actual;
   bool count_before_passed;
@@ -461,6 +457,8 @@ bool Tests_Lists_ClearList()
   count__after_passed = count_after_actual==count_after_expected;
   if(!count__after_passed) 
     OnTestResult(false, "Lists: Tests_Lists_ClearList failed. count_after_actual=%u count_after_expected=%u", count_after_actual, count_after_expected);
+
+  passed = count_before_passed && count__after_passed;
 
   if(passed)
     OnTestResult(true, "Lists: Tests_Lists_ClearList passed.");
