@@ -13,6 +13,7 @@ void DoTests()
   Tests_World_Execute();
   Tests_ObjectVars_Execute();
   Tests_ObjectScripts_Execute();
+  Tests_Classes_Execute();
 }
 
 void InitTestLocations()

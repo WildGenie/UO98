@@ -144,6 +144,7 @@ cd $(SolutionDir)</Command>
     </ClCompile>
     <ClCompile Include="Tests.cpp" />
     <ClCompile Include="TestsMain.cpp" />
+    <ClCompile Include="Tests_Classes.cpp" />
     <ClCompile Include="Tests_Lists.cpp" />
     <ClCompile Include="Tests_ObjectScripts.cpp" />
     <ClCompile Include="Tests_ObjectVars.cpp" />

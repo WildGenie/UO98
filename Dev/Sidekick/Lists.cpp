@@ -22,14 +22,13 @@ void List_DebugPrint(char* description, char* listname, ListObject* list)
 
     if(ele->vartype == VARTYPE_Object)
     {
-      item=(ItemObject*)ConvertSerialToObject(ele->refOrValue);
+      item=(ItemObject*)ConvertSerialToObject(ele->Data);
 
       if(IsAnyItem(item) || IsAnyMobile(item))
-        objID=item->ObjectType;
+        objID=item->Resource.Entity.ObjectType;
     }
 
-
-    printf("%s debug: %s[%u]: vartype=%u value=%u id=%u\n", description, listname, i, ele->vartype, ele->refOrValue, objID);
+    printf("%s debug: %s[%u]: vartype=%u value=%u id=%u\n", description, listname, i, ele->vartype, ele->Data, objID);
     i++;
   }
 }
