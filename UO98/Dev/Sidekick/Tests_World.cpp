@@ -1,10 +1,7 @@
 #pragma unmanaged
 
 #include "TestsMain.h"
-#include "ItemObject.h"
 #include "Commands.h"
-#include "World.h"
-#include "Lists.h"
 
 const int ITEMID_door_closed=1655;
 const int ITEMID_door_open=1656;

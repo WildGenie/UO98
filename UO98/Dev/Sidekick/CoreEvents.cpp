@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include <stdio.h>
 #include <io.h>
-#include "Interop.h"
 
 #using "Sharpkick.dll"
 

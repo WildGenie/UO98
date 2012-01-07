@@ -1,17 +1,14 @@
 #include <stdio.h>
 #include <io.h>
 #include <iostream>
-#include "Interop.h"
+#include "stdafx.h"
 
 #include "CoreEvents.h"
 
 #pragma unmanaged
 
-#include "RegisterImportTemplate.h"
-
 #include "Packets.h"
-#include "ObjVars.h"
-#include "ObjectScripts.h"
+#include "Commands.h"
 
 #include "TestsMain.h"
 

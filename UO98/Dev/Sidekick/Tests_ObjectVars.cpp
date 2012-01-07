@@ -2,10 +2,6 @@
 
 #include "TestsMain.h"
 #include "Commands.h"
-#include "ObjVars.h"
-#include "Location.h"
-#include "ItemObject.h"
-#include "World.h"
 
 const int ITEMID_cotton=3567;
 

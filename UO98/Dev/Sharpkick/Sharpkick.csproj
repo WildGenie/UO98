@@ -104,7 +104,13 @@
     <Compile Include="WorldBuilding\WorldBuilding.cs" />
     <Compile Include="Persistance\WorldSave.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Sidekick\Sidekick.vcxproj">
+      <Project>{03E63AAF-D966-49E4-8A16-1969A9CB579C}</Project>
+      <Name>Sidekick</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
