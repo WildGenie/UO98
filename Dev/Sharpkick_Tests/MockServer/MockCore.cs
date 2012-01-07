@@ -18,7 +18,7 @@ namespace Sharpkick_Tests
 
         #region ICore Members
 
-        public int SaveWorld()
+        public void SaveWorld()
         {
             throw new NotImplementedException();
         }

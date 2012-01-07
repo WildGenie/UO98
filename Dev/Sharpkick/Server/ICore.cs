@@ -9,7 +9,7 @@ namespace Sharpkick
     {
         Network.IPackets PacketEngine { get; }
 
-        int SaveWorld();
+        void SaveWorld();
 
         void SendSystemMessage(PlayerObject* player, byte* message);
         int createGlobalObjectAt(int ItemID, Location* Location);
@@ -42,7 +42,7 @@ namespace Sharpkick
         void OpenBank(PlayerObject* Target, PlayerObject* ShowTo);
         ItemObject* ConvertSerialToObject(int serial);
 
-        void SendInfoWindowOrDoPlayerShadow(HelpInfoArgs* InfoStruct);
+        void OpenInfoWindow(Serial gmserial, Serial playerserial);
 
         bool IsItem(void* @object);
         bool IsNPC(void* @object);

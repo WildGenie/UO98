@@ -1,8 +1,7 @@
 #pragma unmanaged
 
 #include "TestsMain.h"
-#include "ObjectScripts.h"
-#include "World.h"
+#include "Commands.h"
 
 const int ITEMID_sackofflour=4153;
 

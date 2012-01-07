@@ -1,6 +1,6 @@
 #pragma unmanaged
 
-#include "Lists.h"
+#include "Commands.h"
 #include <stdio.h>
 
 void initList(ListObject* list)
@@ -25,7 +25,7 @@ void List_DebugPrint(char* description, char* listname, ListObject* list)
       item=(ItemObject*)ConvertSerialToObject(ele->Data);
 
       if(IsAnyItem(item) || IsAnyMobile(item))
-        objID=item->Resource.Entity.ObjectType;
+        objID=item->ObjectType;
     }
 
     printf("%s debug: %s[%u]: vartype=%u value=%u id=%u\n", description, listname, i, ele->vartype, ele->Data, objID);

@@ -13,8 +13,10 @@ namespace Sharpkick
             private Network.IPackets _PacketEngine;
             public Network.IPackets PacketEngine { get { return _PacketEngine ?? (_PacketEngine = new Network.LiveCorePackets()); } }
 
-            public int SaveWorld()
-            { return UnsafeNativeMethods.SaveWorld(); }
+            public void SaveWorld()
+            {
+                UODemo.Save();
+            }
 
             public void SendSystemMessage(PlayerObject* player, byte* message)
             { UnsafeNativeMethods.SendSystemMessage(player, message); }
@@ -103,8 +105,10 @@ namespace Sharpkick
             public ItemObject* ConvertSerialToObject(int serial)
             { return UnsafeNativeMethods.ConvertSerialToObject(serial); }
 
-            public void SendInfoWindowOrDoPlayerShadow(HelpInfoArgs* InfoStruct)
-            { UnsafeNativeMethods.SendInfoWindowOrDoPlayerShadow(InfoStruct); }
+            public void OpenInfoWindow(Serial gmserial, Serial playerserial)
+            {
+                UODemo.OpenInfoWindow(gmserial, playerserial);
+            }
 
             public bool IsItem(void* @object)
             { return UnsafeNativeMethods.IsItem(@object); }
@@ -120,9 +124,6 @@ namespace Sharpkick
 
             private class UnsafeNativeMethods
             {
-                [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
-                public static extern int SaveWorld();
-
                 [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
                 public static extern void SendSystemMessage(PlayerObject* player, byte* message);
 
@@ -197,9 +198,6 @@ namespace Sharpkick
 
                 [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
                 public static extern ItemObject* ConvertSerialToObject(int serial);
-
-                [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
-                public static extern void SendInfoWindowOrDoPlayerShadow(HelpInfoArgs* InfoStruct);
 
                 [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
                 public static extern bool IsItem(void* @object);

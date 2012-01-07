@@ -4,9 +4,10 @@
 // Provides in game commands via DoSCommand
 // Requires GMCheat script
 
+#include "UODemo.h"
+
 #pragma unmanaged
 
-#include "Player.h"
 #include "patcher.h"
 #include "stdafx.h"
 #include <stdlib.h>

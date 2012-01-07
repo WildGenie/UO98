@@ -1,7 +1,6 @@
 #pragma unmanaged
 
-#include "Classes.h"
-#include "World.h"
+#include "Commands.h"
 
 extern "C"
 {

@@ -7,9 +7,9 @@ namespace Sharpkick
 {
     static partial class Server
     {
-        unsafe public static void SendInfoWindowOrDoPlayerShadow(HelpInfoArgs arg)
+        unsafe public static void OpenInfoWindow(Serial gmserial, Serial playerserial)
         {
-            Core.SendInfoWindowOrDoPlayerShadow(&arg);
+            Core.OpenInfoWindow(gmserial, playerserial);
         }
     }
 }

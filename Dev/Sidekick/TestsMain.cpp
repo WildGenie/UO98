@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <windows.h>
+#include "CoreEvents.h"
 #include "Commands.h"
 #include "TestsMain.h"
 
@@ -41,8 +42,6 @@ void DoShutdownServer()
 }
 
 #pragma unmanaged
-
-#include "Timer.h"
 
 void OnTestResult(bool passed, char* message, ...)
 {

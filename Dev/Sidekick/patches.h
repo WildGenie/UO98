@@ -23,13 +23,6 @@ extern PATCHINFO PI_CanSeeLoc1, PI_CanSeeLoc2, PI_CanSeeLoc3, PI_CanSeeLoc4, PI_
 
 extern PATCHINFO PI_PacketHandler_PostReceive;
 
-extern PATCHINFO PI_Compiler_CompiledObjectSize;
-extern PATCHINFO PI_Compiler_CompiledObjectConstructor;
-extern PATCHINFO PI_Intercept_LoadScript;
-extern PATCHINFO PI_Intercept_GetRawScriptToken;
-extern PATCHINFO PI_Intercept_HandleBackwardsScanForSM_LPAREN;
-
-
 // ****************************************
 // ****************************************
 // PI_XXX variables -> DO NOT EDIT!!!

@@ -1,6 +1,4 @@
 #pragma once
-#include "Interop.h"
-
 // Managed Events
 void InvokeOnPulse();
 void InvokeOnAfterSave();
@@ -8,3 +6,6 @@ void InvokeOnPacketReceived(unsigned char* pSocket, unsigned char PacketID, unsi
 bool InvokeOnHandleOutsideRangePacket(unsigned char* pSocket);
 void InvokeOnPacketSending(unsigned char *pSocket, unsigned char **ppData, unsigned int *pDataLen);
 
+// Timer Init
+typedef void (_cdecl *FUNCPTR_OnPulse)();
+void Initialize_timer(FUNCPTR_OnPulse func);
