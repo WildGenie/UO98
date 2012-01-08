@@ -7,7 +7,6 @@
 
 #pragma unmanaged
 
-#include "Packets.h"
 #include "Commands.h"
 
 #include "TestsMain.h"
