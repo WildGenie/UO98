@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include <stdlib.h>
-#include "Packets.h"
 #include <stdio.h>
 #include "Classes.h"
 #include "patcher.h"

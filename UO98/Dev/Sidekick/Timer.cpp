@@ -7,7 +7,6 @@
 
 #include "stdafx.h"
 #include "patcher.h"
-#include "Timer.h"
 #include "CoreEvents.h"
 
 #define pFUNC_OnPulse 0x00004D8A9A	// Address of their time handler (called every 250ms tick)
