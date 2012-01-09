@@ -38,6 +38,8 @@ bool Tests_Classes()
   passed &= TestObjectSize("PlayerHelpInfo",0x3B,sizeof(PlayerHelpInfo));
   passed &= TestObjectSize("PlayerHelpInfoArgs",0x36,sizeof(PlayerHelpInfoArgs));
 
+  passed &= TestObjectSize("UODemo::Location",sizeof(LocationObject),sizeof(Location));
+
   //TODO: Add rest of the classes...
 
   if(passed)

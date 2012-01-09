@@ -240,12 +240,10 @@ struct vtable_ItemClass
 };
 
 // Location size=0x06
-typedef public struct class_Location
-{
-  __int16 X;
-  __int16 Y;
-  __int16 Z;
-} LocationObject;
+#define def_class_Location    __int16 X; \
+                              __int16 Y; \
+                              __int16 Z;
+typedef struct class_Location { def_class_Location } LocationObject;
 
 // Location Functions
 #define LocationGetX(location) (GetSWord(location, LOCATION_X))

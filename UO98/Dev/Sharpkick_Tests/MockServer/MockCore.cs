@@ -28,7 +28,7 @@ namespace Sharpkick_Tests
             throw new NotImplementedException();
         }
 
-        public unsafe int createGlobalObjectAt(int ItemID, Sharpkick.Location* Location)
+        public unsafe int createGlobalObjectAt(int ItemID, Location* Location)
         {
             ItemAndLocation itemandlocation = new Sharpkick.ItemAndLocation((ushort)ItemID, *Location);
             return (int)World.CreateItem(itemandlocation);
@@ -60,7 +60,7 @@ namespace Sharpkick_Tests
             return 1;
         }
 
-        public unsafe int setObjVarLocation(int serial, byte* name, Sharpkick.Location* value)
+        public unsafe int setObjVarLocation(int serial, byte* name, Location* value)
         {
             if (!Exists(serial)) return 0;
 
@@ -185,17 +185,17 @@ namespace Sharpkick_Tests
             return setObjVarInt(serial, name, weight);
         }
 
-        public unsafe int getFirstObjectOfType(Sharpkick.Location* location, int itemId)
+        public unsafe int getFirstObjectOfType(Location* location, int itemId)
         {
             return World.getFirstObjectOfType(*location, itemId);
         }
 
-        public unsafe int getNextObjectOfType(Sharpkick.Location* location, int itemId, int lastItemSerial)
+        public unsafe int getNextObjectOfType(Location* location, int itemId, int lastItemSerial)
         {
             return World.getNextObjectOfType(*location, itemId, lastItemSerial);
         }
 
-        public unsafe Sharpkick.Location* getLocation(Sharpkick.Location* location, int itemSerial)
+        public unsafe Location* getLocation(Location* location, int itemSerial)
         {
             ItemObject* item=ConvertSerialToObject(itemSerial);
             if (item != null)
@@ -237,7 +237,7 @@ namespace Sharpkick_Tests
                 return null;
         }
 
-        public void SendInfoWindowOrDoPlayerShadow(HelpInfoArgs* InfoStruct)
+        public void OpenInfoWindow(Serial gmserial, Serial playerserial)
         {
             throw new NotImplementedException();
         }

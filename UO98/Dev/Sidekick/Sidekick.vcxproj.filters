@@ -68,6 +68,9 @@
     <ClInclude Include="UODemo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Classes_Managed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

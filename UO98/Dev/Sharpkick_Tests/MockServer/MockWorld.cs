@@ -52,12 +52,12 @@ namespace Sharpkick_Tests
                 return 0;
         }
 
-        public int getFirstObjectOfType(Sharpkick.Location location, int itemId)
+        public int getFirstObjectOfType(Location location, int itemId)
         {
             return (int)ItemsOfTypeAtLocation(location, itemId).FirstOrDefault().Serial;
         }
 
-        public int getNextObjectOfType(Sharpkick.Location location, int itemId, Serial serial)
+        public int getNextObjectOfType(Location location, int itemId, Serial serial)
         {
             List<ItemObject> items=new List<ItemObject>(ItemsOfTypeAtLocation(location, itemId));
             List<Serial> serials = new List<Serial>(items.Select(item => (Serial)item.Serial));
@@ -70,7 +70,7 @@ namespace Sharpkick_Tests
 
         }
 
-        IEnumerable<ItemObject> ItemsOfTypeAtLocation(Sharpkick.Location location, int itemId)
+        IEnumerable<ItemObject> ItemsOfTypeAtLocation(Location location, int itemId)
         {
             return WorldObjects.Values.Where(item => item.ObjectType == itemId && item.Location == location);
         }
