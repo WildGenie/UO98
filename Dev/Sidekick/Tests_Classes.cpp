@@ -1,4 +1,6 @@
-#pragma unmanaged
+#include "UODemo.h"
+
+//#pragma unmanaged
 
 #include "TestsMain.h"
 #include <stdio.h>

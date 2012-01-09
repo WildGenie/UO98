@@ -15,7 +15,7 @@ namespace Sharpkick
 
             public void SaveWorld()
             {
-                UODemo.Save();
+                UODemo.Core.Save();
             }
 
             public void SendSystemMessage(PlayerObject* player, byte* message)
@@ -87,8 +87,12 @@ namespace Sharpkick
             public int getNextObjectOfType(Location* location, int itemId, int lastItemSerial)
             { return UnsafeNativeMethods.getNextObjectOfType(location, itemId, lastItemSerial); }
 
-            public Location* getLocation(Location* location, int itemSerial)
-            { return UnsafeNativeMethods.getLocation(location, itemSerial); }
+            public unsafe Location* getLocation(Location* location, int itemSerial)
+            {
+                class_Location* loc = UODemo.Core.getObjectLocation(itemSerial);
+                return (Location*)loc;
+                //return UnsafeNativeMethods.getLocation(location, itemSerial); 
+            }
 
             public void MakeGameMaster(PlayerObject* Target)
             { UnsafeNativeMethods.MakeGameMaster(Target); }
@@ -107,7 +111,7 @@ namespace Sharpkick
 
             public void OpenInfoWindow(Serial gmserial, Serial playerserial)
             {
-                UODemo.OpenInfoWindow(gmserial, playerserial);
+                UODemo.Core.OpenInfoWindow(gmserial, playerserial);
             }
 
             public bool IsItem(void* @object)

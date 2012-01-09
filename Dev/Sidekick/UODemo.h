@@ -3,32 +3,35 @@
 #pragma once
 
 #include "Commands.h"
-
-public ref class UODemo
+namespace UODemo
 {
-public:
-
-  //UODemo(void)
-  //{
-  //}
-
-  static void Save()      { SaveWorld();      }
-  static void Shutdown()  { ShutdownServer(); }
-
-  static void Counselor(PlayerObject *Target, int CounType)
+  public ref class Core abstract sealed // Static
   {
-    MakeCounselor(Target, CounType);
-  }
+  public:
+    static void Save()      { SaveWorld();      }
+    static void Shutdown()  { ShutdownServer(); }
 
-  static void UnCounselor(PlayerObject *Target)
-  {
-    UnmakeCounselor(Target);
-  }
+    static void Counselor(PlayerObject *Target, int CounType)
+    {
+      MakeCounselor(Target, CounType);
+    }
 
-  static void OpenInfoWindow(Serial gmserial, Serial playerserial)
-  {
-    SendInfoWindowToGodClient(gmserial, playerserial);
-  }
-};
+    static void UnCounselor(PlayerObject *Target)
+    {
+      UnmakeCounselor(Target);
+    }
 
+    static void OpenInfoWindow(Serial gmserial, Serial playerserial)
+    {
+      SendInfoWindowToGodClient(gmserial, playerserial);
+    }
 
+    static class_Location* getObjectLocation(int itemSerial)
+    {
+        class_Location* outLocationObject;
+        getLocation(outLocationObject, itemSerial);
+        return outLocationObject;
+    }
+
+  };
+}
