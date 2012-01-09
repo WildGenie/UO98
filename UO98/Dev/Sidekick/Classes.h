@@ -240,11 +240,11 @@ struct vtable_ItemClass
 };
 
 // Location size=0x06
-typedef struct class_Location
+typedef public struct class_Location
 {
-  unsigned __int16 X;
-  unsigned __int16 Y;
-  unsigned __int16 Z;
+  __int16 X;
+  __int16 Y;
+  __int16 Z;
 } LocationObject;
 
 // Location Functions
