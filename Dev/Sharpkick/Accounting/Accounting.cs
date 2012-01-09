@@ -435,7 +435,7 @@ namespace Sharpkick
         /// </summary>
         /// <param name="e">The account login parameters</param>
         private static void EventSink_OnLogin(LoginEventArgs e)
-        {   // TODO: Validate via Accounting
+        {
             e.Handled = true;
             Account acct = null;
             if(string.IsNullOrEmpty(e.Username))

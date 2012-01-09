@@ -89,7 +89,7 @@ namespace Sharpkick
 
             public unsafe Location* getLocation(Location* location, int itemSerial)
             {
-                class_Location* loc = UODemo.Core.getObjectLocation(itemSerial);
+                Location* loc = UODemo.Core.getObjectLocation(itemSerial);
                 return (Location*)loc;
                 //return UnsafeNativeMethods.getLocation(location, itemSerial); 
             }

@@ -3,6 +3,8 @@
 #pragma once
 
 #include "Commands.h"
+#include "Classes_Managed.h"
+
 namespace UODemo
 {
   public ref class Core abstract sealed // Static
@@ -26,11 +28,11 @@ namespace UODemo
       SendInfoWindowToGodClient(gmserial, playerserial);
     }
 
-    static class_Location* getObjectLocation(int itemSerial)
+    static Location* getObjectLocation(int itemSerial)
     {
         class_Location* outLocationObject;
         getLocation(outLocationObject, itemSerial);
-        return outLocationObject;
+        return (Location*)outLocationObject;
     }
 
   };

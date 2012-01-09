@@ -151,76 +151,76 @@ namespace Sharpkick
         Writeable=1
     }
 
-    public struct LocationDelta
-    {
-        public short X;
-        public short Y;
-        public short Z;
+    //public struct LocationDelta
+    //{
+    //    public short X;
+    //    public short Y;
+    //    public short Z;
 
-        public LocationDelta(short x, short y, short z)
-        {
-            X = x;
-            Y = y;
-            Z = z;
-        }
+    //    public LocationDelta(short x, short y, short z)
+    //    {
+    //        X = x;
+    //        Y = y;
+    //        Z = z;
+    //    }
 
-        public static Location operator +(Location location, LocationDelta delta)
-        {
-            return new Location((short)(location.X + delta.X), (short)(location.Y + delta.Y), (short)(location.Z + delta.Z));
-        }
-    }
+    //    public static Location operator +(Location location, LocationDelta delta)
+    //    {
+    //        return new Location((short)(location.X + delta.X), (short)(location.Y + delta.Y), (short)(location.Z + delta.Z));
+    //    }
+    //}
 
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public struct Location
-    {
-        public short X;
-        public short Y;
-        public short Z;
+    //[StructLayout(LayoutKind.Sequential, Pack = 1)]
+    //public struct Location
+    //{
+    //    public short X;
+    //    public short Y;
+    //    public short Z;
 
-        public Location(short x, short y, short z)
-        {
-            X = x;
-            Y = y;
-            Z = z;
-        }
+    //    public Location(short x, short y, short z)
+    //    {
+    //        X = x;
+    //        Y = y;
+    //        Z = z;
+    //    }
 
-        public static Location Zero = new Location(0, 0, 0);
+    //    public static Location Zero = new Location(0, 0, 0);
 
-        public static bool operator ==(Location A, Location B)
-        {
-            return A.Equals(B);
-        }
+    //    public static bool operator ==(Location A, Location B)
+    //    {
+    //        return A.Equals(B);
+    //    }
 
-        public static bool operator !=(Location A, Location B)
-        {
-            return !A.Equals(B);
-        }
+    //    public static bool operator !=(Location A, Location B)
+    //    {
+    //        return !A.Equals(B);
+    //    }
 
-        public override int GetHashCode()
-        {
-            return (int)((X & 0xFFF00000) << 20) + ((Y & 0xFFF00) << 8) + (Z & 0xFF);
-        }
+    //    public override int GetHashCode()
+    //    {
+    //        return (int)((X & 0xFFF00000) << 20) + ((Y & 0xFFF00) << 8) + (Z & 0xFF);
+    //    }
 
-        public override bool Equals(object obj)
-        {
-            if(!(obj is Location)) return false;
-            Location toCompare=(Location)obj;
-            return
-                X == toCompare.X &&
-                Y == toCompare.Y &&
-                Z == toCompare.Z;
-        }
+    //    public override bool Equals(object obj)
+    //    {
+    //        if(!(obj is Location)) return false;
+    //        Location toCompare=(Location)obj;
+    //        return
+    //            X == toCompare.X &&
+    //            Y == toCompare.Y &&
+    //            Z == toCompare.Z;
+    //    }
 
-        public static LocationDelta operator -(Location A, Location B)
-        {
-            return new LocationDelta((short)(A.X - B.X), (short)(A.Y - B.Y), (short)(A.Z - B.Z));
-        }
+    //    public static LocationDelta operator -(Location A, Location B)
+    //    {
+    //        return new LocationDelta((short)(A.X - B.X), (short)(A.Y - B.Y), (short)(A.Z - B.Z));
+    //    }
 
-        public override string ToString()
-        {
-            return string.Format("{0} {1} {2}", X, Y, Z);
-        }
-    }
+    //    public override string ToString()
+    //    {
+    //        return string.Format("{0} {1} {2}", X, Y, Z);
+    //    }
+    //}
 
     [Flags]
     enum AccessFlags

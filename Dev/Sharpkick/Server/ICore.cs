@@ -35,6 +35,7 @@ namespace Sharpkick
         
         int getFirstObjectOfType(Location* location, int itemId);
         int getNextObjectOfType(Location* location, int itemId, int lastItemSerial);
+
         Location* getLocation(Location* location, int itemSerial);
         void MakeGameMaster(PlayerObject* Target);
         void UnmakeGameMaster(PlayerObject* Target);

@@ -95,6 +95,7 @@ cd $(SolutionDir)</Command>
     <ClInclude Include="Commands.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="CoreEvents.h" />
+    <ClInclude Include="Classes_Managed.h" />
     <ClInclude Include="patcher.h" />
     <ClInclude Include="patches.h" />
     <ClInclude Include="stdafx.h" />
