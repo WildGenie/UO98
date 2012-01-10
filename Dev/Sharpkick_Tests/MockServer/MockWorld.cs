@@ -38,7 +38,7 @@ namespace Sharpkick_Tests
             return serial;
         }
 
-        public int DeleteItem(Serial serial)
+        public bool DeleteItem(Serial serial)
         {
             if (WorldObjects.ContainsKey(serial))
             {
@@ -46,10 +46,10 @@ namespace Sharpkick_Tests
                 MockObjVarAttachments.DeleteAllFor(serial);
                 ObjectPropertyExtensions.Purge(WorldObjects[serial]);
                 WorldObjects.Remove(serial);
-                return 1;
+                return true;
             }
             else
-                return 0;
+                return false;
         }
 
         public int getFirstObjectOfType(Location location, int itemId)

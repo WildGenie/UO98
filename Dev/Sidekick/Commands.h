@@ -3,23 +3,29 @@
 #include "Classes.h"
 
 // Commands.cpp
-void SaveWorld(void);
-void ShutdownServer(void);
-void MakeCounselor(PlayerObject *Target, int CounType);
-void UnmakeCounselor(PlayerObject *Target);
+namespace UnsafeNativeMethods
+{
+    void SaveWorld(void);
+    void ShutdownServer(void);
+    void MakeCounselor(PlayerObject *Target, int CounType);
+    void UnmakeCounselor(PlayerObject *Target);
+}
 
 // GameMaster.cpp
-void SendInfoWindowOrDoPlayerShadow(void* InfoStruct);
-void SendInfoWindowToGodClient(unsigned int beholderSerial, unsigned int beheldSerial);
+namespace UnsafeNativeMethods
+{
+    void SendInfoWindowOrDoPlayerShadow(void* InfoStruct);
+    void SendInfoWindowToGodClient(unsigned int beholderSerial, unsigned int beheldSerial);
+}
 
 // ItemObject.cpp
-extern "C"
+namespace UnsafeNativeMethods
 {
-    void _declspec(dllexport) APIENTRY getLocation(LocationObject* outLocationObject, int itemSerial);
-    int _declspec(dllexport) APIENTRY setHue(int serial, short hue);
-    int _declspec(dllexport) APIENTRY getValueByFunctionFromObject(int serial, void* function, const char* debugCallString);
-    int _declspec(dllexport) APIENTRY setOverloadedWeight(int serial, int weight);
-    int _declspec(dllexport) APIENTRY deleteObject(int serial);
+    void getLocation(LocationObject* outLocationObject, int itemSerial);
+    int setHue(int serial, short hue);
+    int getValueByFunctionFromObject(int serial, void* function, const char* debugCallString);
+    int setOverloadedWeight(int serial, int weight);
+    int deleteObject(int serial);
 }
 
 // Lists.cpp

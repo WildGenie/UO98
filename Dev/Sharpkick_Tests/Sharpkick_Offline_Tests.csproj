@@ -36,6 +36,10 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Sidekick, Version=1.0.4392.18203, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Bin\Sidekick.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -85,11 +89,6 @@
     <ProjectReference Include="..\Sharpkick\Sharpkick.csproj">
       <Project>{9792F1CB-5186-4EF2-9092-ED6D77012403}</Project>
       <Name>Sharpkick</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sidekick\Sidekick.vcxproj">
-      <Project>{03E63AAF-D966-49E4-8A16-1969A9CB579C}</Project>
-      <Name>Sidekick</Name>
-      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

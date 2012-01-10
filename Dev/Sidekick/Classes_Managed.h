@@ -4,7 +4,7 @@
 
 using namespace System;
 
-public enum struct ALRReason : __int8
+public enum struct ALRReason : unsigned __int8
 {
     /// <summary>This account doesn't exist. If you just created or updated the account on the web site, it may take a few minutes to be transmitted to Origin</summary>
     Invalid = 0x00,
@@ -20,7 +20,7 @@ public enum struct ALRReason : __int8
     BadComm = 0xFF
 };
 
-public enum struct Direction : __int8
+public enum struct Direction : unsigned __int8
 {
     North = 0,
     Right = 1,
@@ -53,25 +53,25 @@ public enum struct TileFlag : unsigned __int32
     NoShoot         = 0x2000,
     ArticleA        = 0x4000,
     ArticleAn       = 0x8000,
-    Internal		    = 0x00010000,
-    Foliage			    = 0x00020000,
-    PartialHue		  = 0x00040000,
-    Unknown2		    = 0x00080000,
-    Map				      = 0x00100000,
-    Container		    = 0x00200000,
-    Wearable		    = 0x00400000,
-    LightSource		  = 0x00800000,
-    Animation		    = 0x01000000,
-    NoDiagonal		  = 0x02000000,
-    Unknown3		    = 0x04000000,
-    Armor			      = 0x08000000,
-    Roof			      = 0x10000000,
-    Door			      = 0x20000000,
-    StairBack		    = 0x40000000,
-    StairRight		  = 0x80000000
+    Internal		= 0x00010000,
+    Foliage			= 0x00020000,
+    PartialHue		= 0x00040000,
+    Unknown2		= 0x00080000,
+    Map				= 0x00100000,
+    Container		= 0x00200000,
+    Wearable		= 0x00400000,
+    LightSource		= 0x00800000,
+    Animation		= 0x01000000,
+    NoDiagonal		= 0x02000000,
+    Unknown3		= 0x04000000,
+    Armor			= 0x08000000,
+    Roof			= 0x10000000,
+    Door			= 0x20000000,
+    StairBack		= 0x40000000,
+    StairRight		= 0x80000000
 };
 
-public enum struct BookWriteableFlag : __int8
+public enum struct BookWriteableFlag : unsigned __int8
 {
     ReadOnly=0,
     Writeable=1

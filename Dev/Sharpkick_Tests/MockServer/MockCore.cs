@@ -34,7 +34,7 @@ namespace Sharpkick_Tests
             return (int)World.CreateItem(itemandlocation);
         }
 
-        public int deleteObject(int serial)
+        public bool deleteObject(Serial serial)
         {
             return World.DeleteItem(serial);
         }
@@ -112,8 +112,8 @@ namespace Sharpkick_Tests
                 return false;
             }
         }
-        
-        public int setHue(int serial, short hue)
+
+        public int setHue(Serial serial, short hue)
         {
             ItemObject item;
             if (!World.TryGetItem(serial, out item)) return 0;
@@ -155,14 +155,14 @@ namespace Sharpkick_Tests
             return true;
         }
 
-        public int getQuantity(int serial)
+        public int getQuantity(Serial serial)
         {
             ItemObject item;
             if (!World.TryGetItem(serial, out item)) return 0;
             return item.GetQuantity();
         }
 
-        public int getWeight(int serial)
+        public int getWeight(Serial serial)
         {
             ItemObject item;
             if (!World.TryGetItem(serial, out item)) return 0;
@@ -178,7 +178,7 @@ namespace Sharpkick_Tests
             return weight * getQuantity(serial);
         }
 
-        public int setOverloadedWeight(int serial, int weight)
+        public int setOverloadedWeight(Serial serial, int weight)
         {
             if (!Exists(serial)) return 0;
             byte* name=bytePtrFactory.MakePointerToTempString("overloadedWeight");
@@ -195,7 +195,7 @@ namespace Sharpkick_Tests
             return World.getNextObjectOfType(*location, itemId, lastItemSerial);
         }
 
-        public Location getLocation(int itemSerial)
+        public Location getLocation(Serial itemSerial)
         {
             ItemObject* item=ConvertSerialToObject(itemSerial);
             if (item != null)

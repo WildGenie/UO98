@@ -4,6 +4,8 @@
 #include "Commands.h"
 #include "TestsMain.h"
 
+using namespace UnsafeNativeMethods;
+
 void DoShutdownServer();
 
 void OnTestResult(bool passed, char* message, ...);
