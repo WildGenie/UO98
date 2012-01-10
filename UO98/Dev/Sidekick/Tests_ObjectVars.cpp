@@ -3,6 +3,8 @@
 #include "TestsMain.h"
 #include "Commands.h"
 
+using namespace UnsafeNativeMethods;
+
 const int ITEMID_cotton=3567;
 
 bool Tests_ObjectVars_Int(void);

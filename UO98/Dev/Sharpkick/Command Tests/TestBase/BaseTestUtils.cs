@@ -94,7 +94,7 @@ namespace Sharpkick.Tests
                 DeleteTestItem(serial);
         }
 
-        protected static void DeleteTestItem(int serial)
+        protected static void DeleteTestItem(Serial serial)
         {
             if (Assert(Server.deleteObject(serial), "deleteObject returned false. serial:{0}", serial))
                 StateRemoveObject(serial);

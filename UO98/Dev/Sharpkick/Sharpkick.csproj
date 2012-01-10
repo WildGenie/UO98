@@ -108,7 +108,6 @@
     <ProjectReference Include="..\Sidekick\Sidekick.vcxproj">
       <Project>{03E63AAF-D966-49E4-8A16-1969A9CB579C}</Project>
       <Name>Sidekick</Name>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -15,9 +15,9 @@ namespace Sharpkick
             return Core.createGlobalObjectAt(ItemID, &Location);
         }
 
-        unsafe public static bool deleteObject(int serial)
+        unsafe public static bool deleteObject(Serial serial)
         {
-            return Core.deleteObject(serial) != 0;
+            return Core.deleteObject(serial);
         }
 
         unsafe public static int getFirstObjectOftype(Location location, int itemId)

@@ -20,7 +20,7 @@ namespace Sharpkick
             return Core.getWeight(serial);
         }
 
-        public static int SetOverloadedWeight(int serial, int weight)
+        public static int SetOverloadedWeight(Serial serial, int weight)
         {
             return Core.setOverloadedWeight(serial, weight);
         }

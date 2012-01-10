@@ -3,6 +3,8 @@
 #include "TestsMain.h"
 #include "Commands.h"
 
+using namespace UnsafeNativeMethods;
+
 const int ITEMID_door_closed=1655;
 const int ITEMID_door_open=1656;
 const int ITEMID_wall_1=589;

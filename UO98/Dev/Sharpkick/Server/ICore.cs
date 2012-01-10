@@ -13,7 +13,7 @@ namespace Sharpkick
 
         void SendSystemMessage(PlayerObject* player, byte* message);
         int createGlobalObjectAt(int ItemID, Location* Location);
-        int deleteObject(int serial);
+        bool deleteObject(Serial serial);
 
         int setObjVarInt(int serial, byte* name, int value);
         int setObjVarString(int serial, byte* name, byte* value);
@@ -29,9 +29,9 @@ namespace Sharpkick
         bool hasScript(int serial, byte* scriptName);
         bool detachScript(int serial, byte* scriptName);
 
-        int getQuantity(int serial);
-        int getWeight(int serial);
-        int setOverloadedWeight(int serial, int weight);
+        int getQuantity(Serial serial);
+        int getWeight(Serial serial);
+        int setOverloadedWeight(Serial serial, int weight);
         
         int getFirstObjectOfType(Location* location, int itemId);
         int getNextObjectOfType(Location* location, int itemId, int lastItemSerial);

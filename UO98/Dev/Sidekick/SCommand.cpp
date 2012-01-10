@@ -13,6 +13,8 @@
 #include <stdlib.h>
 #include "Commands.h"
 
+using namespace UnsafeNativeMethods;
+
 typedef void (__cdecl *SCOMMAND_FUNC)(PlayerObject *Player, unsigned int PlayerSerial, const char *Command, int AlwaysMinus1);
 
 // DO NOT CHANGE THE DEFINITION OF THIS STRUCTURE, DOING SO WILL CRASH THE CORE
