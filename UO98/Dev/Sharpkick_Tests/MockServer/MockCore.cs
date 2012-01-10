@@ -195,13 +195,12 @@ namespace Sharpkick_Tests
             return World.getNextObjectOfType(*location, itemId, lastItemSerial);
         }
 
-        public unsafe Location* getLocation(Location* location, int itemSerial)
+        public Location getLocation(int itemSerial)
         {
             ItemObject* item=ConvertSerialToObject(itemSerial);
             if (item != null)
             {
-                *location = (*item).Location;
-                return &(*item).Location;
+                return (*item).Location;
             }
             else
                 return null;

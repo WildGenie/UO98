@@ -51,9 +51,11 @@ namespace Sharpkick
             public bool getObjVarLocation(int serial, byte* varName, Location* locationResult)
             { return UnsafeNativeMethods.getObjVarLocation(serial, varName, locationResult); }
 
-            public int setHue(int serial, short hue)
-            { return UnsafeNativeMethods.setHue(serial, hue); }
-
+            public int setHue(Serial serial, short hue)
+            { 
+                return UODemo.Core.setObjectHue(serial, hue); 
+            }
+            
             public byte* addScript(int serial, byte* scriptName, int executeCreation)
             { return UnsafeNativeMethods.addScript(serial, scriptName, executeCreation); }
 
@@ -87,10 +89,10 @@ namespace Sharpkick
             public int getNextObjectOfType(Location* location, int itemId, int lastItemSerial)
             { return UnsafeNativeMethods.getNextObjectOfType(location, itemId, lastItemSerial); }
 
-            public unsafe Location* getLocation(Location* location, int itemSerial)
+            public Location getLocation(Serial itemSerial)
             {
-                Location* loc = UODemo.Core.getObjectLocation(itemSerial);
-                return (Location*)loc;
+                Location loc = UODemo.Core.getObjectLocation(itemSerial);
+                return loc;
                 //return UnsafeNativeMethods.getLocation(location, itemSerial); 
             }
 

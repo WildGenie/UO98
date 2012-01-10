@@ -28,12 +28,18 @@ namespace UODemo
       SendInfoWindowToGodClient(gmserial, playerserial);
     }
 
-    static Location* getObjectLocation(int itemSerial)
+    static Location getObjectLocation(Serial itemSerial)
     {
-        class_Location* outLocationObject;
-        getLocation(outLocationObject, itemSerial);
-        return (Location*)outLocationObject;
+        class_Location Loc;
+        getLocation(&Loc, itemSerial);
+        return Loc;
     }
+
+    static int setObjectHue(Serial itemSerial, short hue)
+    {
+        return setHue(itemSerial, hue);
+    }
+
 
   };
 }

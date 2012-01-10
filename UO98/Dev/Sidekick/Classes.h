@@ -43,8 +43,6 @@ extern "C"
 #define IsAnyNPC(baseaddress)     (IsGuardObject(baseaddress) || IsShopKeeperObject(baseaddress) || IsNPCobject(baseaddress) )
 #define IsAnyMobile(baseaddress)  (IsAnyNPC(baseaddress) || IsPlayerObject(baseaddress))
 
-typedef unsigned int Serial;
-
 /// Enums
 typedef public enum _VARTYPE
 {

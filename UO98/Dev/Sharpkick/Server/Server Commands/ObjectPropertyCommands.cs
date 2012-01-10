@@ -27,8 +27,7 @@ namespace Sharpkick
 
         unsafe public static Location getLocation(int itemSerial)
         {
-            Location location;
-            return *Core.getLocation(&location, itemSerial);
+            return Core.getLocation(itemSerial);
         }
 
 
