@@ -24,7 +24,7 @@ namespace Sharpkick
         byte* getObjVarString(int serial, byte* varName);
         bool getObjVarLocation(int serial, byte* varName, Location* locationResult);
 
-        int setHue(int serial, short hue);
+        int setHue(Serial serial, short hue);
         byte* addScript(int serial, byte* scriptName, int executeCreation);
         bool hasScript(int serial, byte* scriptName);
         bool detachScript(int serial, byte* scriptName);
@@ -36,7 +36,7 @@ namespace Sharpkick
         int getFirstObjectOfType(Location* location, int itemId);
         int getNextObjectOfType(Location* location, int itemId, int lastItemSerial);
 
-        Location* getLocation(Location* location, int itemSerial);
+        Location getLocation(Serial itemSerial);
         void MakeGameMaster(PlayerObject* Target);
         void UnmakeGameMaster(PlayerObject* Target);
         int IsGameMaster(PlayerObject* Target);

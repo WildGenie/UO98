@@ -10,7 +10,7 @@ void UnmakeCounselor(PlayerObject *Target);
 
 // GameMaster.cpp
 void SendInfoWindowOrDoPlayerShadow(void* InfoStruct);
-void SendInfoWindowToGodClient(Serial beholder, Serial beheld);
+void SendInfoWindowToGodClient(unsigned int beholderSerial, unsigned int beheldSerial);
 
 // ItemObject.cpp
 extern "C"

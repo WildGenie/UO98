@@ -11,17 +11,17 @@ void SendInfoWindowOrDoPlayerShadow(void* InfoStruct)
     FUNC_SendInfoWindowOrDoPlayerShadow(InfoStruct, unused);
 }
 
-void SendInfoWindowToGodClient(Serial beholder, Serial beheld)
+void SendInfoWindowToGodClient(unsigned int beholderSerial, unsigned int beheldSerial)
 {
   PlayerObject* BeholderObject;
   PlayerObject* BeheldObject;
 
   struct_PlayerHelpInfoArgs args;
 
-  BeholderObject=(PlayerObject*)ConvertSerialToObject(beholder);
+  BeholderObject=(PlayerObject*)ConvertSerialToObject(beholderSerial);
   if(IsPlayerObject(BeholderObject))
   {
-    BeheldObject=(PlayerObject*)ConvertSerialToObject(beheld);
+    BeheldObject=(PlayerObject*)ConvertSerialToObject(beheldSerial);
     if(!IsPlayerObject(BeheldObject))
     {
       SendSystemMessage(BeholderObject, "That object is not a player.");

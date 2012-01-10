@@ -57,6 +57,7 @@
       <CompileAs>Default</CompileAs>
       <AdditionalUsingDirectories>$(SolutionDir)..\Bin\</AdditionalUsingDirectories>
       <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <GenerateXMLDocumentationFiles>true</GenerateXMLDocumentationFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
