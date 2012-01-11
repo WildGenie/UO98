@@ -144,6 +144,7 @@ cd $(SolutionDir)</Command>
     <ClCompile Include="Tests_ObjectVars.cpp" />
     <ClCompile Include="Tests_World.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="UODemo.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

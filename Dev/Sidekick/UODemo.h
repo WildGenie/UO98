@@ -2,64 +2,40 @@
 
 #pragma once
 
-#include "Commands.h"
 #include "Classes_Managed.h"
+
+public interface class IUOServer
+{
+    void SaveWorld();
+    void Shutdown();
+    void MakeCounselor(void *PlayerObjectTarget, int CounType);
+    void UnmakeCounselor(void *PlayerObjectTarget);
+    void OpenInfoWindow(Serial gmserial, Serial playerserial);
+    Location getLocation(Serial itemSerial);
+    int setHue(Serial itemSerial, short hue);
+    int getQuantity(Serial serial);
+    int getWeight(Serial serial);
+    int setOverloadedWeight(Serial serial, int weight);
+    bool deleteObject(Serial serial);
+};
 
 namespace UODemo
 {
-  public ref class Core abstract sealed // Static
-  {
-  public:
-    static void Save()      { UnsafeNativeMethods::SaveWorld();      }
-    static void Shutdown()  { UnsafeNativeMethods::ShutdownServer(); }
-
-    static void Counselor(PlayerObject *Target, int CounType)
+    public ref class Core : public IUOServer
     {
-      UnsafeNativeMethods::MakeCounselor(Target, CounType);
-    }
+    public:
+        virtual void SaveWorld();
+        virtual void Shutdown();
+        virtual void MakeCounselor(void *PlayerObjectTarget, int CounType);
+        virtual void UnmakeCounselor(void *PlayerObjectTarget);
+        virtual void OpenInfoWindow(Serial gmserial, Serial playerserial);
+        virtual Location getLocation(Serial itemSerial);
+        virtual int setHue(Serial itemSerial, short hue);
+        virtual int getQuantity(Serial serial);
+        virtual int getWeight(Serial serial);
+        virtual int setOverloadedWeight(Serial serial, int weight);
+        virtual bool deleteObject(Serial serial);
 
-    static void UnCounselor(PlayerObject *Target)
-    {
-      UnsafeNativeMethods::UnmakeCounselor(Target);
-    }
-
-    static void OpenInfoWindow(Serial gmserial, Serial playerserial)
-    {
-      UnsafeNativeMethods::SendInfoWindowToGodClient(gmserial, playerserial);
-    }
-
-    static Location getObjectLocation(Serial itemSerial)
-    {
-        class_Location Loc;
-        UnsafeNativeMethods::getLocation(&Loc, itemSerial);
-        return Loc;
-    }
-
-    static int setObjectHue(Serial itemSerial, short hue)
-    {
-        return UnsafeNativeMethods::setHue(itemSerial, hue);
-    }
-
-    #define FUNC_ItemObject_GetQuantity 0x004854F2
-    static int getQuantity(Serial serial)
-    {
-        return UnsafeNativeMethods::getValueByFunctionFromObject(serial, (void*)FUNC_ItemObject_GetQuantity, "getQuantity");
-    }
-
-    #define FUNC_ItemObject_GetWeight 0x00489FAB
-    static int getWeight(int serial)
-    {
-        return UnsafeNativeMethods::getValueByFunctionFromObject(serial, (void*)FUNC_ItemObject_GetWeight, "getWeight");
-    }
-
-    static int SetOverloadedWeight(Serial serial, int weight)
-    {
-        return UnsafeNativeMethods::setOverloadedWeight(serial, weight);
-    }
-
-    static bool DeleteObject(int serial)
-    {
-        return UnsafeNativeMethods::deleteObject(serial) != 0;
-    }
-  };
+    };
 }
+
