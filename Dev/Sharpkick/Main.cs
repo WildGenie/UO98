@@ -20,7 +20,7 @@ using Sharpkick.Network;
 
 namespace Sharpkick
 {
-    class Main
+    public class Main
     {
         /// <summary>
         /// Indicates that we have run our initialization routines

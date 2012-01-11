@@ -13,7 +13,7 @@ namespace Sharpkick.WorldBuilding
 
         public static void Configure()
         {
-            EventSink.OnPulse += new OnPulseEventHandler(EventSink_OnPulse);
+            Server.Core.OnPulse += new OnPulseEventHandler(EventSink_OnPulse);
         }
 
         static void EventSink_OnPulse()
@@ -31,7 +31,7 @@ namespace Sharpkick.WorldBuilding
                     Teleporters.GenerateSkaraFerryTeleporters();
                 }
 
-                EventSink.OnPulse -= EventSink_OnPulse;
+                Server.Core.OnPulse -= EventSink_OnPulse;
             }
         }
 

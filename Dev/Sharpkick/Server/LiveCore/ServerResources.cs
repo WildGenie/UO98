@@ -51,7 +51,7 @@ namespace Sharpkick
                     ResourceGrowthFastMode = MyServerConfig.ResourceGrowthFastMode;
 
                     if (MyServerConfig.ResourceDebug)
-                        EventSink.OnPulse += new OnPulseEventHandler(EventSink_OnPulse);
+                        Server.Core.OnPulse += new OnPulseEventHandler(EventSink_OnPulse);
                 }
 
                 void EventSink_OnPulse()

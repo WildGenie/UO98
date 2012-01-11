@@ -1,8 +1,30 @@
 #include "UODemo.h"
 #include "Commands.h"
+#include <stdio.h>
 
 namespace UODemo
 {
+    Core::Core()
+    {
+        PulseHandler=gcnew OnPulseEventHandler(this, &Core::InvokeOnPulse);
+        GlobalOnPulse += PulseHandler;
+    }
+
+    Core::~Core()
+    {
+        GlobalOnPulse -= PulseHandler;
+    }
+
+    void Core::InvokeGlobalOnPulse()
+    {
+        GlobalOnPulse();
+    }
+
+    void Core::InvokeOnPulse()
+    {
+        OnPulse();
+    }
+
     void Core::SaveWorld() 
     {
         UnsafeNativeMethods::SaveWorld();      
@@ -61,4 +83,22 @@ namespace UODemo
     {
         return UnsafeNativeMethods::deleteObject(serial) != 0;
     }
+
+    void Core::InitializeSharpkick()
+    {
+        if(aSharpkick==nullptr)
+            aSharpkick=Assembly::LoadFrom("Sharpkick.dll");
+
+        if(aSharpkick!=nullptr)
+        {
+            Type^ tMain=aSharpkick->GetType("Sharpkick.Main");
+            MethodInfo^ mInit = tMain->GetMethod("Initialize");
+            mInit->Invoke(nullptr, nullptr);
+
+            puts("UODemo.Core Initialized");
+        }
+        else
+            puts("UODemo.Core Initialize Fail: Could not load Assembly Sharpkick.");
+    }
+
 }
