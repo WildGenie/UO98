@@ -71,6 +71,30 @@ public enum struct TileFlag : unsigned __int32
     StairRight		= 0x80000000
 };
 
+[Flags]
+public enum struct PlayerFlag : unsigned __int32
+{
+    LastMoveRej     = 0x00000001,  // ??
+    IsGod           = 0x00000002,
+    IsOnline        = 0x00000004,
+    IsEditing       = 0x00000008,
+    HackMove        = 0x00000010,
+    IsManifesting   = 0x00000020,
+    unk00000040     = 0x00000040,
+    unk00000080     = 0x00000080,
+    unk00000100     = 0x00000100,
+    un0000k0200     = 0x00000200,
+    InSeance        = 0x00000400,
+    unk00000800     = 0x00000800,
+    IsGM            = 0x00001000,
+    unk00002000     = 0x00002000,     // something with login
+    unk00004000     = 0x00004000,     // something with counselor, Can't request help via 0x9b either...
+    IsCounselor     = 0x00008000,
+    BankDefs        = 0x00010000,
+    IsGoldAccount   = 0x00020000
+};
+
+
 public enum struct BookWriteableFlag : unsigned __int8
 {
     ReadOnly=0,
