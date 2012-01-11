@@ -13,23 +13,6 @@ namespace Sharpkick
     public class CoreEvents
     {
         /// <summary>
-        /// Called when a tick occurs on the server
-        /// </summary>
-        //public static void OnPulse()
-        //{
-        //    if (!Main.Initialized) Main.Initialize();
-        //    EventSink.InvokeOnPulse();
-        //}
-
-        /// <summary>
-        /// Called after the world is saved.
-        /// </summary>
-        public static void OnAfterSave()
-        {
-            EventSink.InvokeOnAfterSave();
-        }
-
-        /// <summary>
         /// Called when the server receives a valid packet, before it's processed.
         /// </summary>
         /// <param name="pSocket">The servers socket which received the packet.</param>

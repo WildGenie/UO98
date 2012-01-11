@@ -15,6 +15,7 @@ public delegate void OnAfterSaveEventHandler();
 public interface class IUOServer
 {
     event OnPulseEventHandler^ OnPulse;
+    event OnAfterSaveEventHandler^ OnAfterSave;
 
     void SaveWorld();
     void Shutdown();
@@ -40,14 +41,21 @@ namespace UODemo
         ~Core();
 
         OnPulseEventHandler^ PulseHandler;
+        OnAfterSaveEventHandler^ OnAfterSaveHandler;
 
         static void InvokeGlobalOnPulse();
         static event OnPulseEventHandler^ GlobalOnPulse;
 
-        static void Core::InitializeSharpkick();
+        static void InvokeGlobalOnAfterSave();
+        static event OnAfterSaveEventHandler^ GlobalOnAfterSave;
+
+		static void Core::InitializeSharpkick();
 
         void InvokeOnPulse();
         virtual event OnPulseEventHandler^ OnPulse;
+
+        void InvokeOnAfterSave();
+        virtual event OnAfterSaveEventHandler^ OnAfterSave;
 
         virtual void SaveWorld();
         virtual void Shutdown();

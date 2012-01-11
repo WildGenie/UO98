@@ -13,21 +13,11 @@ namespace Sharpkick
     /// <summary>Handles server events</summary>
     static class EventSink
     {
-        ///// <summary>Event fires when server pulse occurs, every 250ms.</summary>
-        //public static event OnPulseEventHandler OnPulse;
-        ///// <summary>Invokes the OnPulse event.</summary>
-        //public static void InvokeOnPulse() { if (OnPulse != null) OnPulse(); }
-
         /// <summary>Event fires when a login packet is received (0x80)</summary>
         public static event OnLoginEventHandler OnLogin;
         /// <summary>Invoke the OnLogin event.</summary>
         /// <param name="e">Arguments to the event, requires Username And Password</param>
         public static void InvokeOnLogin(LoginEventArgs e) { if (OnLogin != null) OnLogin(e); }
-
-        /// <summary>Event fires after server save occurs</summary>
-        public static event OnAfterSaveEventHandler OnAfterSave;
-        /// <summary>Invokes the OnAfterSave event.</summary>
-        public static void InvokeOnAfterSave() { if (OnAfterSave != null) OnAfterSave(); }
     }
 
     class LoginEventArgs : EventArgs
