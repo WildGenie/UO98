@@ -9,7 +9,7 @@ namespace Sharpkick
     {
         public static void Configure()
         {
-            EventSink.OnPulse += new OnPulseEventHandler(EventSink_OnPulse);
+            Server.Core.OnPulse += new OnPulseEventHandler(EventSink_OnPulse);
         }
 
         static void EventSink_OnPulse()

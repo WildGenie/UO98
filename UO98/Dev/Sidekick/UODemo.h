@@ -2,10 +2,20 @@
 
 #pragma once
 
+using namespace System::Reflection;
+
 #include "Classes_Managed.h"
+
+/// <summary>Delegate for EventSink.OnPulse event</summary>
+public delegate void OnPulseEventHandler();
+
+/// <summary>Delegate for EventSink.OnAfterSave event</summary>
+public delegate void OnAfterSaveEventHandler();
 
 public interface class IUOServer
 {
+    event OnPulseEventHandler^ OnPulse;
+
     void SaveWorld();
     void Shutdown();
     void MakeCounselor(void *PlayerObjectTarget, int CounType);
@@ -23,7 +33,22 @@ namespace UODemo
 {
     public ref class Core : public IUOServer
     {
+        static Assembly^ aSharpkick;
+
     public:
+        Core();
+        ~Core();
+
+        OnPulseEventHandler^ PulseHandler;
+
+        static void InvokeGlobalOnPulse();
+        static event OnPulseEventHandler^ GlobalOnPulse;
+
+        static void Core::InitializeSharpkick();
+
+        void InvokeOnPulse();
+        virtual event OnPulseEventHandler^ OnPulse;
+
         virtual void SaveWorld();
         virtual void Shutdown();
         virtual void MakeCounselor(void *PlayerObjectTarget, int CounType);

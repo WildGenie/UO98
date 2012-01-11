@@ -6,23 +6,17 @@ using System.Net;
 
 namespace Sharpkick
 {
-    /// <summary>Delegate for EventSink.OnPulse event</summary>
-    delegate void OnPulseEventHandler();
-
     /// <summary>Delegate for EventSink.OnLogin event</summary>
     /// <param name="e">Arguments to the event, requires Username And Password</param>
     delegate void OnLoginEventHandler(LoginEventArgs e);
 
-    /// <summary>Delegate for EventSink.OnAfterSave event</summary>
-    delegate void OnAfterSaveEventHandler();
-
     /// <summary>Handles server events</summary>
     static class EventSink
     {
-        /// <summary>Event fires when server pulse occurs, every 250ms.</summary>
-        public static event OnPulseEventHandler OnPulse;
-        /// <summary>Invokes the OnPulse event.</summary>
-        public static void InvokeOnPulse() { if (OnPulse != null) OnPulse(); }
+        ///// <summary>Event fires when server pulse occurs, every 250ms.</summary>
+        //public static event OnPulseEventHandler OnPulse;
+        ///// <summary>Invokes the OnPulse event.</summary>
+        //public static void InvokeOnPulse() { if (OnPulse != null) OnPulse(); }
 
         /// <summary>Event fires when a login packet is received (0x80)</summary>
         public static event OnLoginEventHandler OnLogin;

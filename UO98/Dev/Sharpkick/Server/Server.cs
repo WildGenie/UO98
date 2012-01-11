@@ -10,7 +10,7 @@ namespace Sharpkick
     static partial class Server
     {
         private static ICore _Core = null;
-        private static ICore Core { get { return _Core ?? (_Core = new LiveCore()); } }
+        public static ICore Core { get { return _Core ?? (_Core = new LiveCore()); } }
 
         public static Network.IPackets PacketEngine { get { return Core.PacketEngine; } }
 

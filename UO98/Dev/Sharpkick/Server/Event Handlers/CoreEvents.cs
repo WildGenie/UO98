@@ -15,11 +15,11 @@ namespace Sharpkick
         /// <summary>
         /// Called when a tick occurs on the server
         /// </summary>
-        public static void OnPulse()
-        {
-            if (!Main.Initialized) Main.Initialize();
-            EventSink.InvokeOnPulse();
-        }
+        //public static void OnPulse()
+        //{
+        //    if (!Main.Initialized) Main.Initialize();
+        //    EventSink.InvokeOnPulse();
+        //}
 
         /// <summary>
         /// Called after the world is saved.

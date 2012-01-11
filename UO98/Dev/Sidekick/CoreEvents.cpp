@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <io.h>
 
+#include "UODemo.h"
+
 #using "Sharpkick.dll"
 
 using namespace System;
@@ -9,10 +11,20 @@ using namespace System::Runtime::InteropServices;
 
 // Sharpkick Dot Net Function invocations (Imports from Sharpkick), called from unmanaged code.
 
+bool Init=false;
+
 void InvokeOnPulse()
 {
-    Sharpkick::CoreEvents DotNetObject;
-    DotNetObject.OnPulse();
+    //Sharpkick::CoreEvents DotNetObject;
+    //DotNetObject.OnPulse();
+
+    if(!Init)
+    {
+        UODemo::Core::InitializeSharpkick();
+        Init=true;
+    }
+
+    UODemo::Core::InvokeGlobalOnPulse();
 }
 void InvokeOnAfterSave()
 {
