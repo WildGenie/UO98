@@ -15,9 +15,6 @@ bool Init=false;
 
 void InvokeOnPulse()
 {
-    //Sharpkick::CoreEvents DotNetObject;
-    //DotNetObject.OnPulse();
-
     if(!Init)
     {
         UODemo::Core::InitializeSharpkick();
@@ -28,8 +25,7 @@ void InvokeOnPulse()
 }
 void InvokeOnAfterSave()
 {
-    Sharpkick::CoreEvents DotNetObject;
-    DotNetObject.OnAfterSave();
+	UODemo::Core::InvokeGlobalOnAfterSave();
 }
 void InvokeOnPacketReceived(unsigned char* pSocket, unsigned char PacketID, unsigned int PacketSize, int IsPacketDynamicSized)
 {

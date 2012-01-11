@@ -8,6 +8,8 @@ namespace UODemo
     {
         PulseHandler=gcnew OnPulseEventHandler(this, &Core::InvokeOnPulse);
         GlobalOnPulse += PulseHandler;
+        OnAfterSaveHandler=gcnew OnAfterSaveEventHandler(this, &Core::InvokeOnAfterSave);
+        GlobalOnAfterSave += OnAfterSaveHandler;
     }
 
     Core::~Core()
@@ -20,9 +22,19 @@ namespace UODemo
         GlobalOnPulse();
     }
 
+    void Core::InvokeGlobalOnAfterSave()
+    {
+        GlobalOnAfterSave();
+    }
+
     void Core::InvokeOnPulse()
     {
         OnPulse();
+    }
+
+    void Core::InvokeOnAfterSave()
+    {
+        OnAfterSave();
     }
 
     void Core::SaveWorld() 

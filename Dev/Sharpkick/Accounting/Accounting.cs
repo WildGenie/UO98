@@ -419,7 +419,7 @@ namespace Sharpkick
             {
                 EventSink.OnLogin += new OnLoginEventHandler(EventSink_OnLogin);
                 if (!Loaded) Load();
-                EventSink.OnAfterSave += new OnAfterSaveEventHandler(EventSink_OnAfterSave);
+                Server.Core.OnAfterSave += new OnAfterSaveEventHandler(EventSink_OnAfterSave);
 
                 Configured = true;
             }
