@@ -20,9 +20,9 @@ extern "C"
     InvokeOnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized);
   }
 
-  void _declspec(dllexport) APIENTRY Test_EventInvoke_OnHandleOutsideRangePacketd(unsigned char* pSocket)
+  void _declspec(dllexport) APIENTRY Test_EventInvoke_OnOutsideRangePacketd(unsigned char* pSocket)
   {
-    InvokeOnHandleOutsideRangePacket(pSocket);
+    InvokeOnOutsideRangePacket(pSocket);
   }
 
   void _declspec(dllexport) APIENTRY Test_EventInvoke_OnPacketSending(unsigned char *pSocket, unsigned char **ppData, unsigned int *pDataLen)

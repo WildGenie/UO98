@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace Sharpkick_Tests
 {
-    unsafe class MockPacketEngine : Sharpkick.Network.IPackets
+    unsafe class MockPacketEngine : IPackets
     {
         Dictionary<uint, byte[]> LastSentPacketBySocketHandle = new Dictionary<uint, byte[]>();
 

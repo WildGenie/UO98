@@ -12,7 +12,7 @@ namespace Sharpkick
         private static ICore _Core = null;
         public static ICore Core { get { return _Core ?? (_Core = new LiveCore()); } }
 
-        public static Network.IPackets PacketEngine { get { return Core.PacketEngine; } }
+        public static IPackets PacketEngine { get { return Core.PacketEngine; } }
 
         public static void MockCore(ICore MockCoreInstance)
         {

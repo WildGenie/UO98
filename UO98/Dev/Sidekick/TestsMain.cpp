@@ -11,15 +11,26 @@ void DoShutdownServer();
 void OnTestResult(bool passed, char* message, ...);
 void putsColored(char* text, WORD color);
 
-#using "Sharpkick.dll"
-
 using namespace System;
-using namespace System::Runtime::InteropServices;
+using namespace System::Reflection;
 
 void InitiateSharpkickOnlineTests()
 {
-    Sharpkick::Tests::OnlineTests DotNetObject;
-    DotNetObject.BeginOnlineTesting();
+    //Sharpkick::Tests::OnlineTests DotNetObject;
+    //DotNetObject.BeginOnlineTesting();
+
+    Assembly^ aSharpkick=Assembly::LoadFrom("Sharpkick.dll");
+
+    if(aSharpkick!=nullptr)
+    {
+        Type^ tMain=aSharpkick->GetType("Sharpkick.Tests.OnlineTests");
+        MethodInfo^ mInit = tMain->GetMethod("BeginOnlineTesting");
+        puts("Sharpkick.Tests.OnlineTests Beginning");
+        mInit->Invoke(nullptr, nullptr);
+    }
+    else
+        puts("Sharpkick.Tests.OnlineTests Initialize Fail: Could not load Assembly Sharpkick.");
+
 }
 
 void Tests_OnPulse()

@@ -4,11 +4,6 @@
 
 #include "UODemo.h"
 
-#using "Sharpkick.dll"
-
-using namespace System;
-using namespace System::Runtime::InteropServices;
-
 // Sharpkick Dot Net Function invocations (Imports from Sharpkick), called from unmanaged code.
 
 bool Init=false;
@@ -25,20 +20,17 @@ void InvokeOnPulse()
 }
 void InvokeOnAfterSave()
 {
-	UODemo::Core::InvokeGlobalOnAfterSave();
+    UODemo::Core::InvokeGlobalOnAfterSave();
 }
 void InvokeOnPacketReceived(unsigned char* pSocket, unsigned char PacketID, unsigned int PacketSize, int IsPacketDynamicSized)
 {
-    Sharpkick::CoreEvents DotNetObject;
-    DotNetObject.OnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized!=0);
+    UODemo::Core_PacketEngine::InvokeGlobalOnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized!=0);
 }
-bool InvokeOnHandleOutsideRangePacket(unsigned char* pSocket)
+bool InvokeOnOutsideRangePacket(unsigned char* pSocket)
 {
-    Sharpkick::CoreEvents DotNetObject;
-    return DotNetObject.OnHandleOutsideRangePacket(pSocket);
+    return UODemo::Core_PacketEngine::InvokeGlobalOnOutsideRangePacket(pSocket);
 }
 void InvokeOnPacketSending(unsigned char *pSocket, unsigned char **ppData, unsigned int *pDataLen)
 {
-    Sharpkick::CoreEvents DotNetObject;
-    DotNetObject.OnPacketSending(pSocket, ppData, pDataLen);
+    UODemo::Core_PacketEngine::InvokeGlobalOnPacketSending(pSocket, ppData, pDataLen);
 }
