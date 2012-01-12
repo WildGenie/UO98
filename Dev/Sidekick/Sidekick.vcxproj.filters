@@ -97,9 +97,6 @@
     <ClCompile Include="ObjVars.cpp">
       <Filter>Source Files\API Commands</Filter>
     </ClCompile>
-    <ClCompile Include="Initialize.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectScripts.cpp">
       <Filter>Source Files\API Commands</Filter>
     </ClCompile>
@@ -165,6 +162,9 @@
     </ClCompile>
     <ClCompile Include="UODemo.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Initialize.cpp">
+      <Filter>Source Files\Main</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

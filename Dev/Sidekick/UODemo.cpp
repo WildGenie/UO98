@@ -24,6 +24,12 @@ namespace UODemo
 
     void Core::InvokeGlobalOnPulse()
     {
+        if(!Initialized)
+        {
+            UODemo::Core::InitializeSharpkick();
+            Initialized=true;
+        }
+
         GlobalOnPulse();
     }
 

@@ -4,18 +4,10 @@
 
 #include "UODemo.h"
 
-// Sharpkick Dot Net Function invocations (Imports from Sharpkick), called from unmanaged code.
-
-bool Init=false;
+// CLI Event invocation proxies for native code.
 
 void InvokeOnPulse()
 {
-    if(!Init)
-    {
-        UODemo::Core::InitializeSharpkick();
-        Init=true;
-    }
-
     UODemo::Core::InvokeGlobalOnPulse();
 }
 void InvokeOnAfterSave()

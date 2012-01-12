@@ -69,6 +69,8 @@ namespace UODemo
 {
     public ref class Core : public IUOServer
     {
+        static bool Initialized=false;
+
         static Assembly^ aSharpkick;
         IPackets^ _PacketEngine;
 
