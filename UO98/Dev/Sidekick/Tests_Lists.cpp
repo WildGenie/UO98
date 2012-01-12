@@ -3,6 +3,8 @@
 #include "TestsMain.h"
 #include "Commands.h"
 
+using namespace UnsafeNativeMethods;
+
 bool Tests_Lists_SimpleAppend(void);
 bool Tests_Lists_Contains(void);
 bool Tests_Lists_OfInteger(void);

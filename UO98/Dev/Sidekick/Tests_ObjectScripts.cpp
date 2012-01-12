@@ -3,6 +3,8 @@
 #include "TestsMain.h"
 #include "Commands.h"
 
+using namespace UnsafeNativeMethods;
+
 const int ITEMID_sackofflour=4153;
 
 bool Tests_ObjectScripts_Item(void);

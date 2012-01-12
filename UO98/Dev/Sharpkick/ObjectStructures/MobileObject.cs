@@ -3,20 +3,6 @@ using System.Runtime.InteropServices;
 
 namespace Sharpkick
 {
-    [Flags]
-    enum MobileFlags : byte
-    {
-        None = 0x00,
-        Frozen = 0x01,
-        Female = 0x02,
-        Poisoned = 0x04,        // Flying in post 7.x client
-        Invulnerable = 0x08,    // Yellow health bar
-        IgnoreMobiles = 0x10,
-        Movable = 0x20,
-        WarMode = 0x40,
-        Hidden = 0x80
-    }
-
     [StructLayout(LayoutKind.Explicit, Pack = 1, Size = 0x37C)]
     unsafe struct MobileObject
     {

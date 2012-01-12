@@ -221,7 +221,7 @@ namespace Sharpkick_Tests
             throw new NotImplementedException();
         }
 
-        public unsafe void OpenBank(Sharpkick.PlayerObject* Target, Sharpkick.PlayerObject* ShowTo)
+        public unsafe void OpenBank(class_Player* Target, Sharpkick.PlayerObject* ShowTo)
         {
             throw new NotImplementedException();
         }

@@ -58,24 +58,4 @@ extern "C"
     {
         COMMAND_getObjectsAt(resultList, location);
     }
-
-    int _declspec(dllexport) APIENTRY IsItem(void* object)
-    {
-        return IsItemObject(object);
-    }
-
-    int _declspec(dllexport) APIENTRY IsNPC(void* object)
-    {
-        return IsAnyNPC(object);
-    }
-
-    int _declspec(dllexport) APIENTRY IsMobile(void* object)
-    {
-        return IsAnyMobile(object);
-    }
-
-    int _declspec(dllexport) APIENTRY IsPlayer(void* object)
-    {
-        return IsPlayerObject(object);
-    }
 }

@@ -95,7 +95,6 @@
     <Compile Include="Server\Server.cs" />
     <Compile Include="Packets\ServerPackets.cs" />
     <Compile Include="Server\LiveCore\Skills.cs" />
-    <Compile Include="Utility\StringPointerUtils.cs" />
     <Compile Include="WorldBuilding\Decoration.cs" />
     <Compile Include="WorldBuilding\DungeonEntrances.cs" />
     <Compile Include="WorldBuilding\Shrines.cs" />

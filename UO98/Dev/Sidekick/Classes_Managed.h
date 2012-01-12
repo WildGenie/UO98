@@ -1,4 +1,5 @@
 #include "Classes.h"
+#include "StringPointerUtils.h"
 
 #pragma managed
 
@@ -69,6 +70,20 @@ public enum struct TileFlag : unsigned __int32
     Door			= 0x20000000,
     StairBack		= 0x40000000,
     StairRight		= 0x80000000
+};
+
+[Flags]
+public enum struct MobileFlags : unsigned __int8
+{
+    None = 0x00,
+    Frozen = 0x01,
+    Female = 0x02,
+    Poisoned = 0x04,        // Flying in post 7.x client
+    Invulnerable = 0x08,    // Yellow health bar
+    IgnoreMobiles = 0x10,
+    Movable = 0x20,
+    WarMode = 0x40,
+    Hidden = 0x80
 };
 
 [Flags]
@@ -223,5 +238,139 @@ typedef public value struct Location sealed {
       return Location(loc->X, loc->Y, loc->Z);
     }
 
-} Location;
+} _Location;
 
+public ref class Entity 
+{
+protected:
+    bool WeOwnThis;
+    class_Entity* _entity;
+
+    Entity(class_Entity* base, bool shouldDelete) 
+    {
+        _entity = base; 
+        WeOwnThis=shouldDelete;
+    }
+
+public:
+
+    Entity() 
+    { 
+        _entity = new class_Entity();
+        WeOwnThis=true;
+    }
+
+    Entity(class_Entity* base) 
+    { 
+        _entity = base; 
+        WeOwnThis=false;
+    }
+
+    ~Entity() 
+    {
+        if(WeOwnThis)
+        {
+            delete _entity;
+            WeOwnThis=false;
+        }
+    }
+
+    property unsigned __int16   ObjectType    { unsigned __int16 get()  { return _entity->ObjectType; } }
+    property unsigned __int16   Hue           { unsigned __int16 get()  { return _entity->Hue; } }
+    property _Location          Location      { _Location        get()  { return _entity->Location; } }
+};
+
+public ref class ResourceEntity : Entity 
+{ 
+protected:
+    ResourceEntity(class_Entity* base, bool shouldDelete) : Entity(base,shouldDelete){}
+public:
+    ResourceEntity() : Entity(new class_ResourceEntity(), true){}
+    ResourceEntity(class_ResourceEntity* base) : Entity(base){}
+
+    property _Location          CreationLocation    { _Location        get()  { return ((class_ResourceEntity*)_entity)->Location; } }
+    property unsigned __int16   Template            { unsigned __int16 get()  { return ((class_ResourceEntity*)_entity)->Template; } }
+    property unsigned __int32   Resources           { unsigned __int32 get()  { return ((class_ResourceEntity*)_entity)->Resources; } }
+};
+
+public ref class DynamicItem : ResourceEntity 
+{ 
+protected:
+    DynamicItem(class_DynamicItem* base, bool shouldDelete) : ResourceEntity(base,shouldDelete){}
+public:
+    DynamicItem() : ResourceEntity(new class_DynamicItem(), true){}
+    DynamicItem(class_DynamicItem* base) : ResourceEntity(base){}
+
+    property unsigned __int32   Serial              { unsigned __int32 get()  { return ((class_DynamicItem*)_entity)->MyOwnSerial; } }
+
+    static operator DynamicItem^(class_DynamicItem* pItem)
+    {
+      if(pItem==NULL)return nullptr;
+      return gcnew DynamicItem(pItem);
+    }
+
+    static operator class_DynamicItem*(DynamicItem item)
+    {
+      return (class_DynamicItem*)(item._entity);
+    }
+};
+
+public ref class Container : DynamicItem 
+{ 
+protected:
+    Container(class_Container* base, bool shouldDelete) : DynamicItem(base,shouldDelete){}
+public:
+    Container() : DynamicItem(new class_Container(), true){}
+    Container(class_Container* base) : DynamicItem(base){}
+
+    property unsigned __int16   TotalWeight        { unsigned __int16 get()  { return ((class_Container*)_entity)->WeightInStones; } }
+
+};
+
+public ref class Mobile : Container 
+{ 
+protected:
+    Mobile(class_Mobile* base, bool shouldDelete) : Container(base,shouldDelete){}
+public:
+    Mobile() : Container(new class_Mobile(), true){}
+    Mobile(class_Mobile* base) : Container(base){}
+
+    property unsigned __int16   Body        { unsigned __int16 get()  { return ((class_Mobile*)_entity)->ObjectType; } }
+    property unsigned __int16   Str         { unsigned __int16 get()  { return ((class_Mobile*)_entity)->str; } }
+    property unsigned __int16   Dex         { unsigned __int16 get()  { return ((class_Mobile*)_entity)->dex; } }
+    property unsigned __int16   Int         { unsigned __int16 get()  { return ((class_Mobile*)_entity)->intel; } }
+    property unsigned __int16   StrMod      { unsigned __int16 get()  { return ((class_Mobile*)_entity)->strmod; } }
+    property unsigned __int16   DexMod      { unsigned __int16 get()  { return ((class_Mobile*)_entity)->dexmod; } }
+    property unsigned __int16   IntMod      { unsigned __int16 get()  { return ((class_Mobile*)_entity)->intmod; } }
+    property unsigned __int32   CurHP       { unsigned __int32 get()  { return ((class_Mobile*)_entity)->CurHP; } }
+    property unsigned __int32   MaxHP       { unsigned __int32 get()  { return ((class_Mobile*)_entity)->MaxHP; } }
+    property unsigned __int32   CurFat      { unsigned __int32 get()  { return ((class_Mobile*)_entity)->CurFat; } }
+    property unsigned __int32   MaxFat      { unsigned __int32 get()  { return ((class_Mobile*)_entity)->MaxFat; } }
+    property unsigned __int32   CurMana     { unsigned __int32 get()  { return ((class_Mobile*)_entity)->CurMana; } }
+    property unsigned __int32   MaxMana     { unsigned __int32 get()  { return ((class_Mobile*)_entity)->MaxMana; } }
+    property unsigned __int16   Fame        { unsigned __int16 get()  { return ((class_Mobile*)_entity)->Fame; } }
+    property unsigned __int16   Karma       { unsigned __int16 get()  { return ((class_Mobile*)_entity)->Karma; } }
+    property unsigned __int16   Satiety     { unsigned __int16 get()  { return ((class_Mobile*)_entity)->Satiety; } }
+    
+    property MobileFlags        Flags       { MobileFlags      get()  { return (MobileFlags)((class_Mobile*)_entity)->MobFlag; } }
+
+    property String^ RealName
+    { 
+        String^ get()  
+        {
+            return StringPointerUtils::GetAsciiString(((class_Mobile*)_entity)->RealName, 30);
+        }
+    }
+
+    static operator Mobile^(class_Mobile* pItem)
+    {
+      if(pItem==NULL)return nullptr;
+      return gcnew Mobile(pItem);
+    }
+
+    static operator class_Mobile*(Mobile item)
+    {
+      return (class_Mobile*)(item._entity);
+    }
+
+};
