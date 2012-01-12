@@ -38,40 +38,49 @@ namespace UnsafeNativeMethods
 
 // Lists.cpp
 
-void initList(ListObject* list);
-void List_DebugPrint(char* description, char* listname, ListObject* list);
-
-extern "C"
+namespace UnsafeNativeMethods
 {
-    void _declspec(dllexport) APIENTRY List_GetLocation(LocationObject* locationResult, ListObject* List, unsigned int index);
-    int _declspec(dllexport) APIENTRY List_GetInteger(ListObject* List, unsigned int index);
-    ListObject _declspec(dllexport) *APIENTRY List_GetList(ListObject* List, unsigned int index);
-    int _declspec(dllexport) APIENTRY List_Append(ListObject* List, _VARTYPE ListElementType, int ListElementData);
-    int _declspec(dllexport) APIENTRY List_Contains(ListObject *List, _VARTYPE ValueType, int ValueOrRef);
-    int _declspec(dllexport) APIENTRY List_RemoveAt(ListObject* List, unsigned int index);
-    int _declspec(dllexport) APIENTRY List_RemoveSpecificItem(ListObject *List, _VARTYPE ValueType, int ValueOrRef);
-    int _declspec(dllexport) APIENTRY List_Clear(ListObject *List);
+    void initList(ListObject* list);
+    void List_DebugPrint(char* description, char* listname, ListObject* list);
+
+    extern "C"
+    {
+        void _declspec(dllexport) APIENTRY List_GetLocation(LocationObject* locationResult, ListObject* List, unsigned int index);
+        int _declspec(dllexport) APIENTRY List_GetInteger(ListObject* List, unsigned int index);
+        ListObject _declspec(dllexport) *APIENTRY List_GetList(ListObject* List, unsigned int index);
+        int _declspec(dllexport) APIENTRY List_Append(ListObject* List, _VARTYPE ListElementType, int ListElementData);
+        int _declspec(dllexport) APIENTRY List_Contains(ListObject *List, _VARTYPE ValueType, int ValueOrRef);
+        int _declspec(dllexport) APIENTRY List_RemoveAt(ListObject* List, unsigned int index);
+        int _declspec(dllexport) APIENTRY List_RemoveSpecificItem(ListObject *List, _VARTYPE ValueType, int ValueOrRef);
+        int _declspec(dllexport) APIENTRY List_Clear(ListObject *List);
+    }
 }
 
 // ObjectScripts.cpp
-extern "C"
+namespace UnsafeNativeMethods
 {
-    char _declspec(dllexport) *APIENTRY addScript(int serial, const char* scriptName, int executeCreation);
-    int _declspec(dllexport) APIENTRY hasScript(int serial, const char* scriptName);
-    int _declspec(dllexport) APIENTRY detachScript(int serial, const char* scriptName);
+    extern "C"
+    {
+        char _declspec(dllexport) *APIENTRY addScript(int serial, const char* scriptName, int executeCreation);
+        int _declspec(dllexport) APIENTRY hasScript(int serial, const char* scriptName);
+        int _declspec(dllexport) APIENTRY detachScript(int serial, const char* scriptName);
+    }
 }
 
 // ObjVars.cpp
-extern "C"
+namespace UnsafeNativeMethods
 {
-  int _declspec(dllexport) APIENTRY setObjVarInt(int serial, const char *varName, int value);
-  int _declspec(dllexport) APIENTRY setObjVarString(int serial, const char *varName, const char* value);
-  int _declspec(dllexport) APIENTRY setObjVarLocation(int serial, const char *varName, void* location);
-  void _declspec(dllexport) APIENTRY removeObjVar(int serial, const char *varName);
-  int _declspec(dllexport) APIENTRY hasObjVarOfType(int serial, const char *varName, int varType);
-  int _declspec(dllexport) APIENTRY getObjVarInt(int serial, const char *varName);
-  char _declspec(dllexport) *APIENTRY getObjVarString(int serial, const char *varName);
-  int _declspec(dllexport) APIENTRY getObjVarLocation(int serial, const char *varName, void* locationResult);
+    extern "C"
+    {
+      int _declspec(dllexport) APIENTRY setObjVarInt(int serial, const char *varName, int value);
+      int _declspec(dllexport) APIENTRY setObjVarString(int serial, const char *varName, const char* value);
+      int _declspec(dllexport) APIENTRY setObjVarLocation(int serial, const char *varName, void* location);
+      void _declspec(dllexport) APIENTRY removeObjVar(int serial, const char *varName);
+      int _declspec(dllexport) APIENTRY hasObjVarOfType(int serial, const char *varName, int varType);
+      int _declspec(dllexport) APIENTRY getObjVarInt(int serial, const char *varName);
+      char _declspec(dllexport) *APIENTRY getObjVarString(int serial, const char *varName);
+      int _declspec(dllexport) APIENTRY getObjVarLocation(int serial, const char *varName, void* locationResult);
+    }
 }
 
 // Player.cpp

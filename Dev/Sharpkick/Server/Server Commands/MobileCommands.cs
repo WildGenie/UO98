@@ -10,9 +10,9 @@ namespace Sharpkick
         unsafe public static bool IsGameMaster(PlayerObject* Target) { return Core.IsGameMaster(Target) != 0; }
         unsafe public static void OpenBank(int serialofplayer, PlayerObject* ShowTo)
         {
-            ItemObject* player = Server.Core.ConvertSerialToObject(serialofplayer);
+            class_Player* player = Server.Core.ConvertSerialToPlayer(serialofplayer);
             if (player != null)
-                Core.OpenBank((PlayerObject*)player, ShowTo);
+                Core.OpenBank(player, ShowTo);
         }
 
         /// <summary>
@@ -30,8 +30,8 @@ namespace Sharpkick
         /// </summary>
         unsafe public static void SendSystemMessage(int serialofplayer, string message)
         {
-            ItemObject* player = Server.Core.ConvertSerialToObject(serialofplayer);
-            if (player != null)
+            class_Player* player = Server.Core.ConvertSerialToPlayer(serialofplayer);
+            if (player != null && Core.IsPlayer(player))
                 SendSystemMessage((PlayerObject*)player, message);
         }
 

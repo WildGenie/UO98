@@ -29,13 +29,7 @@ namespace Sharpkick
         void MakeGameMaster(PlayerObject* Target);
         void UnmakeGameMaster(PlayerObject* Target);
         int IsGameMaster(PlayerObject* Target);
-        void OpenBank(PlayerObject* Target, PlayerObject* ShowTo);
-        ItemObject* ConvertSerialToObject(int serial);
-
-        bool IsItem(void* @object);
-        bool IsNPC(void* @object);
-        bool IsMobile(void* @object);
-        bool IsPlayer(void* @object);
+        void OpenBank(class_Player* Target, PlayerObject* ShowTo);
 
         ITimeManager TimeManager { get; }
         IServerConfiguration ServerConfiguration { get; }

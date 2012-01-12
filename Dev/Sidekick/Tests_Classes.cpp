@@ -55,7 +55,7 @@ bool TestObjectSize(const char* name, int expected, int actual)
   if(!passed)
   {
     char  buffer[200];
-    sprintf(buffer,"Classes: %s size expected: %d actual: %d", name,expected,actual);
+    sprintf_s(buffer,"Classes: %s size expected: %d actual: %d", name,expected,actual);
     OnTestResult(false, buffer);
   }
   return passed;

@@ -73,6 +73,47 @@ namespace UODemo
         UnsafeNativeMethods::SendInfoWindowToGodClient(gmserial, playerserial);
     }
 
+    DynamicItem^ Core::ConvertSerialToItem(Serial serial)
+    {
+        return (ItemObject*)UnsafeNativeMethods::ConvertSerialToObject(serial);
+    }
+
+    Mobile^ Core::ConvertSerialToMobile(Serial serial)
+    {
+        MobileObject* mobile = (MobileObject*)UnsafeNativeMethods::ConvertSerialToObject(serial);
+        if(mobile==NULL || !IsMobile(mobile))
+            return nullptr;
+        return mobile;
+    }
+
+    PlayerObject* Core::ConvertSerialToPlayer(Serial serial)
+    {
+        PlayerObject* player = (PlayerObject*)UnsafeNativeMethods::ConvertSerialToObject(serial);
+        if(player==NULL || !IsPlayer(player))
+            return NULL;
+        return player;
+    }
+
+    bool Core::IsItem(void* object)
+    {
+        return IsItemObject(object);
+    }
+
+    bool Core::IsNPC(void* object)
+    {
+        return IsAnyNPC(object);
+    }
+
+    bool Core::IsMobile(void* object)
+    {
+        return IsAnyMobile(object);
+    }
+
+    bool Core::IsPlayer(void* object)
+    {
+        return IsPlayerObject(object);
+    }        
+
     Location Core::getLocation(Serial itemSerial)
     {
         class_Location Loc;

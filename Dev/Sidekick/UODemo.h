@@ -21,7 +21,6 @@ public delegate void OnAfterSaveEventHandler();
 /// <param name="IsPacketDynamicSized">True if this is a dynamic length packet</param>
 public delegate void OnPacketReceivedEventHandler(unsigned __int8* pSocket, unsigned char PacketID, unsigned int PacketSize, int IsPacketDynamicSized);
 
-
 /// <summary>
 /// Called when the server receives a packet that it cannot handle.
 /// </summary>
@@ -54,9 +53,19 @@ public interface class IUOServer
 
     void SaveWorld();
     void Shutdown();
+
     void MakeCounselor(void *PlayerObjectTarget, int CounType);
     void UnmakeCounselor(void *PlayerObjectTarget);
     void OpenInfoWindow(Serial gmserial, Serial playerserial);
+
+    DynamicItem^ ConvertSerialToItem(Serial serial);
+    Mobile^ ConvertSerialToMobile(Serial serial);
+    PlayerObject* ConvertSerialToPlayer(Serial serial);
+    bool IsItem(void* object);
+    bool IsNPC(void* object);
+    bool IsMobile(void* object);
+    bool IsPlayer(void* object);
+
     Location getLocation(Serial itemSerial);
     int setHue(Serial itemSerial, short hue);
     int getQuantity(Serial serial);
@@ -103,6 +112,15 @@ namespace UODemo
         virtual void MakeCounselor(void *PlayerObjectTarget, int CounType);
         virtual void UnmakeCounselor(void *PlayerObjectTarget);
         virtual void OpenInfoWindow(Serial gmserial, Serial playerserial);
+
+        virtual DynamicItem^ ConvertSerialToItem(Serial serial);
+        virtual Mobile^ ConvertSerialToMobile(Serial serial);
+        virtual PlayerObject* ConvertSerialToPlayer(Serial serial);
+        virtual bool IsItem(void* object);
+        virtual bool IsNPC(void* object);
+        virtual bool IsMobile(void* object);
+        virtual bool IsPlayer(void* object);
+
         virtual Location getLocation(Serial itemSerial);
         virtual int setHue(Serial itemSerial, short hue);
         virtual int getQuantity(Serial serial);

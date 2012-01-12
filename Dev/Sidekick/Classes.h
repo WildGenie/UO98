@@ -5,9 +5,9 @@
 
 // It is critical for compatibility that structures be packed on 1 byte boundaries. Use compiler option: Struct member Alignment = 1 Byte (/Zp1)
 
-extern "C"
+namespace UnsafeNativeMethods
 {
-  _declspec(dllexport) void* APIENTRY ConvertSerialToObject(unsigned int serial);
+  void* ConvertSerialToObject(unsigned int serial);
 }
 
 // VTables
@@ -257,7 +257,7 @@ extern int __stdcall IsEqualXYZ(LocationObject *A, LocationObject *B);
 void initLocation(LocationObject* location);
 void Location_ToString(char* buffer, LocationObject* location);
 
-struct class_Entity
+public struct class_Entity
 {
   vtable_ItemClass *vtable;
   unsigned __int16 ObjectType;
@@ -267,7 +267,7 @@ struct class_Entity
   class_Location Location;
 };
 
-struct class_ResourceEntity : class_Entity
+public struct class_ResourceEntity : class_Entity
 {
   //class_Entity Entity;
   class_Location CreationLocation;
@@ -276,7 +276,7 @@ struct class_ResourceEntity : class_Entity
 };
 
 // ItemObject size=0x50
-typedef struct class_DynamicItem : class_ResourceEntity
+typedef public struct class_DynamicItem : class_ResourceEntity
 {
   //class_ResourceEntity Resource;
   unsigned __int32 CallbackList;
@@ -296,7 +296,7 @@ typedef struct class_DynamicItem : class_ResourceEntity
 } ItemObject;
 
 // ContainerObject size=0x5C
-typedef struct class_Container : class_DynamicItem
+typedef public struct class_Container : class_DynamicItem
 {
   //class_DynamicItem Item;
   unsigned __int32 field_50;
@@ -314,7 +314,7 @@ typedef struct class_Dice
 } DiceObject;
 
 // MobileObject size=0x37C
-typedef struct class_Mobile : class_Container
+typedef public struct class_Mobile : class_Container
 {
   //class_Container Container;
   unsigned __int32 NextMobile;

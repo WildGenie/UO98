@@ -2,9 +2,9 @@
 
 #include "stdafx.h"
 
-extern "C"
+namespace UnsafeNativeMethods
 {
-  _declspec(dllexport) void* APIENTRY ConvertSerialToObject(unsigned int serial)
+  void* ConvertSerialToObject(unsigned int serial)
   {
     int _EAX;
     __asm

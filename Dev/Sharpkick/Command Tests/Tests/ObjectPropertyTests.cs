@@ -60,7 +60,7 @@ namespace Sharpkick.Tests
 
             serial = CreateTestItemThenFind(GetRandomItemAndLocation());
 
-            ItemObject item;
+            DynamicItem item;
             if (Assert(Server.TryFindObject(serial, out item), "Couldn't find item."))
             {
                 AssertSame(item.Hue, 0);
@@ -85,7 +85,7 @@ namespace Sharpkick.Tests
 
             serial = CreateTestItemThenFind(itemandlocation);
 
-            ItemObject item;
+            DynamicItem item;
             if (Assert(Server.TryFindObject(serial, out item), "Couldn't find item."))
                 AssertSame(itemandlocation.Location, Server.getLocation(serial));
 

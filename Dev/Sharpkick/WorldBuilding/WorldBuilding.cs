@@ -189,7 +189,7 @@ namespace Sharpkick.WorldBuilding
 
         static Location GetCreationLocationOfItem(int serial)
         {
-            ItemObject item;
+            DynamicItem item;
             if (Server.TryFindObject(serial, out item))
             {
                 return item.CreationLocation;
@@ -209,7 +209,7 @@ namespace Sharpkick.WorldBuilding
 
         public static bool isAtCreationLocation(int serial)
         {
-            ItemObject item;
+            DynamicItem item;
             if (serial != 0 && Server.TryFindObject(serial, out item))
                 return item.CreationLocation == item.Location;
             else
