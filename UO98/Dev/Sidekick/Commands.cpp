@@ -6,7 +6,6 @@
 
 namespace UnsafeNativeMethods
 {
-
     #define FUNC_WriteDynamic0 0x4C8A5C
     void SaveWorld()
     {
