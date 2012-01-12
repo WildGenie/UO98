@@ -2,6 +2,14 @@
 
 #include "Classes.h"
 
+// Packets.cpp
+namespace UnsafeNativeMethods
+{
+    int SocketObject_SendPacket(void* pClientSocket, unsigned __int8* PacketData, unsigned int DataSize);
+    void SocketObject_RemoveFirstPacket(void* pClientSocket, unsigned int PacketLength);
+    void ReplaceServerPacketData(unsigned __int8 **ppCurrentPacketBuffer, unsigned int *pCurrentPacketLen, unsigned __int8 *newPacketBytes, unsigned int newPacketLength);
+}
+
 // Commands.cpp
 namespace UnsafeNativeMethods
 {

@@ -52,8 +52,8 @@
     <Compile Include="Command Tests\Tests\ObjectPropertyTests.cs" />
     <Compile Include="Command Tests\Tests\ObjVarTests.cs" />
     <Compile Include="Command Tests\Tests\ScriptsTest.cs" />
-    <Compile Include="Packets\PacketInterop\IPackets.cs" />
-    <Compile Include="Packets\PacketInterop\LiveCorePackets.cs" />
+    <Compile Include="Server\LiveCore\LiveCore.cs" />
+    <Compile Include="Server\LiveCore\PacketEngine.cs" />
     <Compile Include="Server\Server Commands\GameMaster.cs" />
     <Compile Include="Server\Server Commands\ObjectPropertyCommands.cs" />
     <Compile Include="Server\Server Commands\ObjVarCommands.cs" />
@@ -64,7 +64,6 @@
     <Compile Include="Server\Server Commands\WorldCommands.cs" />
     <Compile Include="MyServerConfig.cs" />
     <Compile Include="Events.cs" />
-    <Compile Include="Server\Event Handlers\CoreEvents.cs" />
     <Compile Include="Server\LiveCore\ServerSpawnLimits.cs" />
     <Compile Include="Server\TileData.cs" />
     <Compile Include="Server\LiveCore\LiveCoreInterop.cs" />

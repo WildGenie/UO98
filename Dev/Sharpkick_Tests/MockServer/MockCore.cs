@@ -9,8 +9,8 @@ namespace Sharpkick_Tests
 {
     unsafe partial class MockCore : Sharpkick.ICore
     {
-        private Sharpkick.Network.IPackets _PacketEngine;
-        public Sharpkick.Network.IPackets PacketEngine { get { return _PacketEngine ?? (_PacketEngine = new MockPacketEngine()); } }
+        private IPackets _PacketEngine;
+        public IPackets PacketEngine { get { return _PacketEngine ?? (_PacketEngine = new MockPacketEngine()); } }
 
         MockWorld World = new MockWorld();
 

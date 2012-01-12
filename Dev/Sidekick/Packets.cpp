@@ -21,13 +21,13 @@ void PrependEmptyPacket(unsigned char PacketID, unsigned char *Data, unsigned in
 enum PACKETDEBUGLEVEL{ None, Error, Warning, Translation, All };
 enum PACKETDEBUGLEVEL packetDebugLevel=None; // This should be set to desired level in Configure()
 
-extern "C"
+namespace UnsafeNativeMethods
 {
     unsigned char localPacketBuffer[0xFFFF];
 
     // Packet functions
     #define FUNC_SocketObject_SendPacket 0x47F222
-    int _declspec(dllexport) APIENTRY SocketObject_SendPacket(void* pClientSocket, char* PacketData, unsigned int DataSize)
+    int SocketObject_SendPacket(void* pClientSocket, unsigned __int8* PacketData, unsigned int DataSize)
     {
         int _EAX;
         __asm
@@ -44,7 +44,7 @@ extern "C"
         return _EAX;
     }
 
-    void _declspec(dllexport) APIENTRY SocketObject_RemoveFirstPacket(void* pClientSocket, unsigned int PacketLength)
+    void SocketObject_RemoveFirstPacket(void* pClientSocket, unsigned int PacketLength)
     {
         unsigned int      *pTotalDataSize = (unsigned int *) ((char *) pClientSocket + 0x1002C);
         unsigned char     *Data           = (unsigned char *) pClientSocket + 0x28;
@@ -61,7 +61,7 @@ extern "C"
         }
     }
 
-    void _declspec(dllexport) APIENTRY ReplaceServerPacketData(unsigned char **ppCurrentPacketBuffer, unsigned int *pCurrentPacketLen, unsigned char *newPacketBytes, unsigned int newPacketLength)
+    void ReplaceServerPacketData(unsigned __int8 **ppCurrentPacketBuffer, unsigned int *pCurrentPacketLen, unsigned __int8 *newPacketBytes, unsigned int newPacketLength)
     {
         unsigned int currentPacketLength=*pCurrentPacketLen;
 
@@ -77,8 +77,6 @@ extern "C"
         *pCurrentPacketLen=newPacketLength;
         *ppCurrentPacketBuffer=bufferToUse;
     }
-
-
 }
 
 
@@ -216,7 +214,7 @@ void HandleOutsideRangePacket(void *Socket)
   unsigned int       SocketNumber   = * (unsigned int *) ((char *) Socket + 0x0C);
   unsigned char      PacketID       = *Data;
 
-  if(InvokeOnHandleOutsideRangePacket((unsigned char*)Socket))	// if defined, this is responsible for handling of this packet.
+  if(InvokeOnOutsideRangePacket((unsigned char*)Socket))	// if defined, this is responsible for handling of this packet.
     return;
   else if(PacketID == 0xB6)
   {
@@ -366,7 +364,7 @@ void * __cdecl PreviewAllPackets(unsigned char *Socket)
           // The seed is is usually the IpAddress, although this cannot be relied upon.
           if((*pTotalDataSize==4) || (*pTotalDataSize > 5 && (*(Data+5)==0x80 || *(Data+5)==0x91)) )
           {
-              SocketObject_RemoveFirstPacket(Socket,4);
+              UnsafeNativeMethods::SocketObject_RemoveFirstPacket(Socket,4);
               puts("Removed seed.");
           
               FirstPacketID            = *Data;

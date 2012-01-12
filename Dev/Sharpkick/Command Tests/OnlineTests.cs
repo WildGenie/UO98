@@ -13,7 +13,7 @@ namespace Sharpkick.Tests
         /// <summary>
         /// Execute all tests against the running server
         /// </summary>
-        public void BeginOnlineTesting()
+        public static void BeginOnlineTesting()
         {
             (new AllTests()).ExecuteAll();
         }
