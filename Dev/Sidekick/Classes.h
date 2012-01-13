@@ -5,7 +5,7 @@
 
 // It is critical for compatibility that structures be packed on 1 byte boundaries. Use compiler option: Struct member Alignment = 1 Byte (/Zp1)
 
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
   void* ConvertSerialToObject(unsigned int serial);
 }

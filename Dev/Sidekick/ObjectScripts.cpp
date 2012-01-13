@@ -2,7 +2,7 @@
 
 #pragma unmanaged
 
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
     extern "C"
     {

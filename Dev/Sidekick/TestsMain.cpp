@@ -4,7 +4,7 @@
 #include "Commands.h"
 #include "TestsMain.h"
 
-using namespace UnsafeNativeMethods;
+using namespace NativeMethods;
 
 void DoShutdownServer();
 

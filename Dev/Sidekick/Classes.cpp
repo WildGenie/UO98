@@ -2,7 +2,7 @@
 
 #include "stdafx.h"
 
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
   void* ConvertSerialToObject(unsigned int serial)
   {

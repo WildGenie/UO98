@@ -244,7 +244,7 @@ typedef public value struct Location sealed {
 
 } _Location;
 
-typedef public value struct ClientVersionStruct sealed { def_struct_ClientVersion };
+public value struct ClientVersionStruct sealed { def_struct_ClientVersion };
 
 public ref class Entity abstract  
 {

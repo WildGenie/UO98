@@ -11,61 +11,67 @@
 using namespace std;
 #endif
 
-void Initialize();
-void Uninitialize();
-
-#pragma unmanaged
-
-static const WORD MAX_CONSOLE_LINES = 5000;
-
-void RedirectIOToConsole()
+namespace NativeMethods
 {
-    int hConHandle;
-    long lStdHandle;
-    CONSOLE_SCREEN_BUFFER_INFO coninfo;
-    FILE *fp;
-    // allocate a console for this app
-    AllocConsole();
-    SetConsoleTitle("UoDemo+ DLL by Batlin");
+    void Initialize();
+    void Uninitialize();
 
-    // set the screen buffer to be big enough to let us scroll text
-    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &coninfo);
-    coninfo.dwSize.Y = MAX_CONSOLE_LINES;
-    SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coninfo.dwSize);
+    #pragma unmanaged
 
-    // redirect unbuffered STDOUT to the console
-    lStdHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
-    hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-    fp = _fdopen( hConHandle, "w" );
-    *stdout = *fp;
-    setvbuf( stdout, NULL, _IONBF, 0 );
+    static const WORD MAX_CONSOLE_LINES = 5000;
 
-    // redirect unbuffered STDIN to the console
-    lStdHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
-    hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-    fp = _fdopen( hConHandle, "r" );
-    *stdin = *fp;
-    setvbuf( stdin, NULL, _IONBF, 0 );
+    void RedirectIOToConsole()
+    {
+        int hConHandle;
+        long lStdHandle;
+        CONSOLE_SCREEN_BUFFER_INFO coninfo;
+        FILE *fp;
+        // allocate a console for this app
+        AllocConsole();
+        SetConsoleTitle("UoDemo+ DLL by Batlin");
 
-    // redirect unbuffered STDERR to the console
-    lStdHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
-    hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
-    fp = _fdopen( hConHandle, "w" );
-    *stderr = *fp;
-    setvbuf( stderr, NULL, _IONBF, 0 );
+        // set the screen buffer to be big enough to let us scroll text
+        GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &coninfo);
+        coninfo.dwSize.Y = MAX_CONSOLE_LINES;
+        SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coninfo.dwSize);
 
-    // make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog 
-    // point to console as well
-    ios::sync_with_stdio();
+        // redirect unbuffered STDOUT to the console
+        lStdHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
+        hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+        fp = _fdopen( hConHandle, "w" );
+        *stdout = *fp;
+        setvbuf( stdout, NULL, _IONBF, 0 );
+
+        // redirect unbuffered STDIN to the console
+        lStdHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
+        hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+        fp = _fdopen( hConHandle, "r" );
+        *stdin = *fp;
+        setvbuf( stdin, NULL, _IONBF, 0 );
+
+        // redirect unbuffered STDERR to the console
+        lStdHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
+        hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+        fp = _fdopen( hConHandle, "w" );
+        *stderr = *fp;
+        setvbuf( stderr, NULL, _IONBF, 0 );
+
+        // make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog 
+        // point to console as well
+        ios::sync_with_stdio();
+    }
+
+    bool GetEnvToggle(const char* key)
+    {
+        char * pValue;
+        pValue = getenv(key);
+
+        return pValue!=NULL && *pValue!=0  && (_stricmp(pValue,"YES")==0 || _stricmp(pValue,"TRUE")==0);
+    }
+
 }
 
-bool GetEnvToggle(const char* key)
-{
-    char * pValue;
-    pValue = getenv(key);
-
-    return pValue!=NULL && *pValue!=0  && (_stricmp(pValue,"YES")==0 || _stricmp(pValue,"TRUE")==0);
-}
+using namespace NativeMethods;
 
 BOOL APIENTRY DllMain( HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
 {

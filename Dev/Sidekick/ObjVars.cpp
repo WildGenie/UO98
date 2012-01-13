@@ -12,7 +12,7 @@ FUNCPTR_SetWomVar FUNC_SetWomVar = (FUNCPTR_SetWomVar)pFUNC_SetWomVar;
 #define pFUNC_ItemObject_GetObjVarString 0x004CDD7C
 #define pFUNC_ItemObject_GetObjVarLocation 0x004CDD53
 
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
     extern "C"
     {

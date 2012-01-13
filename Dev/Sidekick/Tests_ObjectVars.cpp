@@ -3,7 +3,7 @@
 #include "TestsMain.h"
 #include "Commands.h"
 
-using namespace UnsafeNativeMethods;
+using namespace NativeMethods;
 
 const int ITEMID_cotton=3567;
 

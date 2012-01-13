@@ -50,37 +50,37 @@ namespace UODemo
 
     void Core::SaveWorld() 
     {
-        UnsafeNativeMethods::SaveWorld();      
+        NativeMethods::SaveWorld();      
     }
     
     void Core::Shutdown()  
     {
-        UnsafeNativeMethods::ShutdownServer(); 
+        NativeMethods::ShutdownServer(); 
     }
 
     void Core::MakeCounselor(void *PlayerObjectTarget, int CounType)
     {
-        UnsafeNativeMethods::MakeCounselor((PlayerObject*)PlayerObjectTarget, CounType);
+        NativeMethods::MakeCounselor((PlayerObject*)PlayerObjectTarget, CounType);
     }
 
     void Core::UnmakeCounselor(void *PlayerObjectTarget)
     {
-        UnsafeNativeMethods::UnmakeCounselor((PlayerObject*) PlayerObjectTarget);
+        NativeMethods::UnmakeCounselor((PlayerObject*) PlayerObjectTarget);
     }
 
     void Core::OpenInfoWindow(Serial gmserial, Serial playerserial)
     {
-        UnsafeNativeMethods::SendInfoWindowToGodClient(gmserial, playerserial);
+        NativeMethods::SendInfoWindowToGodClient(gmserial, playerserial);
     }
 
     ItemObject* Core::ConvertSerialToItem(Serial serial)
     {
-        return (ItemObject*)UnsafeNativeMethods::ConvertSerialToObject(serial);
+        return (ItemObject*)NativeMethods::ConvertSerialToObject(serial);
     }
 
     MobileObject* Core::ConvertSerialToMobile(Serial serial)
     {
-        MobileObject* mobile = (MobileObject*)UnsafeNativeMethods::ConvertSerialToObject(serial);
+        MobileObject* mobile = (MobileObject*)NativeMethods::ConvertSerialToObject(serial);
         if(mobile==NULL || !IsMobile(mobile))
             return NULL;
         return mobile;
@@ -88,7 +88,7 @@ namespace UODemo
 
     PlayerObject* Core::ConvertSerialToPlayer(Serial serial)
     {
-        PlayerObject* player = (PlayerObject*)UnsafeNativeMethods::ConvertSerialToObject(serial);
+        PlayerObject* player = (PlayerObject*)NativeMethods::ConvertSerialToObject(serial);
         if(player==NULL || !IsPlayer(player))
             return NULL;
         return player;
@@ -117,35 +117,35 @@ namespace UODemo
     Location Core::getLocation(Serial itemSerial)
     {
         class_Location Loc;
-        UnsafeNativeMethods::getLocation(&Loc, itemSerial);
+        NativeMethods::getLocation(&Loc, itemSerial);
         return Loc;
     }
 
     int Core::setHue(Serial itemSerial, short hue)
     {
-        return UnsafeNativeMethods::setHue(itemSerial, hue);
+        return NativeMethods::setHue(itemSerial, hue);
     }
 
     #define FUNC_ItemObject_GetQuantity 0x004854F2
     int Core::getQuantity(Serial serial)
     {
-        return UnsafeNativeMethods::getValueByFunctionFromObject(serial, (void*)FUNC_ItemObject_GetQuantity, "getQuantity");
+        return NativeMethods::getValueByFunctionFromObject(serial, (void*)FUNC_ItemObject_GetQuantity, "getQuantity");
     }
 
     #define FUNC_ItemObject_GetWeight 0x00489FAB
     int Core::getWeight(Serial serial)
     {
-        return UnsafeNativeMethods::getValueByFunctionFromObject(serial, (void*)FUNC_ItemObject_GetWeight, "getWeight");
+        return NativeMethods::getValueByFunctionFromObject(serial, (void*)FUNC_ItemObject_GetWeight, "getWeight");
     }
 
     int Core::setOverloadedWeight(Serial serial, int weight)
     {
-        return UnsafeNativeMethods::setOverloadedWeight(serial, weight);
+        return NativeMethods::setOverloadedWeight(serial, weight);
     }
 
     bool Core::deleteObject(Serial serial)
     {
-        return UnsafeNativeMethods::deleteObject(serial) != 0;
+        return NativeMethods::deleteObject(serial) != 0;
     }
 
     void Core::InitializeSharpkick()
@@ -214,17 +214,17 @@ namespace UODemo
 
     int Core_PacketEngine::SocketObject_SendPacket(void* pSocket, unsigned __int8* PacketData, unsigned int DataSize)
     {
-        return UnsafeNativeMethods::SocketObject_SendPacket(pSocket, PacketData, DataSize);
+        return NativeMethods::SocketObject_SendPacket(pSocket, PacketData, DataSize);
     }
 
     void Core_PacketEngine::SocketObject_RemoveFirstPacket(void* pSocket, unsigned int Length)
     {
-        UnsafeNativeMethods::SocketObject_RemoveFirstPacket(pSocket, Length);
+        NativeMethods::SocketObject_RemoveFirstPacket(pSocket, Length);
     }
 
     void Core_PacketEngine::ReplaceServerPacketData(unsigned __int8** pData, unsigned int* pDataLen, unsigned __int8* newData, unsigned int newDataLength)
     {
-        UnsafeNativeMethods::ReplaceServerPacketData(pData, pDataLen, newData, newDataLength);
+        NativeMethods::ReplaceServerPacketData(pData, pDataLen, newData, newDataLength);
     }
 
 }
