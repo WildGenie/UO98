@@ -1,7 +1,7 @@
 #pragma unmanaged
 
 #include <stdio.h>
-#include "CoreEvents.h"
+#include "NativeEvents.h"
 #include "Classes.h"
 
 namespace NativeMethods

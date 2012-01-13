@@ -7,7 +7,7 @@
 
 #include "stdafx.h"
 #include "patcher.h"
-#include "CoreEvents.h"
+#include "NativeEvents.h"
 
 namespace NativeMethods
 {

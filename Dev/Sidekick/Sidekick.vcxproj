@@ -95,8 +95,7 @@ cd $(SolutionDir)</Command>
   <ItemGroup>
     <ClInclude Include="Classes.h" />
     <ClInclude Include="Commands.h" />
-    <ClInclude Include="Core.h" />
-    <ClInclude Include="CoreEvents.h" />
+    <ClInclude Include="NativeEvents.h" />
     <ClInclude Include="Classes_Managed.h" />
     <ClInclude Include="patcher.h" />
     <ClInclude Include="patches.h" />
@@ -130,6 +129,7 @@ cd $(SolutionDir)</Command>
     <ClCompile Include="Misc.cpp" />
     <ClCompile Include="ObjectScripts.cpp" />
     <ClCompile Include="ObjVars.cpp" />
+    <ClCompile Include="PacketEngine.cpp" />
     <ClCompile Include="Packets.cpp" />
     <ClCompile Include="Patcher.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -146,7 +146,7 @@ cd $(SolutionDir)</Command>
     <ClCompile Include="Tests_ObjectVars.cpp" />
     <ClCompile Include="Tests_World.cpp" />
     <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="UODemo.cpp" />
+    <ClCompile Include="Core.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

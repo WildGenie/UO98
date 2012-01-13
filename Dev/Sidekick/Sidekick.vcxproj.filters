@@ -53,16 +53,10 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Classes.h">
       <Filter>Header Files\Native</Filter>
     </ClInclude>
     <ClInclude Include="Commands.h">
-      <Filter>Header Files\Native</Filter>
-    </ClInclude>
-    <ClInclude Include="CoreEvents.h">
       <Filter>Header Files\Native</Filter>
     </ClInclude>
     <ClInclude Include="patcher.h">
@@ -82,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="UODemo.h">
       <Filter>Header Files\Managed</Filter>
+    </ClInclude>
+    <ClInclude Include="NativeEvents.h">
+      <Filter>Header Files\Native</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -172,11 +169,14 @@
     <ClCompile Include="Initialize.cpp">
       <Filter>Source Files\DllMain</Filter>
     </ClCompile>
-    <ClCompile Include="UODemo.cpp">
-      <Filter>Source Files\Managed Classes</Filter>
-    </ClCompile>
     <ClCompile Include="CoreEvents.cpp">
       <Filter>Source Files\Native API</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketEngine.cpp">
+      <Filter>Source Files\Managed Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Core.cpp">
+      <Filter>Source Files\Managed Classes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

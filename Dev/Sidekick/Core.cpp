@@ -19,7 +19,7 @@ namespace UODemo
 
     IPackets^ Core::PacketEngine::get()
     {
-        return _PacketEngine==nullptr ? (_PacketEngine=gcnew Core_PacketEngine()) : _PacketEngine;
+        return m_PacketEngine==nullptr ? (m_PacketEngine=gcnew _PacketEngine()) : m_PacketEngine;
     }
 
     void Core::InvokeGlobalOnPulse()
@@ -163,68 +163,6 @@ namespace UODemo
         }
         else
             puts("UODemo.Core Initialize Fail: Could not load Assembly Sharpkick.");
-    }
-
-    Core_PacketEngine::Core_PacketEngine()
-    {
-        OnPacketReceivedHandler = gcnew OnPacketReceivedEventHandler(this, &Core_PacketEngine::InvokeOnPacketReceived);
-        GlobalOnPacketReceived += OnPacketReceivedHandler;
-
-        OnOutsideRangePacketHandler = gcnew OnOutsideRangePacketEventHandler(this, &Core_PacketEngine::InvokeOnOutsideRangePacket);
-        GlobalOnOutsideRangePacket += OnOutsideRangePacketHandler;
-
-        OnPacketSendingHandler = gcnew OnPacketSendingEventHandler(this, &Core_PacketEngine::InvokeOnPacketSending);
-        GlobalOnPacketSending += OnPacketSendingHandler;
-    }
-
-    Core_PacketEngine::~Core_PacketEngine()
-    {
-        GlobalOnPacketReceived -= OnPacketReceivedHandler;
-    }
-
-    void Core_PacketEngine::InvokeGlobalOnPacketReceived(unsigned char* pSocket, unsigned char PacketID, unsigned int PacketSize, int IsPacketDynamicSized)
-    {
-        GlobalOnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized);
-    }
-
-    void Core_PacketEngine::InvokeOnPacketReceived(unsigned char* pSocket, unsigned char PacketID, unsigned int PacketSize, int IsPacketDynamicSized)
-    {
-        OnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized);
-    }
-
-    bool Core_PacketEngine::InvokeGlobalOnOutsideRangePacket(unsigned char* pSocket)
-    {
-        return GlobalOnOutsideRangePacket(pSocket);
-    }
-
-    bool Core_PacketEngine::InvokeOnOutsideRangePacket(unsigned char* pSocket)
-    {
-        return OnOutsideRangePacket(pSocket);
-    }
-
-    void Core_PacketEngine::InvokeGlobalOnPacketSending(unsigned char *pSocket, unsigned char **ppData, unsigned int *pDataLen)
-    {
-        GlobalOnPacketSending(pSocket, ppData, pDataLen);
-    }
-
-    void Core_PacketEngine::InvokeOnPacketSending(unsigned char *pSocket, unsigned char **ppData, unsigned int *pDataLen)
-    {
-        OnPacketSending(pSocket, ppData, pDataLen);
-    }
-
-    int Core_PacketEngine::SocketObject_SendPacket(void* pSocket, unsigned __int8* PacketData, unsigned int DataSize)
-    {
-        return NativeMethods::SocketObject_SendPacket(pSocket, PacketData, DataSize);
-    }
-
-    void Core_PacketEngine::SocketObject_RemoveFirstPacket(void* pSocket, unsigned int Length)
-    {
-        NativeMethods::SocketObject_RemoveFirstPacket(pSocket, Length);
-    }
-
-    void Core_PacketEngine::ReplaceServerPacketData(unsigned __int8** pData, unsigned int* pDataLen, unsigned __int8* newData, unsigned int newDataLength)
-    {
-        NativeMethods::ReplaceServerPacketData(pData, pDataLen, newData, newDataLength);
     }
 
 }
