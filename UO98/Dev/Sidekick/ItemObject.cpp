@@ -4,7 +4,7 @@
 
 #include "Classes.h"
 
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
     #define pCOMMAND_getLocation 0x00413884
     typedef void (_cdecl *FUNCPTR_getLocation)(LocationObject*, int);

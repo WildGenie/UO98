@@ -3,7 +3,7 @@
 #include "Classes.h"
 
 // Packets.cpp
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
     int SocketObject_SendPacket(void* pClientSocket, unsigned __int8* PacketData, unsigned int DataSize);
     void SocketObject_RemoveFirstPacket(void* pClientSocket, unsigned int PacketLength);
@@ -11,7 +11,7 @@ namespace UnsafeNativeMethods
 }
 
 // Commands.cpp
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
     void SaveWorld(void);
     void ShutdownServer(void);
@@ -20,14 +20,14 @@ namespace UnsafeNativeMethods
 }
 
 // GameMaster.cpp
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
     void SendInfoWindowOrDoPlayerShadow(void* InfoStruct);
     void SendInfoWindowToGodClient(unsigned int beholderSerial, unsigned int beheldSerial);
 }
 
 // ItemObject.cpp
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
     void getLocation(LocationObject* outLocationObject, int itemSerial);
     int setHue(int serial, short hue);
@@ -38,7 +38,7 @@ namespace UnsafeNativeMethods
 
 // Lists.cpp
 
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
     void initList(ListObject* list);
     void List_DebugPrint(char* description, char* listname, ListObject* list);
@@ -57,7 +57,7 @@ namespace UnsafeNativeMethods
 }
 
 // ObjectScripts.cpp
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
     extern "C"
     {
@@ -68,7 +68,7 @@ namespace UnsafeNativeMethods
 }
 
 // ObjVars.cpp
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
     extern "C"
     {
@@ -84,25 +84,31 @@ namespace UnsafeNativeMethods
 }
 
 // Player.cpp
-extern "C"
+namespace NativeMethods
 {
-  void _declspec(dllexport) APIENTRY SendSystemMessage(PlayerObject *player, const char *message);
-  void _declspec(dllexport) APIENTRY MakeGameMaster(PlayerObject *player);
-  void _declspec(dllexport) APIENTRY UnmakeGameMaster(PlayerObject *player);
-  int _declspec(dllexport) APIENTRY IsGameMaster(PlayerObject *player);
+    extern "C"
+    {
+      void _declspec(dllexport) APIENTRY SendSystemMessage(PlayerObject *player, const char *message);
+      void _declspec(dllexport) APIENTRY MakeGameMaster(PlayerObject *player);
+      void _declspec(dllexport) APIENTRY UnmakeGameMaster(PlayerObject *player);
+      int _declspec(dllexport) APIENTRY IsGameMaster(PlayerObject *player);
+    }
 }
 
 // World.cpp
-extern "C"
+namespace NativeMethods
 {
-    int _declspec(dllexport) APIENTRY createGlobalObjectAt(int ItemID, void* Location);
-    int _declspec(dllexport) APIENTRY getFirstObjectOfType(void* location, int itemId);
-    int _declspec(dllexport) APIENTRY getNextObjectOfType(void* location, int itemId, int lastItemSerial);
-    int _declspec(dllexport) APIENTRY getNumAllObjectsInRangewithFlags(LocationObject* location, int range, unsigned int flags);
-    void _declspec(dllexport) APIENTRY getObjectsInRangeWithFlags(void* resultList, LocationObject* location, int range, unsigned int flags);
-    void _declspec(dllexport) APIENTRY getObjectsAt(void* resultList, LocationObject* location);
+    extern "C"
+    {
+        int _declspec(dllexport) APIENTRY createGlobalObjectAt(int ItemID, void* Location);
+        int _declspec(dllexport) APIENTRY getFirstObjectOfType(void* location, int itemId);
+        int _declspec(dllexport) APIENTRY getNextObjectOfType(void* location, int itemId, int lastItemSerial);
+        int _declspec(dllexport) APIENTRY getNumAllObjectsInRangewithFlags(LocationObject* location, int range, unsigned int flags);
+        void _declspec(dllexport) APIENTRY getObjectsInRangeWithFlags(void* resultList, LocationObject* location, int range, unsigned int flags);
+        void _declspec(dllexport) APIENTRY getObjectsAt(void* resultList, LocationObject* location);
 
-    int _declspec(dllexport) APIENTRY IsItem(void* object);
-    int _declspec(dllexport) APIENTRY IsMobile(void* object);
-    int _declspec(dllexport) APIENTRY IsPlayer(void* object);
+        int _declspec(dllexport) APIENTRY IsItem(void* object);
+        int _declspec(dllexport) APIENTRY IsMobile(void* object);
+        int _declspec(dllexport) APIENTRY IsPlayer(void* object);
+    }
 }

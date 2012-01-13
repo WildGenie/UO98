@@ -3,6 +3,8 @@
 #include "stdafx.h"
 #include "CoreEvents.h"
 
+using namespace NativeMethods;
+
 extern "C"
 {
   void _declspec(dllexport) APIENTRY Test_EventsInvoke_OnPulse()

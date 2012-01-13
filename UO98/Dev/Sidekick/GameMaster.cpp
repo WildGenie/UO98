@@ -2,7 +2,7 @@
 
 #pragma unmanaged
 
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
     #define pFUNC_SendInfoWindowOrDoPlayerShadow 0x0045EE75
     typedef void (_cdecl *FUNCPTR_SendInfoWindowOrDoPlayerShadow)(void* InfoStruct, int unused);

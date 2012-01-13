@@ -3,7 +3,7 @@
 #include "Commands.h"
 #include <stdio.h>
 
-namespace UnsafeNativeMethods
+namespace NativeMethods
 {
     void initList(ListObject* list)
     {

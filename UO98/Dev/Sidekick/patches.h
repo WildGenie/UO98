@@ -2,6 +2,7 @@
 
 #include "patcher.h"
 
+
 extern PATCHINFO PI_ResetSwingState_CallAdvanceSwingState;
 extern PATCHINFO PI_CombatHeartBeat_CallAdvanceSwingState;
 
