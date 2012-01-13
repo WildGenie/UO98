@@ -3,7 +3,7 @@
 #include <iostream>
 #include "stdafx.h"
 
-#include "CoreEvents.h"
+#include "NativeEvents.h"
 
 #pragma unmanaged
 

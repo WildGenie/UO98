@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "Classes.h"
 #include "patcher.h"
-#include "CoreEvents.h"
+#include "NativeEvents.h"
 
 #include <WinSock2.h>
 #pragma comment(lib, "ws2_32.lib")

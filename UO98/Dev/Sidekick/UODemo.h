@@ -81,7 +81,7 @@ namespace UODemo
         static bool Initialized=false;
 
         static Assembly^ aSharpkick;
-        IPackets^ _PacketEngine;
+        IPackets^ m_PacketEngine;
 
         void InvokeOnPulse();
         void InvokeOnAfterSave();
@@ -130,7 +130,7 @@ namespace UODemo
 
     };
 
-    public ref class Core_PacketEngine : public IPackets
+    typedef public ref class PacketEngine : public IPackets
     {
         OnPacketReceivedEventHandler^ OnPacketReceivedHandler;
         OnOutsideRangePacketEventHandler^ OnOutsideRangePacketHandler;
@@ -141,8 +141,8 @@ namespace UODemo
         void InvokeOnPacketSending(unsigned char *pSocket, unsigned char **ppData, unsigned int *pDataLen);
 
     public:
-        Core_PacketEngine();
-        ~Core_PacketEngine();
+        PacketEngine();
+        ~PacketEngine();
 
         static event OnPacketReceivedEventHandler^ GlobalOnPacketReceived;
         static event OnOutsideRangePacketEventHandler^ GlobalOnOutsideRangePacket;
@@ -159,6 +159,6 @@ namespace UODemo
         virtual int SocketObject_SendPacket(void* pSocket, unsigned __int8* PacketData, unsigned int DataSize);
         virtual void SocketObject_RemoveFirstPacket(void* pSocket, unsigned int Length);
         virtual void ReplaceServerPacketData(unsigned __int8** pData, unsigned int* pDataLen, unsigned __int8* newData, unsigned int newDataLength);
-    };
+    } _PacketEngine;
 }
 

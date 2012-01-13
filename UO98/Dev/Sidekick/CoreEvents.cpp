@@ -18,14 +18,14 @@ namespace NativeMethods
     }
     void InvokeOnPacketReceived(unsigned char* pSocket, unsigned char PacketID, unsigned int PacketSize, int IsPacketDynamicSized)
     {
-        UODemo::Core_PacketEngine::InvokeGlobalOnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized!=0);
+        UODemo::PacketEngine::InvokeGlobalOnPacketReceived(pSocket, PacketID, PacketSize, IsPacketDynamicSized!=0);
     }
     bool InvokeOnOutsideRangePacket(unsigned char* pSocket)
     {
-        return UODemo::Core_PacketEngine::InvokeGlobalOnOutsideRangePacket(pSocket);
+        return UODemo::PacketEngine::InvokeGlobalOnOutsideRangePacket(pSocket);
     }
     void InvokeOnPacketSending(unsigned char *pSocket, unsigned char **ppData, unsigned int *pDataLen)
     {
-        UODemo::Core_PacketEngine::InvokeGlobalOnPacketSending(pSocket, ppData, pDataLen);
+        UODemo::PacketEngine::InvokeGlobalOnPacketSending(pSocket, ppData, pDataLen);
     }
 }
