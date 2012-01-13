@@ -761,5 +761,36 @@ public:
   char CharacterRealName[30];
 } PlayerHelpInfoArgs;
 
+#define def_class_Location    __int16 X; \
+                              __int16 Y; \
+                              __int16 Z;
+
+#define def_struct_ClientVersion  unsigned __int8 Major;  \
+                                  unsigned __int8 Minor;  \
+                                  unsigned __int8 Build;  \
+                                  unsigned __int8 Revision;
+struct struct_ClientVersion { def_struct_ClientVersion };
+
+struct struct_ServerSocket
+{
+  unsigned __int32 PointerToFunctions;
+  struct_ServerSocket* NextServerSocket;
+  struct_ServerSocket* PreviousServerSocket;
+  unsigned __int32 SocketHandle;
+  unsigned __int32 field_10;
+  unsigned __int32 field_14;
+  unsigned __int32 field_18;
+  unsigned __int32 field_1C;
+  unsigned __int32 field_20;
+  unsigned __int32 SocketIdentifierString;
+  unsigned __int8  Data_or_IPport[65536];
+  unsigned __int32 AccountNumber__PATCH;
+  unsigned __int32 BytesRead;
+  unsigned __int32 IPaddress;
+  unsigned __int32 field_10034;
+  class_Player*    PlayerObject;
+  struct_ClientVersion ClientVersion;
+};
+
 
 
