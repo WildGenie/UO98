@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Classes.h"
 #include "StringPointerUtils.h"
 
@@ -17,7 +19,7 @@ public enum struct ALRReason : unsigned __int8
     BadPass = 0x03,
     /// <summary>Sends user back to the Main Menu</summary>
     Idle = 0xFE,
-    /// <summary>There is some problem communicating with Origin. Please restart ultima Online and try again.</summary>
+    /// <summary>There is some problem communicating with Origin. Please restart Ultima Online and try again.</summary>
     BadComm = 0xFF
 };
 
@@ -165,7 +167,6 @@ typedef public value struct LocationDelta sealed {
         Y = y;
         Z = z;
     }
-
 } LocationDelta;
 
 typedef public value struct Location sealed { 
@@ -243,7 +244,9 @@ typedef public value struct Location sealed {
 
 } _Location;
 
-public ref class Entity abstract
+typedef public value struct ClientVersionStruct sealed { def_struct_ClientVersion };
+
+public ref class Entity abstract  
 {
 protected:
     bool WeOwnThis;

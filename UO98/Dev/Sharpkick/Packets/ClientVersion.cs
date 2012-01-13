@@ -6,15 +6,6 @@ using System.Runtime.InteropServices;
 
 namespace Sharpkick.Network
 {
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    struct ClientVersionStruct
-    {
-        public byte Major;
-        public byte Minor;
-        public byte Build;
-        public byte Revision;
-    }
-
     class ClientVersion : IComparable<ClientVersion> , IEquatable<ClientVersion>
     {
         public static Dictionary<string, ClientVersion> m_Intern = new Dictionary<string, ClientVersion>();
@@ -26,8 +17,8 @@ namespace Sharpkick.Network
         public static ClientVersion v1_26_4b = Instantiate("1.26.4b");
         public static ClientVersion v1_26_4i = Instantiate("1.26.4i");
         public static ClientVersion v2_0_0 = Instantiate("2.0.0");
-        public static ClientVersion v3_0_8d = Instantiate("3.0.8d");     // Stat and skill caps are displayed in the interface so the player knows what their limits are. 
-        public static ClientVersion v4_0_07a = Instantiate("4.0.07a"); //  0x0B Edit Area -> 0x0B Damage: I don't think we need to do anything about this, just a note.
+        public static ClientVersion v3_0_8d = Instantiate("3.0.8d");   // Stat and skill caps are displayed in the interface so the player knows what their limits are. 
+        public static ClientVersion v4_0_07a = Instantiate("4.0.07a"); // 0x0B Edit Area -> 0x0B Damage: I don't think we need to do anything about this, just a note.
         public static ClientVersion v5_0_7_0 = Instantiate("5.0.7.0");
         public static ClientVersion v6_0_1_7 = Instantiate("6.0.1.7"); // Not planning to support this client and upwards yet. This added grid coords to 0x08 lift & 0x25 container content packets
 
@@ -181,7 +172,7 @@ namespace Sharpkick.Network
                                 if (char.IsLetter(parts[2][i]))  // extract the letter
                                 {
                                     ver.Revision = (byte)(ASCIIEncoding.ASCII.GetBytes(parts[2].Substring(i, 1))[0] - (byte)'a' + 1);
-                                    // Ignoring sub revistion which occurs in two client versions. Example: 2.0.0e1, 4.0.4b2
+                                    // Ignoring sub revision which occurs in two client versions. Example: 2.0.0e1, 4.0.4b2
                                 }
                             }
                         }
