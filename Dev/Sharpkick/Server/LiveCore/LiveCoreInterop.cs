@@ -10,7 +10,7 @@ namespace Sharpkick
     {
         unsafe private partial class LiveCore : UODemo.Core, ICore
         {
-            public void SendSystemMessage(PlayerObject* player, byte* message)
+            public void SendSystemMessage(class_Player* player, byte* message)
             { UnsafeNativeMethods.SendSystemMessage(player, message); }
 
             public int createGlobalObjectAt(int ItemID, Location* Location)
@@ -64,13 +64,13 @@ namespace Sharpkick
             public int IsGameMaster(PlayerObject* Target)
             { return UnsafeNativeMethods.IsGameMaster(Target); }
 
-            public void OpenBank(class_Player* Target, PlayerObject* ShowTo)
+            public void OpenBank(class_Player* Target, class_Player* ShowTo)
             { UnsafeNativeMethods.OpenBank(Target, ShowTo); }
 
             private class UnsafeNativeMethods
             {
                 [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
-                public static extern void SendSystemMessage(PlayerObject* player, byte* message);
+                public static extern void SendSystemMessage(class_Player* player, byte* message);
 
                 [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
                 public static extern int createGlobalObjectAt(int ItemID, Location* Location);
@@ -124,7 +124,7 @@ namespace Sharpkick
                 public static extern int IsGameMaster(PlayerObject* Target);
 
                 [DllImport("sidekick.dll", CallingConvention = CallingConvention.Winapi)]
-                public static extern void OpenBank(class_Player* Target, PlayerObject* ShowTo);
+                public static extern void OpenBank(class_Player* Target, class_Player* ShowTo);
             }
         }
     }

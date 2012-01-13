@@ -262,7 +262,7 @@ namespace Sharpkick.Network
                     if (Packet.IsGM)
                         unsafe
                         {
-                            Server.OpenBank((int)Serial, Packet.PlayerPtr);
+                            Server.OpenBank((int)Serial, (class_Player*)Packet.PlayerPtr);
                         }
                 }
                 else if (Mode == ReqMode.Edit && Packet.ReadUShort(8) == 0x0001 && subjectMobile.AccountNumber == Packet.AccountNumber) // BYTE[2] cmdType (0x0001 – Update)
@@ -534,7 +534,7 @@ namespace Sharpkick.Network
             ClientSocket socket = new ClientSocket(pSocket);
 
             // Check for god mode on each packet.
-            if (socket.Player != null && (socket.IsGod || socket.IsEditing) && !socket.VerifyGod)
+            if (socket.PlayerObject != null && (socket.IsGod || socket.IsEditing) && !socket.VerifyGod)
             {
                 socket.IsGod = false;
                 socket.IsEditing = false;
@@ -621,12 +621,12 @@ namespace Sharpkick.Network
         }
 
         public bool IsGM { get { return Socket.IsGm; } }
-        public PlayerObject* PlayerPtr { get { return Socket.Player; } }
-        public PlayerObject Player { get { return *Socket.Player; } }
+        public PlayerObject* PlayerPtr { get { return Socket.PlayerObject; } }
+        public PlayerObject Player { get { return *Socket.PlayerObject; } }
 
         public void SendSystemMessage(string message)
         {
-            Server.SendSystemMessage(Socket.Player, "Skill locks are not implemented.");
+            Server.SendSystemMessage((class_Player*)Socket.PlayerObject, "Skill locks are not implemented.");
         }
 
         /// <summary>

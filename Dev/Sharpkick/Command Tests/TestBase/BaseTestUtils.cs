@@ -75,8 +75,8 @@ namespace Sharpkick.Tests
 
             if(Assert(serial > 0, "Failed to create Object. {0}", itemandlocation))
             {
-                DynamicItem item;
-                if(Assert(Server.TryFindObject(serial, out item), "Created Item not found in world. serial:{0}", serial))
+                Item item;
+                if (Assert(Server.TryFindObject(serial, out item), "Created Item not found in world. serial:{0}", serial))
                 {
                     Assert(item.ObjectType == ItemID, "Created Item not of correct ObjectType. expected:({0}) actual:({1})", ItemID, item.ObjectType);
 

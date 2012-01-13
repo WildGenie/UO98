@@ -7,7 +7,7 @@ namespace Sharpkick
 {
     unsafe interface ICore : IUOServer
     {
-        void SendSystemMessage(PlayerObject* player, byte* message);
+        void SendSystemMessage(class_Player* player, byte* message);
         int createGlobalObjectAt(int ItemID, Location* Location);
 
         int setObjVarInt(int serial, byte* name, int value);
@@ -29,7 +29,7 @@ namespace Sharpkick
         void MakeGameMaster(PlayerObject* Target);
         void UnmakeGameMaster(PlayerObject* Target);
         int IsGameMaster(PlayerObject* Target);
-        void OpenBank(class_Player* Target, PlayerObject* ShowTo);
+        void OpenBank(class_Player* Target, class_Player* ShowTo);
 
         ITimeManager TimeManager { get; }
         IServerConfiguration ServerConfiguration { get; }

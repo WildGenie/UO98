@@ -73,16 +73,16 @@ namespace UODemo
         UnsafeNativeMethods::SendInfoWindowToGodClient(gmserial, playerserial);
     }
 
-    DynamicItem^ Core::ConvertSerialToItem(Serial serial)
+    ItemObject* Core::ConvertSerialToItem(Serial serial)
     {
         return (ItemObject*)UnsafeNativeMethods::ConvertSerialToObject(serial);
     }
 
-    Mobile^ Core::ConvertSerialToMobile(Serial serial)
+    MobileObject* Core::ConvertSerialToMobile(Serial serial)
     {
         MobileObject* mobile = (MobileObject*)UnsafeNativeMethods::ConvertSerialToObject(serial);
         if(mobile==NULL || !IsMobile(mobile))
-            return nullptr;
+            return NULL;
         return mobile;
     }
 

@@ -193,20 +193,20 @@ namespace Sharpkick.Network
                 acct.VerifyMobile(Serial);
                 unsafe
                 {
-                    if (Socket.Player != null)
+                    if (Socket.PlayerObject != null)
                     {
                         if (acct.HasAccess(AccessFlags.Admin))
                         {
-                            Server.MakeGameMaster(Socket.Player);
-                            PlayerObject.SetPlayerFlag(Socket.Player, PlayerFlag.IsEditing); 
+                            Server.MakeGameMaster(Socket.PlayerObject);
+                            Player.SetPlayerFlag((class_Player*)Socket.PlayerObject, PlayerFlags.IsEditing); 
                             ConsoleUtils.PushColor(ConsoleColor.Red);
                             Console.WriteLine("GM Login.");
                             ConsoleUtils.PopColor();
                         }
                         else
                         {
-                            Server.UnmakeGameMaster(Socket.Player);
-                            PlayerObject.ClearPlayerFlag(Socket.Player, PlayerFlag.IsEditing | PlayerFlag.IsGod | PlayerFlag.IsGM);
+                            Server.UnmakeGameMaster(Socket.PlayerObject);
+                            Player.ClearPlayerFlag((class_Player*)Socket.PlayerObject, PlayerFlags.IsEditing | PlayerFlags.IsGod | PlayerFlags.IsGM);
                         }
                     }
                 }
