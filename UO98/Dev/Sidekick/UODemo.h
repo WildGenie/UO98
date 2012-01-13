@@ -58,9 +58,9 @@ public interface class IUOServer
     void UnmakeCounselor(void *PlayerObjectTarget);
     void OpenInfoWindow(Serial gmserial, Serial playerserial);
 
-    DynamicItem^ ConvertSerialToItem(Serial serial);
-    Mobile^ ConvertSerialToMobile(Serial serial);
-    PlayerObject* ConvertSerialToPlayer(Serial serial);
+    class_DynamicItem* ConvertSerialToItem(Serial serial);
+    class_Mobile* ConvertSerialToMobile(Serial serial);
+    class_Player* ConvertSerialToPlayer(Serial serial);
     bool IsItem(void* object);
     bool IsNPC(void* object);
     bool IsMobile(void* object);
@@ -113,9 +113,9 @@ namespace UODemo
         virtual void UnmakeCounselor(void *PlayerObjectTarget);
         virtual void OpenInfoWindow(Serial gmserial, Serial playerserial);
 
-        virtual DynamicItem^ ConvertSerialToItem(Serial serial);
-        virtual Mobile^ ConvertSerialToMobile(Serial serial);
-        virtual PlayerObject* ConvertSerialToPlayer(Serial serial);
+        virtual class_DynamicItem* ConvertSerialToItem(Serial serial);
+        virtual class_Mobile* ConvertSerialToMobile(Serial serial);
+        virtual class_Player* ConvertSerialToPlayer(Serial serial);
         virtual bool IsItem(void* object);
         virtual bool IsNPC(void* object);
         virtual bool IsMobile(void* object);

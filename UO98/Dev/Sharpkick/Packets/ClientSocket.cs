@@ -107,25 +107,25 @@ namespace Sharpkick.Network
             }
         }
 
-        public PlayerObject* Player { get { return (*pSocket).PlayerObject; } }
+        public PlayerObject* PlayerObject { get { return (*pSocket).PlayerObject; } }
 
-        public PlayerFlag PlayerFlags { get { return PlayerObject.GetPlayerFlags(Player); } }
+        public PlayerFlags PlayerFlags { get { return Player.GetPlayerFlags((class_Player*)PlayerObject); } }
 
         public bool IsGod
         {
-            get { return PlayerObject.GetPlayerFlag(Player, PlayerFlag.IsGod); }
-            set { PlayerObject.SetPlayerFlag(Player, PlayerFlag.IsGod, value); }
+            get { return Player.GetPlayerFlag((class_Player*)PlayerObject, PlayerFlags.IsGod); }
+            set { Player.SetPlayerFlag((class_Player*)PlayerObject, PlayerFlags.IsGod, value); }
         }
 
         public bool IsEditing
         {
-            get { return PlayerObject.GetPlayerFlag(Player, PlayerFlag.IsEditing); }
-            set { PlayerObject.SetPlayerFlag(Player, PlayerFlag.IsEditing, value); }
+            get { return Player.GetPlayerFlag((class_Player*)PlayerObject, PlayerFlags.IsEditing); }
+            set { Player.SetPlayerFlag((class_Player*)PlayerObject, PlayerFlags.IsEditing, value); }
         }
 
         public bool IsGm
         {
-            get { return PlayerObject.GetPlayerFlag(Player, PlayerFlag.IsGM); }
+            get { return Player.GetPlayerFlag((class_Player*)PlayerObject, PlayerFlags.IsGM); }
         }
 
         public bool IsInternal { get { return SocketHandle == 0xBEEF; } }

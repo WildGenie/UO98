@@ -84,7 +84,7 @@ namespace Sharpkick.Tests
         {
             StateBegin("TryFindObjectZero");
 
-            DynamicItem item;
+            Item item;
             Assert(!Server.TryFindObject(0, out item), "Should not have found object with serial zero.");
 
             return StateResultFinal();

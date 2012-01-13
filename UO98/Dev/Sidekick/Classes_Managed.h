@@ -72,7 +72,8 @@ public enum struct TileFlag : unsigned __int32
     StairRight		= 0x80000000
 };
 
-[Flags]
+
+[Flags] 
 public enum struct MobileFlags : unsigned __int8
 {
     None = 0x00,
@@ -85,9 +86,10 @@ public enum struct MobileFlags : unsigned __int8
     WarMode = 0x40,
     Hidden = 0x80
 };
+typedef MobileFlags _MobileFlags;
 
-[Flags]
-public enum struct PlayerFlag : unsigned __int32
+[Flags] 
+public enum struct PlayerFlags : unsigned __int32
 {
     LastMoveRej     = 0x00000001,  // ??
     IsGod           = 0x00000002,
@@ -108,6 +110,7 @@ public enum struct PlayerFlag : unsigned __int32
     BankDefs        = 0x00010000,
     IsGoldAccount   = 0x00020000
 };
+typedef PlayerFlags _PlayerFlags;
 
 
 public enum struct BookWriteableFlag : unsigned __int8
@@ -240,7 +243,7 @@ typedef public value struct Location sealed {
 
 } _Location;
 
-public ref class Entity 
+public ref class Entity abstract
 {
 protected:
     bool WeOwnThis;
@@ -266,7 +269,7 @@ public:
         WeOwnThis=false;
     }
 
-    ~Entity() 
+    !Entity() 
     {
         if(WeOwnThis)
         {
@@ -280,7 +283,7 @@ public:
     property _Location          Location      { _Location        get()  { return _entity->Location; } }
 };
 
-public ref class ResourceEntity : Entity 
+public ref class ResourceEntity abstract : Entity 
 { 
 protected:
     ResourceEntity(class_Entity* base, bool shouldDelete) : Entity(base,shouldDelete){}
@@ -293,38 +296,48 @@ public:
     property unsigned __int32   Resources           { unsigned __int32 get()  { return ((class_ResourceEntity*)_entity)->Resources; } }
 };
 
-public ref class DynamicItem : ResourceEntity 
+public ref class Item : ResourceEntity 
 { 
 protected:
-    DynamicItem(class_DynamicItem* base, bool shouldDelete) : ResourceEntity(base,shouldDelete){}
+    Item(class_DynamicItem* base, bool shouldDelete) : ResourceEntity(base,shouldDelete){}
 public:
-    DynamicItem() : ResourceEntity(new class_DynamicItem(), true){}
-    DynamicItem(class_DynamicItem* base) : ResourceEntity(base){}
+    Item() : ResourceEntity(new class_DynamicItem(), true){}
+    Item(class_DynamicItem* base) : ResourceEntity(base){}
 
     property unsigned __int32   Serial              { unsigned __int32 get()  { return ((class_DynamicItem*)_entity)->MyOwnSerial; } }
 
-    static operator DynamicItem^(class_DynamicItem* pItem)
+    static operator Item^(class_DynamicItem* pItem)
     {
       if(pItem==NULL)return nullptr;
-      return gcnew DynamicItem(pItem);
+      return gcnew Item(pItem);
     }
 
-    static operator class_DynamicItem*(DynamicItem item)
+    static operator class_DynamicItem*(Item item)
     {
       return (class_DynamicItem*)(item._entity);
     }
 };
 
-public ref class Container : DynamicItem 
+public ref class Container : Item 
 { 
 protected:
-    Container(class_Container* base, bool shouldDelete) : DynamicItem(base,shouldDelete){}
+    Container(class_Container* base, bool shouldDelete) : Item(base,shouldDelete){}
 public:
-    Container() : DynamicItem(new class_Container(), true){}
-    Container(class_Container* base) : DynamicItem(base){}
+    Container() : Item(new class_Container(), true){}
+    Container(class_Container* base) : Item(base){}
 
     property unsigned __int16   TotalWeight        { unsigned __int16 get()  { return ((class_Container*)_entity)->WeightInStones; } }
 
+    static operator Container^(class_Container* pItem)
+    {
+      if(pItem==NULL)return nullptr;
+      return gcnew Container(pItem);
+    }
+
+    static operator class_DynamicItem*(Container item)
+    {
+      return (class_Container*)(item._entity);
+    }
 };
 
 public ref class Mobile : Container 
@@ -352,7 +365,7 @@ public:
     property unsigned __int16   Karma       { unsigned __int16 get()  { return ((class_Mobile*)_entity)->Karma; } }
     property unsigned __int16   Satiety     { unsigned __int16 get()  { return ((class_Mobile*)_entity)->Satiety; } }
     
-    property MobileFlags        Flags       { MobileFlags      get()  { return (MobileFlags)((class_Mobile*)_entity)->MobFlag; } }
+    property _MobileFlags       MobileFlags { _MobileFlags     get()  { return (_MobileFlags)((class_Mobile*)_entity)->MobFlag; } }
 
     property String^ RealName
     { 
@@ -374,3 +387,66 @@ public:
     }
 
 };
+
+public ref class Player sealed : Mobile 
+{ 
+//protected:
+//    Player(class_Player* base, bool shouldDelete) : Mobile(base,shouldDelete){}
+public:
+    Player() : Mobile(new class_Player(), true){}
+    Player(class_Player* base) : Mobile(base){}
+
+    property unsigned __int32   AccountNumber   { unsigned __int32 get()  { return ((class_Player*)_entity)->account_number; } }
+    property unsigned __int32   CharacterNumber { unsigned __int32 get()  { return ((class_Player*)_entity)->character_number; } }
+    property _PlayerFlags       PlayerFlags     { _PlayerFlags     get()  { return (_PlayerFlags)((class_Player*)_entity)->pflags; } }
+
+    static _PlayerFlags GetPlayerFlags(PlayerObject* player)
+    {
+        if (player == nullptr) return (_PlayerFlags)0;
+        return (_PlayerFlags)((*player).pflags);
+    }
+
+    static bool GetPlayerFlag(PlayerObject* player, _PlayerFlags toGet)
+    {
+        if (player == nullptr) return false;
+        return ((*player).pflags & (unsigned __int32)toGet) == (unsigned __int32)toGet;
+    }
+
+    static void SetPlayerFlag(PlayerObject* player, _PlayerFlags toSet)
+    {
+      SetPlayerFlag(player, toSet, true);
+    }
+
+    static void SetPlayerFlag(PlayerObject* player, _PlayerFlags toSet, bool Value)
+    {
+      if (player != nullptr)
+      {
+          if (Value) (*player).pflags |= (unsigned __int32)toSet;
+          else (*player).pflags &= ~(unsigned __int32)toSet;
+      }
+    }
+
+    static void ClearPlayerFlag(PlayerObject* player, _PlayerFlags toClear)
+    {
+        SetPlayerFlag(player, toClear, false);
+    }
+
+    bool GetPlayerFlag(_PlayerFlags toGet)
+    {
+      return GetPlayerFlag((PlayerObject*)_entity, toGet);
+    }
+
+    static operator Player^(class_Player* pItem)
+    {
+      if(pItem==NULL)return nullptr;
+      return gcnew Player(pItem);
+    }
+
+    static operator class_Player*(Player item)
+    {
+      return (class_Player*)(item._entity);
+    }
+
+
+};
+

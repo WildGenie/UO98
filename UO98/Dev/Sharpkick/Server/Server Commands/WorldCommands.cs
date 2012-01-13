@@ -30,9 +30,20 @@ namespace Sharpkick
             return Core.getNextObjectOfType(&location, itemId, lastItemSerial);
         }
 
-        unsafe public static bool TryFindObject(int serial, out DynamicItem item)
+        unsafe public static bool TryFindObject(int serial, out Item item)
         {
-            DynamicItem ditem = Server.Core.ConvertSerialToItem(serial);
+            class_DynamicItem* pItem;
+            bool toReturn = TryFindObject(serial, out pItem);
+            if (toReturn)
+                item = pItem;
+            else
+                item = null;
+            return toReturn;
+        }
+
+        unsafe public static bool TryFindObject(int serial, out class_DynamicItem* item)
+        {
+            class_DynamicItem* ditem = Server.Core.ConvertSerialToItem(serial);
             if (ditem == null)
             {
                 item = null;
@@ -45,17 +56,28 @@ namespace Sharpkick
             }
         }
 
-        unsafe public static bool TryFindObject(int serial, out PlayerObject player)
+        unsafe public static bool TryFindObject(int serial, out Player player)
+        {
+            class_Player* pItem;
+            bool toReturn = TryFindObject(serial, out pItem);
+            if (toReturn)
+                player = pItem;
+            else
+                player = null;
+            return toReturn;
+        }
+
+        unsafe public static bool TryFindObject(int serial, out class_Player* player)
         {
             class_Player* playerPtr = Server.Core.ConvertSerialToPlayer(serial);
             if(playerPtr == null)
             {
-                player = new PlayerObject();
+                player = null;
                 return false;
             }
             else
             {
-                player = *(PlayerObject*)playerPtr;
+                player = playerPtr;
                 return true;
             }
         }
