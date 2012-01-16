@@ -83,7 +83,6 @@
     <Compile Include="ObjectStructures\ItemObject.cs" />
     <Compile Include="ObjectStructures\MobileObject.cs" />
     <Compile Include="ObjectStructures\PlayerObject.cs" />
-    <Compile Include="Packets\ClientSocket.cs" />
     <Compile Include="Packets\ClientPackets.cs" />
     <Compile Include="Packets\ClientVersion.cs" />
     <Compile Include="Packets\GodPackets\GodPackets.cs" />

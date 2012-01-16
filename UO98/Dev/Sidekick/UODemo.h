@@ -27,13 +27,20 @@ public delegate void OnPacketReceivedEventHandler(unsigned __int8* pSocket, unsi
 /// <param name="pSocket">The servers socket which received the packet.</param>
 public delegate bool OnOutsideRangePacketEventHandler(unsigned __int8* pSocket);
 
-
 /// <summary>
 /// Called when the server initiates a send to the client.
 /// </summary>
 public delegate void OnPacketSendingEventHandler(unsigned __int8* pSocket, unsigned char **ppData, unsigned int *pDataLen);
 
-public interface class IPackets
+public value struct GetAccountAccessArgs
+{
+    unsigned __int32        AccountNumber;
+    bool                    Handled;
+    _AccountAccessFlags     AccessFlags;
+};
+public delegate void OnGetAccessEventHandler(GetAccountAccessArgs% args);
+
+public interface class IPacketEngine
 {
     event OnPacketReceivedEventHandler^ OnPacketReceived;
     event OnOutsideRangePacketEventHandler^ OnOutsideRangePacket;
@@ -46,10 +53,13 @@ public interface class IPackets
 
 public interface class IUOServer
 {
-    property IPackets^ PacketEngine { IPackets^ get(); }
+    property IPacketEngine^ PacketEngine { IPacketEngine^ get(); }
 
     event OnPulseEventHandler^ OnPulse;
     event OnAfterSaveEventHandler^ OnAfterSave;
+
+    event OnGetAccessEventHandler^ OnGetAccess;
+    void InvokeOnGetAccess(GetAccountAccessArgs% args);
 
     void SaveWorld();
     void Shutdown();
@@ -81,7 +91,7 @@ namespace UODemo
         static bool Initialized=false;
 
         static Assembly^ aSharpkick;
-        IPackets^ m_PacketEngine;
+        IPacketEngine^ m_PacketEngine;
 
         void InvokeOnPulse();
         void InvokeOnAfterSave();
@@ -90,7 +100,7 @@ namespace UODemo
         Core();
         ~Core();
 
-        virtual property IPackets^ PacketEngine { IPackets^ get(); }
+        virtual property IPacketEngine^ PacketEngine { IPacketEngine^ get(); }
 
         OnPulseEventHandler^ PulseHandler;
         OnAfterSaveEventHandler^ OnAfterSaveHandler;
@@ -104,8 +114,10 @@ namespace UODemo
         static void Core::InitializeSharpkick();
 
         virtual event OnPulseEventHandler^ OnPulse;
-
         virtual event OnAfterSaveEventHandler^ OnAfterSave;
+        virtual event OnGetAccessEventHandler^ OnGetAccess;
+
+        virtual void InvokeOnGetAccess(GetAccountAccessArgs% args);
 
         virtual void SaveWorld();
         virtual void Shutdown();
@@ -130,7 +142,7 @@ namespace UODemo
 
     };
 
-    typedef public ref class PacketEngine : public IPackets
+    typedef public ref class PacketEngine : public IPacketEngine
     {
         OnPacketReceivedEventHandler^ OnPacketReceivedHandler;
         OnOutsideRangePacketEventHandler^ OnOutsideRangePacketHandler;

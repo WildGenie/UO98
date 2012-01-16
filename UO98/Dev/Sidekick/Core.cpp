@@ -1,6 +1,7 @@
 #include "UODemo.h"
 #include "Commands.h"
 #include <stdio.h>
+#include "Socket.h"
 
 namespace UODemo
 {
@@ -17,7 +18,7 @@ namespace UODemo
         GlobalOnPulse -= PulseHandler;
     }
 
-    IPackets^ Core::PacketEngine::get()
+    IPacketEngine^ Core::PacketEngine::get()
     {
         return m_PacketEngine==nullptr ? (m_PacketEngine=gcnew _PacketEngine()) : m_PacketEngine;
     }
@@ -48,7 +49,12 @@ namespace UODemo
         OnAfterSave();
     }
 
-    void Core::SaveWorld() 
+     void Core::InvokeOnGetAccess(GetAccountAccessArgs% args)
+    {
+        OnGetAccess(args);
+    }
+
+   void Core::SaveWorld() 
     {
         NativeMethods::SaveWorld();      
     }

@@ -46,9 +46,9 @@ namespace Sharpkick
         public DateTime Created { get; private set; }
 
         /// <summary>This accounts access level, determines access to God Client and other features</summary>
-        public AccessFlags Access { get; set; }
+        public AccountAccessFlags Access { get; set; }
 
-        public bool HasAccess(AccessFlags flag) { return (Access & flag) == flag; } 
+        public bool HasAccess(AccountAccessFlags flag) { return (Access & flag) == flag; } 
 
         /// <summary>
         /// Check password, and set LastLogin
@@ -132,8 +132,8 @@ namespace Sharpkick
             PassHash = Persistance.Xml.GetText(ele["password"], string.Empty);
             Created = Persistance.Xml.GetXMLDateTime(Persistance.Xml.GetText(ele["created"], null), DateTime.UtcNow);
 
-            AccessFlags accessflags;
-            if (Enum.TryParse<AccessFlags>(Persistance.Xml.GetText(ele["accessflags"], "0"), out accessflags))
+            AccountAccessFlags accessflags;
+            if (Enum.TryParse<AccountAccessFlags>(Persistance.Xml.GetText(ele["accessflags"], "0"), out accessflags))
                 Access = accessflags;
             else
                 Access = 0;
@@ -280,7 +280,7 @@ namespace Sharpkick
             return null;
         }
 
-        public static bool HasAccess(uint accountid, AccessFlags flag) 
+        public static bool HasAccess(uint accountid, AccountAccessFlags flag) 
         {
             Account account = Get((int)accountid);
             return account != null && account.HasAccess(flag);
@@ -421,7 +421,19 @@ namespace Sharpkick
                 if (!Loaded) Load();
                 Server.Core.OnAfterSave += new OnAfterSaveEventHandler(EventSink_OnAfterSave);
 
+                Server.Core.OnGetAccess += new OnGetAccessEventHandler(ref Core_OnGetAccess);
+
                 Configured = true;
+            }
+        }
+
+        static void Core_OnGetAccess(ref GetAccountAccessArgs args)
+        {
+            Account account = Get((int)args.AccountNumber);
+            if (account != null)
+            {
+                args.Handled = true;
+                args.AccessFlags = account.Access;
             }
         }
 

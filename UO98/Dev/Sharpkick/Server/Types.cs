@@ -51,15 +51,4 @@ namespace Sharpkick
         public string CharName;
         public string Password;
     }
-
-    [Flags]
-    enum AccessFlags
-    {
-        Player=0,
-        Admin=Editor | SaveWorld | Shutdown,
-
-        Editor=0x01,
-        SaveWorld=0x02,
-        Shutdown=0x04,
-    }
 }

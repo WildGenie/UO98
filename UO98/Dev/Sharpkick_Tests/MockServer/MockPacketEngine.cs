@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace Sharpkick_Tests
 {
-    unsafe class MockPacketEngine : IPackets
+    unsafe class MockPacketEngine : IPacketEngine
     {
         Dictionary<uint, byte[]> LastSentPacketBySocketHandle = new Dictionary<uint, byte[]>();
 
@@ -36,7 +36,7 @@ namespace Sharpkick_Tests
 
         public int SocketObject_SendPacket(ClientSocketStruct* pSocket, byte* PacketData, uint DataSize)
         {
-            ClientSocket socket = new ClientSocket(pSocket);
+            UODemo.ISocket socket = new UODemo.Socket(this,(struct_ServerSocket*)pSocket); //ClientSocket(pSocket);
             uint handle = socket.SocketHandle;
 
             byte[] sentData = new byte[DataSize];

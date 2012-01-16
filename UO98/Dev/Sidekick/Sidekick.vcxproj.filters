@@ -80,6 +80,9 @@
     <ClInclude Include="NativeEvents.h">
       <Filter>Header Files\Native</Filter>
     </ClInclude>
+    <ClInclude Include="Socket.h">
+      <Filter>Header Files\Managed</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

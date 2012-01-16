@@ -10,7 +10,7 @@ namespace Sharpkick.Network
     /// A packet we construct to send to the client, usually to a specific client version. This has no underlying buffer on the server as it was not created by the server.
     /// </summary>
     /// <remarks>Name these classes with a post-pend of the client version they are for, example Packet3A_SkillInfo_1_25_36f</remarks>
-    abstract class ServerPacketSafe : Packet
+    abstract class ServerPacketSafe : Packet, UODemo.IServerPacket
     {
         protected byte[] m_Data;
         public override byte[] Data { get { return m_Data; } }
@@ -113,8 +113,8 @@ namespace Sharpkick.Network
             m_ppData = ppdata;
         }
 
-        private ClientSocket m_ClientSocket=null;
-        protected ClientSocket Socket { get { return m_ClientSocket ?? (m_ClientSocket = new ClientSocket(m_Socket)); } }
+        private UODemo.ISocket m_ClientSocket = null;
+        protected UODemo.ISocket Socket { get { return m_ClientSocket ?? (m_ClientSocket = UODemo.Socket.Acquire(Server.Core, (struct_ServerSocket*)m_Socket)); /*ClientSocket(m_Socket))*/; } }
 
         public static ServerPacket Instantiate(byte* socket, byte** ppData, uint* pDataLen)
         {
@@ -195,9 +195,9 @@ namespace Sharpkick.Network
                 {
                     if (Socket.PlayerObject != null)
                     {
-                        if (acct.HasAccess(AccessFlags.Admin))
+                        if (acct.HasAccess(AccountAccessFlags.Admin))
                         {
-                            Server.MakeGameMaster(Socket.PlayerObject);
+                            Server.MakeGameMaster((PlayerObject*)Socket.PlayerObject);
                             Player.SetPlayerFlag((class_Player*)Socket.PlayerObject, PlayerFlags.IsEditing); 
                             ConsoleUtils.PushColor(ConsoleColor.Red);
                             Console.WriteLine("GM Login.");
@@ -205,7 +205,7 @@ namespace Sharpkick.Network
                         }
                         else
                         {
-                            Server.UnmakeGameMaster(Socket.PlayerObject);
+                            Server.UnmakeGameMaster((PlayerObject*)Socket.PlayerObject);
                             Player.ClearPlayerFlag((class_Player*)Socket.PlayerObject, PlayerFlags.IsEditing | PlayerFlags.IsGod | PlayerFlags.IsGM);
                         }
                     }
