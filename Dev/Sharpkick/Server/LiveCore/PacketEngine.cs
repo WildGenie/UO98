@@ -30,9 +30,11 @@ namespace Sharpkick
             {
                 if (MyServerConfig.PacketDebug) Console.WriteLine("Packet obj: ID:{0:X2} Size:{1} Dyn:{2}", PacketID, PacketSize, IsPacketDynamicSized);
 
-                Network.ClientPacketSafe packet = Network.ClientPacket.Instantiate(pSocket, PacketID, PacketSize, IsPacketDynamicSized != 0 ? true : false);
-                if (packet != null && !packet.OnReceived())
-                    packet.Remove();
+                using (Network.ClientPacketSafe packet = Network.ClientPacket.Instantiate(pSocket, PacketID, PacketSize, IsPacketDynamicSized != 0 ? true : false))
+                {
+                    if (packet != null && !packet.OnReceived())
+                        packet.Remove();
+                }
             }
 
             /// <summary>
@@ -50,7 +52,7 @@ namespace Sharpkick
                 ClientVersion version;
                 if (PacketID == 0xBB && ver < ClientVersion.v1_26_0) // detect client 1.26.0
                 {
-                    ClientSocket socket = new ClientSocket(pSocket);
+                    UODemo.ISocket socket = UODemo.Socket.Acquire(Server.Core, (struct_ServerSocket*)pSocket); //ClientSocket(pSocket);
                     version = ClientVersion.v1_26_0;
                     socket.SetClientVersion(version.Version);
                 }

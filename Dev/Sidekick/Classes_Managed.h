@@ -114,6 +114,17 @@ public enum struct PlayerFlags : unsigned __int32
 };
 typedef PlayerFlags _PlayerFlags;
 
+[Flags]
+public enum struct AccountAccessFlags
+{
+    Player=0,
+    Editor=0x01,
+    SaveWorld=0x02,
+    Shutdown=0x04,
+    Admin=Editor | SaveWorld | Shutdown,
+};
+typedef AccountAccessFlags _AccountAccessFlags;
+
 
 public enum struct BookWriteableFlag : unsigned __int8
 {
@@ -244,7 +255,22 @@ typedef public value struct Location sealed {
 
 } _Location;
 
-public value struct ClientVersionStruct sealed { def_struct_ClientVersion };
+public value struct ClientVersionStruct sealed 
+{ 
+    def_struct_ClientVersion 
+
+    ClientVersionStruct(unsigned __int8 major,
+                        unsigned __int8 minor,
+                        unsigned __int8 build,
+                        unsigned __int8 revision) :
+    Major(major), Minor(minor), Build(build), Revision(revision){}
+
+    static operator ClientVersionStruct(struct_ClientVersion cv)
+    {
+      return ClientVersionStruct(cv.Major,cv.Minor,cv.Build,cv.Revision);
+    }
+
+};
 
 public ref class Entity abstract  
 {

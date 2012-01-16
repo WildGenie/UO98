@@ -38,7 +38,7 @@ namespace NativeMethods
             args.account_number = BeheldObject->account_number;
             args.character_number = (__int8)BeheldObject->character_number;
 
-            strcpy(args.CharacterRealName, (const char*)BeheldObject->RealName);
+            strcpy_s(args.CharacterRealName, (const char*)BeheldObject->RealName);
  
             SendInfoWindowOrDoPlayerShadow(&args);
 

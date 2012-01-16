@@ -134,7 +134,7 @@ namespace Sharpkick.Network
                 default:
                     ConsoleUtils.PushColor(ConsoleColor.Red);
                     Console.Write("Received 0x12 TextCommand type {0}: ", CommandType);
-                    bool ok = Accounting.HasAccess(Packet.AccountNumber, AccessFlags.Editor);
+                    bool ok = Accounting.HasAccess(Packet.AccountNumber, AccountAccessFlags.Editor);
                     Console.WriteLine(ok ? "OK." : "Access Denied.");
                     if (ok && CommandType == Type.GMCommand)
                     {
@@ -471,7 +471,7 @@ namespace Sharpkick.Network
     /// <summary>
     /// Provides a wrapper for the unsafe client packet class
     /// </summary>
-    abstract class ClientPacketSafe
+    abstract class ClientPacketSafe : IDisposable
     {
         protected ClientPacket Packet;
         protected ClientVersionStruct ClientVersion { get { return Packet.ClientVersion; } }
@@ -509,12 +509,23 @@ namespace Sharpkick.Network
 
         public bool Removed { get { return Packet.Removed; } }
         public void Remove() { Packet.Remove(); }
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            if (Packet != null)
+                Packet.Dispose();
+            Packet = null;
+        }
+
+        #endregion
     }
 
     /// <summary>
     /// An unsafe received Packet class allowing direct manipulation of the underlying packet. This should be wrapped by a SafePacket class
     /// </summary>
-    unsafe sealed class ClientPacket : UnsafePacket
+    unsafe sealed class ClientPacket : UnsafePacket, IDisposable
     {
         public int SendPacketToSocket(ServerPacketSafe packet)
         {
@@ -531,7 +542,7 @@ namespace Sharpkick.Network
 
         public static ClientPacketSafe Instantiate(byte* pSocket, byte PacketID, uint PacketSize, bool IsPacketDynamicSized)
         {
-            ClientSocket socket = new ClientSocket(pSocket);
+            UODemo.ISocket socket = UODemo.Socket.Acquire(Server.Core,(struct_ServerSocket*)pSocket); //ClientSocket(pSocket);
 
             // Check for god mode on each packet.
             if (socket.PlayerObject != null && (socket.IsGod || socket.IsEditing) && !socket.VerifyGod)
@@ -607,11 +618,14 @@ namespace Sharpkick.Network
                         return null;
                 }
             }
+            else
+                UODemo.Socket.Free(socket);
+
             return null;    // Bad packet, length is too short.
         }
 
         /// <summary>This is the servers socket which received this packet.</summary>
-        private ClientSocket Socket { get; set; }
+        private UODemo.ISocket Socket { get; set; }
 
         public ClientVersionStruct ClientVersion { get { return Socket.Version; } }
 
@@ -621,8 +635,8 @@ namespace Sharpkick.Network
         }
 
         public bool IsGM { get { return Socket.IsGm; } }
-        public PlayerObject* PlayerPtr { get { return Socket.PlayerObject; } }
-        public PlayerObject Player { get { return *Socket.PlayerObject; } }
+        public PlayerObject* PlayerPtr { get { return (PlayerObject*)Socket.PlayerObject; } }
+        public PlayerObject Player { get { return *(PlayerObject*)Socket.PlayerObject; } }
 
         public void SendSystemMessage(string message)
         {
@@ -655,7 +669,7 @@ namespace Sharpkick.Network
 
         public bool IsLocal { get { return Socket.IsInternal; } }
 
-        public IPAddress IPAddress { get { return Socket.IPAddress; } }
+        public IPAddress IPAddress { get { return Socket.ClientAddress; } }
 
         public uint AccountNumber { get { return Socket.AccountNumber; } }
 
@@ -663,7 +677,7 @@ namespace Sharpkick.Network
         /// <summary>Packet is variable length</summary>
         public override bool Dynamic { get { return m_Dynamic; } }
 
-        private ClientPacket(ClientSocket socket, byte PacketID, uint PacketSize, bool IsPacketDynamicSized): base(socket.Data, PacketSize)
+        private ClientPacket(UODemo.ISocket socket, byte PacketID, uint PacketSize, bool IsPacketDynamicSized): base(socket.Data, PacketSize)
         {
             Socket = socket;
             Id = PacketID;
@@ -722,5 +736,16 @@ namespace Sharpkick.Network
                 return ASCIIEncoding.Default.GetBytes(pChars, chars.Length, pData + start, length);
             }
         }
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            if (Socket != null)
+                UODemo.Socket.Free(Socket);
+            Socket = null;
+        }
+
+        #endregion
     }
 }

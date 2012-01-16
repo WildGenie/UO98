@@ -793,7 +793,7 @@ public:
                                   unsigned __int8 Revision;
 struct struct_ClientVersion { def_struct_ClientVersion };
 
-struct struct_ServerSocket
+public struct struct_ServerSocket
 {
   unsigned __int32 PointerToFunctions;
   struct_ServerSocket* NextServerSocket;
@@ -804,7 +804,7 @@ struct struct_ServerSocket
   unsigned __int32 field_18;
   unsigned __int32 field_1C;
   unsigned __int32 field_20;
-  unsigned __int32 SocketIdentifierString;
+           char*   SocketIdentifierString;
   unsigned __int8  Data_or_IPport[65536];
   unsigned __int32 AccountNumber__PATCH;
   unsigned __int32 BytesRead;
