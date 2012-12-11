@@ -360,7 +360,7 @@ namespace NativeMethods
 
               // A 4 byte packet is assumed to be a seed packet. If the size exceeds 4, we check for a 0x80 login packet, or a 0x91 play server packet.
               // The seed is is usually the IpAddress, although this cannot be relied upon.
-              if((*pTotalDataSize==4) || (*pTotalDataSize > 5 && (*(Data+5)==0x80 || *(Data+5)==0x91)) )
+              if((*pTotalDataSize==4) || (*pTotalDataSize >= 5 && (*(Data+4)==0x80 || *(Data+4)==0x91)) )
               {
                   NativeMethods::SocketObject_RemoveFirstPacket(Socket,4);
                   puts("Removed seed.");
